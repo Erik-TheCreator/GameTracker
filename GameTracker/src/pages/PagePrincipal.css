@@ -4,6 +4,8 @@
     background-color: rgb(54, 54, 54);
     justify-content: center;
     justify-items: center;
+    background-image: url("../assets/bggametracker.webp");
+    background: linear-gradient(rgba(39, 37, 37, 0.774),rgba(29, 27, 27, 0.856)),url("../assets/bggametracker.webp");
 
 }
 
@@ -24,18 +26,34 @@
 .containerGames{
     padding: 20px;
     border-radius: 30px;
-    width: 80%;
-    height: 700px;
-    background: #000000;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(13, 13, 13, 1) 61%, rgba(59, 59, 59, 1) 100%);
-
+    width: 100%;
+    height: 100%;
+    background: #464646;
+    background: linear-gradient(180deg, rgb(44, 44, 44) 0%, rgba(13, 13, 13, 1) 61%, rgba(59, 59, 59, 1) 100%);
 
     }
 
 .containerGames form{
     display: flex;
+    gap: 20px;
+
+}
+
+.containerGames form select{
+    margin-top: 3px;
+    border-radius: 4px;
+    border: none;
+    height: 20px;
+    padding-left: 10px;
+    width: 100px;
+}
+
+.searchBar{
+    display: flex;
     gap: 10px;
     align-items: center;
+    margin-bottom: 40px;
+
 }
 
 .searchIcon{
@@ -43,9 +61,46 @@
     font-size: 1.6em;
 }
 .containerGames form input{
-    border-radius: 7px;
+    border-radius: 4px;
     border: none;
     height: 20px;
     padding-left: 10px;
 
+}
+
+.gamesRow{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+
+}
+
+.games{
+    width: 300px;
+    height: 350px;
+    background-color: #bcccf7;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    font-size: 0.8em;
+
+}
+
+
+#reddead{
+    background-image: url("../assets/Red_Dead_Redemption_II.jpg");
+    background-position-x: -30px;
+        
+}
+
+#reddead:hover{
+    background: linear-gradient(rgba(39, 37, 37, 0.774),rgba(29, 27, 27, 0.856)),url("../assets/Red_Dead_Redemption_II.jpg");
+    background-position-x: -30px;
+    cursor: pointer;
+
+
+
+
+        
 }
