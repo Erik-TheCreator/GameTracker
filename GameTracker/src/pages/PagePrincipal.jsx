@@ -38,7 +38,9 @@ export const PagePrincipal = () => {
                 <div className="gamesRow">
 
                     {gamesFiltrados.map((game)=>(
-                        <div>
+                        <div className="games"  style={{
+                            backgroundImage: `url(/imagens/${game.capa})`,
+                          }}>
                             {game.titulo}
                         </div>
 
