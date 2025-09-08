@@ -1,14 +1,16 @@
 import './App.css'
+import {PageLogin} from './pages/pageLogin'
 import { PagePrincipal } from './pages/pagePrincipal'
 function App() {
 
   return (
 
-    <PagePrincipal/>
+    // <PageRegister/>
 
+    <PageLogin/>
 
+    // <PagePrincipal/>
 
- 
   )
 }
 

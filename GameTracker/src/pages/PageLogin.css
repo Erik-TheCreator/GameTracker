@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  width: 100%;
+  height: 150px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: box-shadow 0.3s;
+}
+
+main {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+  position: relative;
+}
+
+.backGround {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background-image: url('../assets/bggametracker.webp');
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: top left;
+}
+
+.backGround img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.backGround::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
+  pointer-events: none;
+}
+
+
+.painelCentral {
+  background-color: rgba(95, 95, 95, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.897);
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.barra_embaixo {
+  width: 100%;
+  height: 200px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.texto_embaixo {
+  height: 180px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  color: #6e6767;
+  padding: 10px 20px;
+}
+
+.texto_embaixo h3:hover {
+  color: rgb(218, 214, 214);
+  cursor: pointer;
+}
+
+.texto_abaixo{
+  height:50px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  color: #5c5656;
+}
