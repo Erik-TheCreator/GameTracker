@@ -1,26 +1,42 @@
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom'
 import backGround from "../assets/bggametracker.webp";
 import logoPixel from '../assets/logo_pixel.png';
 import "./PageLogin.css"
 
 export const PageLogin = ()=> {
-  const [botaos, setBotaos] = useState({ email: "", senha: "" });
+  const [email,setEmail]=useState("")
+  const [senha,setSenha]=useState("")
+  const navigate=useNavigate()
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setBotaos((prev) => ({ ...prev, [name]: value }));
+  const handleLogin = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, senha }),
+      });
+ 
+      const data = await res.json();
+ 
+      if (!res.ok) {
+        alert(data.mensagem || "Usuário ou senha inválidos!");
+        return;
+      }
+ 
+      alert(data.mensagem);
+      navigate("/home");
+      
+    } catch (err) {
+      console.error("Erro no login:", err);
+      alert("Erro ao conectar com o servidor");
+    }
   };
 
-  const handleEntrar = () => {
-    console.log("Entrar:", botaos);
-  };
-
-  const handleCadastrar = () => {
-    console.log("Cadastrar:", botaos);
-  };
 
   return (
-    <div className="container">
+    <div className="container2">
       <header className="logo">
         <img src={logoPixel} alt="Logo Pixel" />
       </header>
@@ -36,23 +52,23 @@ export const PageLogin = ()=> {
             type="email"
             name="email"
             placeholder="E-mail"
-            value={botaos.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type="password"
             name="senha"
             placeholder="Senha"
-            value={botaos.senha}
-            onChange={handleChange}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
           />
 
-          <button type="button" onClick={handleEntrar}>
+          <button type="button" onClick={handleLogin}>
             Entrar
           </button>
 
-          <button type="button" onClick={handleCadastrar}>
+          <button type="button">
             Cadastrar
           </button>
 

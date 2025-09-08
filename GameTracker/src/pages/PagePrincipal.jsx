@@ -8,7 +8,8 @@ export const PagePrincipal = () => {
     const [nome, setNome]= useState("");
 
     useEffect(()=> {
-    fetch("http://localhost:3000/gametracker")
+    fetch("http://localhost:3000/gametracker"),{
+    credentials: "include"}
     .then(res => {
       if (!res.ok) throw new Error("Erro no http de games")
       return res.json()

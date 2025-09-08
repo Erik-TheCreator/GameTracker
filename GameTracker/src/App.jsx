@@ -1,16 +1,16 @@
 import './App.css'
-import {PageLogin} from './pages/pageLogin'
-import { PagePrincipal } from './pages/pagePrincipal'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {PageLogin} from './pages/PageLogin'
+import { PagePrincipal } from './pages/PagePrincipal'
 function App() {
 
   return (
-
-    // <PageRegister/>
-
-    <PageLogin/>
-
-    // <PagePrincipal/>
-
+    <Router>
+    <Routes>
+    <Route path="/" element={<PageLogin/>}/>
+    <Route path="/home" element={<PagePrincipal/>}/>
+  </Routes>
+  </Router>
   )
 }
 
