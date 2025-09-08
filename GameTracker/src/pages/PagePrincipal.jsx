@@ -1,5 +1,6 @@
 import "./PagePrincipal.css"
 import { MdOutlineSearch } from "react-icons/md";
+import { MdAddToPhotos } from "react-icons/md";
 import { useState,useEffect } from "react";
 
 export const PagePrincipal = () => {
@@ -27,7 +28,7 @@ export const PagePrincipal = () => {
             <div className="containerGames">
                 <form>
                     <div className="searchBar">
-                    <input type="text" value={nome} onChange={(e)=> setNome(e.target.value)}/>
+                    <input type="text" value={nome} onChange={(e)=> setNome(e.target.value)} placeholder="Pesquisar"/>
                     <MdOutlineSearch className="searchIcon"/>
                     </div>
                     <select name="" id="">Ano de Lançamento</select>
@@ -38,10 +39,10 @@ export const PagePrincipal = () => {
                 <div className="gamesRow">
 
                     {gamesFiltrados.map((game)=>(
-                        <div className="games"  style={{
-                            backgroundImage: `url(/imagens/${game.capa})`,
+                        <div className="games"  style={{    backgroundImage: `url(/imagens/${game.capa})`,
                           }}>
-                            {game.titulo}
+                            <div className="game-title"><span>{game.titulo}</span><MdAddToPhotos className="addicon"/>
+                            </div>
                         </div>
 
                     ))}
