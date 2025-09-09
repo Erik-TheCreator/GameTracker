@@ -13,21 +13,20 @@ export const PageLogin = ()=> {
     try {
       const res = await fetch("http://localhost:3000/login", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ email, senha }),
       });
- 
+  
       const data = await res.json();
- 
+  
       if (!res.ok) {
         alert(data.mensagem || "Usuário ou senha inválidos!");
         return;
       }
- 
+  
       alert(data.mensagem);
-      navigate("/home");
-      
+      navigate("/home", { state: { userId: data.id } }); // <-- aqui
     } catch (err) {
       console.error("Erro no login:", err);
       alert("Erro ao conectar com o servidor");
