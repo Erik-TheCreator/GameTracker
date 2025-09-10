@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {PageLogin} from './pages/PageLogin'
 import { PagePrincipal } from './pages/PagePrincipal'
+import { PageMinhasListas } from './pages/PageMinhasListas';
 function App() {
 
   return (
@@ -9,6 +10,7 @@ function App() {
     <Routes>
     <Route path="/" element={<PageLogin/>}/>
     <Route path="/home" element={<PagePrincipal/>}/>
+    <Route path="/mylists" element={<PageMinhasListas/>}/>
   </Routes>
   </Router>
   )

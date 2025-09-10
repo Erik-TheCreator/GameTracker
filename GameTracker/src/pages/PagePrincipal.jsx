@@ -1,12 +1,14 @@
 import "./PagePrincipal.css";
 import { MdOutlineSearch, MdAddToPhotos } from "react-icons/md";
+import { CiBoxList } from "react-icons/ci";
+import { LuLogOut } from "react-icons/lu";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 
 export const PagePrincipal = () => {
   const location = useLocation();
   const userId = location.state?.userId;
-
+  const navigate=useNavigate()
   const [games, setGames] = useState([]);
   const [nome, setNome] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -103,6 +105,17 @@ export const PagePrincipal = () => {
 
   return (
     <div className="container">
+      <header className="cabecalho">
+        <nav>
+          <ul>
+            <li onClick={(e)=>navigate("/mylists",{ state: { userId } })}><span><CiBoxList /></span> Minhas Listas</li>
+            <li><span><LuLogOut />
+            </span> Logout</li>
+          </ul>
+        </nav>
+
+      </header>
+      
       <div className="BGLogo">
         <h1>GameTracker</h1>
       </div>
