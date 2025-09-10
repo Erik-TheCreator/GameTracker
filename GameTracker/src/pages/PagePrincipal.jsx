@@ -47,8 +47,6 @@ export const PagePrincipal = () => {
 
   const adicionarEmLista = 
   (descricaoLista) => {
-    console.log(userId)
-    console.log(selectedGame.id)
     fetch("http://localhost:3000/listas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

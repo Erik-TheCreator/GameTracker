@@ -19,6 +19,7 @@ export const PageLogin = ()=> {
       });
   
       const data = await res.json();
+      console.log("Resposta do backend:", data);
   
       if (!res.ok) {
         alert(data.mensagem || "Usuário ou senha inválidos!");
@@ -26,7 +27,7 @@ export const PageLogin = ()=> {
       }
   
       alert(data.mensagem);
-      navigate("/home", { state: { userId: data.id } }); // <-- aqui
+      navigate("/home", { state: { userId: data.user.id } }); 
     } catch (err) {
       console.error("Erro no login:", err);
       alert("Erro ao conectar com o servidor");
