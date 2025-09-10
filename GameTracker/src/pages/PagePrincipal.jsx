@@ -34,9 +34,13 @@ export const PagePrincipal = () => {
     setPopupPosition({ x: rect.right + 10, y: rect.top });
 
     fetch(`http://localhost:3000/listas/${userId}`, { credentials: "include" })
-      .then(res => res.json())
-      .then(data => setListas(data))
-      .catch(err => console.log(err));
+  .then(res => res.json())
+  .then(data => {
+    const listasUnicas = [...new Map(data.map(item => [item.descricao, item])).values()];
+    setListas(listasUnicas);
+  })
+  .catch(err => console.log(err));
+
   };
 
   const adicionarEmLista = (descricaoLista) => {
@@ -50,17 +54,19 @@ export const PagePrincipal = () => {
         descricao: descricaoLista,
       }),
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.user.id) {
-          alert("Jogo adicionado à lista existente com sucesso!");
+      .then(res => {
+        if (res.ok) {
+          alert(`Jogo adicionado à lista "${descricaoLista}" com sucesso!`);
           setIsPopupOpen(false);
         } else {
-          alert(data.mensagem || "Erro ao adicionar o jogo.");
+          return res.json().then(data => {
+            alert(data.mensagem || "Erro ao adicionar o jogo.");
+          });
         }
       })
       .catch(err => console.log(err));
   };
+  
 
   const criarNovaLista = async () => {
     if (!novaLista.trim()) return alert("Nome da lista não pode ser vazio!");
