@@ -3,10 +3,10 @@ import { MdOutlineSearch, MdAddToPhotos } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-
 export const PagePrincipal = () => {
   const location = useLocation();
   const userId = location.state?.userId;
+
   const [games, setGames] = useState([]);
   const [nome, setNome] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -17,10 +17,7 @@ export const PagePrincipal = () => {
 
   useEffect(() => {
     fetch("http://localhost:3000/gametracker", { credentials: "include" })
-      .then(res => {
-        if (!res.ok) throw new Error("Erro ao buscar games");
-        return res.json();
-      })
+      .then(res => res.json())
       .then(data => setGames(data))
       .catch(err => console.log(err));
   }, []);
@@ -34,10 +31,7 @@ export const PagePrincipal = () => {
     setIsPopupOpen(true);
 
     const rect = event.currentTarget.getBoundingClientRect();
-    setPopupPosition({
-      x: rect.right + 10,
-      y: rect.top,
-    });
+    setPopupPosition({ x: rect.right + 10, y: rect.top });
 
     fetch(`http://localhost:3000/listas/${userId}`, { credentials: "include" })
       .then(res => res.json())
@@ -45,8 +39,7 @@ export const PagePrincipal = () => {
       .catch(err => console.log(err));
   };
 
-  const adicionarEmLista = 
-  (descricaoLista) => {
+  const adicionarEmLista = (descricaoLista) => {
     fetch("http://localhost:3000/listas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -57,41 +50,49 @@ export const PagePrincipal = () => {
         descricao: descricaoLista,
       }),
     })
-      .then(res => {
-        if (res.ok) {
-          alert("Jogo adicionado com sucesso!");
+      .then(res => res.json())
+      .then(data => {
+        if (data.user.id) {
+          alert("Jogo adicionado à lista existente com sucesso!");
           setIsPopupOpen(false);
         } else {
-          alert("Erro ao adicionar o jogo.");
+          alert(data.mensagem || "Erro ao adicionar o jogo.");
         }
       })
       .catch(err => console.log(err));
   };
 
-  const criarNovaLista = () => {
-    if(!novaLista.trim()) return alert("Nome da lista não pode ser vazio!");
+  const criarNovaLista = async () => {
+    if (!novaLista.trim()) return alert("Nome da lista não pode ser vazio!");
   
-    fetch("http://localhost:3000/listas", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        id_usuario: userId,
-        id_game: selectedGame.id,
-        descricao: novaLista
-      }),
-    })
-    .then(res => {
-      if(res.ok){
-        alert("Lista criada e jogo adicionado!");
-        setIsPopupOpen(false);
-        setNovaLista(""); 
-      } else {
+    try {
+      const res = await fetch("http://localhost:3000/listas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          id_usuario: userId,
+          id_game: selectedGame.id,
+          descricao: novaLista,
+        }),
+      });
+  
+      if (!res.ok) {
         alert("Erro ao criar a lista");
+        return;
       }
-    })
-    .catch(err => console.log(err));
-  }
+  
+      const novaListaCriada = await res.json();
+  
+      setListas(prev => [...prev, { id: novaListaCriada.id, descricao: novaListaCriada.descricao }]);
+      alert("Lista criada e jogo adicionado!");
+      setNovaLista(""); 
+  
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao criar a lista");
+    }
+  };
   
 
   return (
@@ -112,6 +113,7 @@ export const PagePrincipal = () => {
             <MdOutlineSearch className="searchIcon" />
           </div>
         </form>
+
         {isPopupOpen && selectedGame && (
           <div
             className="popupFloating"
@@ -140,7 +142,14 @@ export const PagePrincipal = () => {
               onChange={(e) => setNovaLista(e.target.value)}
               placeholder="Nome da nova lista"
             />
-            <button onClick={(e) => { e.preventDefault(); criarNovaLista(); }}>Criar e adicionar</button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                criarNovaLista();
+              }}
+            >
+              Criar e adicionar
+            </button>
 
             <button onClick={() => setIsPopupOpen(false)}>Fechar</button>
           </div>
@@ -163,7 +172,6 @@ export const PagePrincipal = () => {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );
