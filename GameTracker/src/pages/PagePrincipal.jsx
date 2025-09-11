@@ -3,12 +3,12 @@ import { MdOutlineSearch, MdAddToPhotos } from "react-icons/md";
 import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { useState, useEffect } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const PagePrincipal = () => {
   const location = useLocation();
   const userId = location.state?.userId;
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [games, setGames] = useState([]);
   const [nome, setNome] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -17,62 +17,42 @@ export const PagePrincipal = () => {
   const [novaLista, setNovaLista] = useState("");
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
 
+  if (!userId) {
+    navigate("/home");
+    return null;
+  }
+
   useEffect(() => {
     fetch("http://localhost:3000/gametracker", { credentials: "include" })
-      .then(res => res.json())
-      .then(data => setGames(data))
-      .catch(err => console.log(err));
+      .then((res) => res.json())
+      .then((data) => setGames(data))
+      .catch((err) => console.log(err));
   }, []);
 
-  const gamesFiltrados = games.filter(game =>
+
+  const gamesFiltrados = games.filter((game) =>
     game.titulo.toLowerCase().includes(nome.toLowerCase())
   );
-
-  const abrirPopup = (game, event) => {
+  const carregarListas = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/listas/${userId}`, {
+        credentials: "include",
+      });
+      const data = await res.json();
+      const listasUnicas = [...new Map(data.map(item => [item.descricao, item])).values()];
+      setListas(listasUnicas);
+    } catch (err) {
+      console.error("Erro ao carregar listas:", err);
+    }
+  };
+  
+  const abrirPopup = (game) => {
     setSelectedGame(game);
     setIsPopupOpen(true);
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    setPopupPosition({ x: rect.right + 10, y: rect.top });
-
-    fetch(`http://localhost:3000/listas/${userId}`, { credentials: "include" })
-  .then(res => res.json())
-  .then(data => {
-    const listasUnicas = [...new Map(data.map(item => [item.descricao, item])).values()];
-    setListas(listasUnicas);
-  })
-  .catch(err => console.log(err));
-
-  };
-
-  const adicionarEmLista = (descricaoLista) => {
-    fetch("http://localhost:3000/listas", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        id_usuario: userId,
-        id_game: selectedGame.id,
-        descricao: descricaoLista,
-      }),
-    })
-      .then(res => {
-        if (res.ok) {
-          alert(`Jogo adicionado à lista "${descricaoLista}" com sucesso!`);
-          setIsPopupOpen(false);
-        } else {
-          return res.json().then(data => {
-            alert(data.mensagem || "Erro ao adicionar o jogo.");
-          });
-        }
-      })
-      .catch(err => console.log(err));
+    carregarListas(); 
   };
   
-
-  const criarNovaLista = async () => {
-    if (!novaLista.trim()) return alert("Nome da lista não pode ser vazio!");
-  
+  const adicionarEmLista = async (descricaoLista) => {
     try {
       const res = await fetch("http://localhost:3000/listas", {
         method: "POST",
@@ -81,26 +61,60 @@ export const PagePrincipal = () => {
         body: JSON.stringify({
           id_usuario: userId,
           id_game: selectedGame.id,
-          descricao: novaLista,
+          descricao: descricaoLista,
         }),
       });
   
       if (!res.ok) {
-        alert("Erro ao criar a lista");
+        const data = await res.json();
+        alert(data.mensagem || "Erro ao adicionar o jogo.");
         return;
       }
   
-      const novaListaCriada = await res.json();
-  
-      setListas(prev => [...prev, { id: novaListaCriada.id, descricao: novaListaCriada.descricao }]);
-      alert("Lista criada e jogo adicionado!");
-      setNovaLista(""); 
-  
+      await carregarListas(); 
+      alert(`Jogo adicionado à lista "${descricaoLista}" com sucesso!`);
+      setIsPopupOpen(false);
     } catch (err) {
       console.error(err);
-      alert("Erro ao criar a lista");
     }
   };
+  
+  const criarNovaLista = async () => {
+    if (!novaLista.trim()) return alert("O nome da lista não pode ser vazio!");
+    try {
+      const res = await fetch("http://localhost:3000/listas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          id_usuario: userId,
+          id_game: selectedGame.id,
+          descricao: novaLista.trim(),
+        }),
+      });
+  
+      if (!res.ok) {
+        const data = await res.json();
+        alert(data.mensagem || "Erro ao criar a lista.");
+        return;
+      }
+  
+      await carregarListas();
+      setNovaLista("");
+      setIsPopupOpen(false);
+      alert("Lista criada e jogo adicionado com sucesso!");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao criar a lista.");
+    }
+  };
+  
+
+  
+
+  
+
+ 
   
 
   return (
@@ -108,14 +122,16 @@ export const PagePrincipal = () => {
       <header className="cabecalho">
         <nav>
           <ul>
-            <li onClick={(e)=>navigate("/mylists",{ state: { userId } })}><span><CiBoxList /></span> Minhas Listas</li>
-            <li><span><LuLogOut />
-            </span> Logout</li>
+            <li onClick={() => navigate("/mylists", { state: { userId } })}>
+              <span><CiBoxList /></span> Minhas Listas
+            </li>
+            <li>
+              <span><LuLogOut /></span> Logout
+            </li>
           </ul>
         </nav>
-
       </header>
-      
+
       <div className="BGLogo">
         <h1>GameTracker</h1>
       </div>
@@ -136,7 +152,6 @@ export const PagePrincipal = () => {
         {isPopupOpen && selectedGame && (
           <div
             className="popupFloating"
-            style={{ top: popupPosition.y, left: popupPosition.x }}
           >
             <h2>{selectedGame.titulo}</h2>
 

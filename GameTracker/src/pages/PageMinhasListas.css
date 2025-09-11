@@ -1,9 +1,92 @@
 .nomedalista{
     color: white;
-    font-size: 1.5em;
+    font-size: 1.4em;
+    margin-bottom: 50px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.containerGames2{
+    padding: 20px;
+    border-radius: 30px;
+    width: 100%;
+    height: 1000vh;
+    background: #464646;
+    background: linear-gradient(180deg, rgb(44, 44, 44) 0%, rgba(13, 13, 13, 1) 61%, rgba(59, 59, 59, 1) 100%);
+
+}
+.nomedalista span{
+    margin-top: 4px;
+    font-size: 0.9em;
+}
+
+.editicon{
+
+    font-size: 1.2em;
+
+}
+
+.editicon:hover{
+    cursor: pointer;
+    color: rgb(211, 211, 211);
 }
 
 .listavazia{
     color: white;
     font-size: 2em;
 }
+.gamesContainer{
+    margin-left: 20px;
+
+}
+.gamesRow2{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 100px;
+
+}
+
+.game-title2 {
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    gap: 15px;
+
+}
+
+.trashicon:hover{
+    cursor: pointer;
+    color: rgb(211, 211, 211);
+
+}
+
+.games:hover .game-title2 {
+    opacity: 1;
+  }
+
+  .games::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: background 0.3s;
+    z-index: 1;
+  }
+  
+  .games:hover::after {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+    cursor: pointer;
+  }
+  
+  .games > * {
+    position: relative;
+    z-index: 2;
+  }
