@@ -1,0 +1,90 @@
+.PageGame-container {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('../assets/bggametracker.webp');
+    box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
+    pointer-events: none;
+  }
+   
+  .PageGame-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+   
+  .PageGame-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+   
+  .PageGame-nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 500;
+  }
+   
+  .PageGame-nav input {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+  }
+   
+  .PageGame-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+   
+  .PageGame-main {
+    width: 600px;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+   
+  .PageGame-cover {
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+   
+  .PageGame-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+   
+  .PageGame-info p {
+    font-size: 18px;
+    color: #ccc;
+  }
+   
+  .PageGame-platforms,
+  .PageGame-genres {
+    margin-top: 10px;
+  }
+   
+  .PageGame-platforms h3,
+  .PageGame-genres h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+   
+  .PageGame-platforms p,
+  .PageGame-genres p {
+    font-size: 14px;
+    color: #eee;
+    line-height: 1.5;
+  }
