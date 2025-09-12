@@ -7,16 +7,27 @@
     flex-direction: column;
     background-image: url('../assets/bggametracker.webp');
     box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
-    pointer-events: none;
+  }
+
+  .PageGame-header img{
+    width: 400px;
+  }
+  
+  .PageGame-header img:hover{
+    cursor: pointer;
   }
 
   .teste{
     width: 100%;
     height: 100%;
     opacity: 0.3;
+    background-repeat: no-repeat;        
+    background-position: center center; 
     background-size: cover;
-    background-position: top;
+
   }
+
+
    
   .PageGame-header {
     display: flex;
@@ -50,6 +61,8 @@
     align-items: center;
     padding: 40px 20px;
   }
+
+
    
   .PageGame-main {
     width: 600px;
@@ -60,6 +73,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 1100px;
   }
    
   .PageGame-cover {

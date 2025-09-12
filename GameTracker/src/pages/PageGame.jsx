@@ -1,34 +1,52 @@
 import "./PageGame.css";
 import logoPixel from "../assets/logo_pixel.png";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams,useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState} from "react";
 
 export const PageGame = () => {
   const { id } = useParams();
   const [game, setGame] = useState(null);
+  const navigate=useNavigate()
+  const location = useLocation();
+  const userId = location.state?.userId || sessionStorage.getItem("userId");
+
+
+  useEffect(() => {
+    if (!userId) {
+      navigate("/home");
+    }
+  }, [userId, navigate]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/gametracker/${id}`, { credentials: "include" })
       .then(res => res.json())
-      .then(data => setGame(data))
+      .then(data => {
+        console.log("Dados do jogo:", data);
+        setGame(data)})
       .catch(err => console.error(err));
   }, [id]);
 
+  if (!userId) {
+    return <p>Redirecionando...</p>; 
+  }
   if (!game) return <p>Carregando...</p>;
+
 
 
   return (
     <div className="PageGame-container">
       <header className="PageGame-header">
-        <img src={logoPixel} alt="Logo Pixel" width="400px" />
+        <img src={logoPixel} alt="Logo Pixel"  onClick={(e)=> navigate("/home", { state: { userId } })} />
         <nav className="PageGame-nav">
           
         </nav>
       </header>
  
       <div className="PageGame-wrapper">
+        
         <main className="PageGame-main">
-        <div style={{ backgroundImage: `url(/imagens_fundo/${game.capa_fundo})` }} className="teste"></div>
+        <div style={{ backgroundImage: `url(/imagens_fundo/${game.capa_fundo})` }} className="teste">
+        </div>
         <img src={`/imagens/${game.capa}`} alt="Game Cover" className="PageGame-cover" />
           <div className="PageGame-info">
             <h1>{game.titulo}</h1>
@@ -50,14 +68,13 @@ export const PageGame = () => {
           <div className="PageGame-platforms">
             <h3>Plataformas</h3>
             <p>
-              Linux · Windows PC · Mac · PlayStation 4 · Xbox One · Nintendo
-              Switch · PlayStation 5 · Xbox Series · Nintendo Switch 2
+            {game.plataformas?.split(",").join(" · ")}
             </p>
           </div>
  
           <div className="PageGame-genres">
             <h3>Genero</h3>
-            <p>Adventure · Indie · Platform</p>
+            <p>{game.generos?.split(",").join(" · ")}</p>
           </div>
         </main>
       </div>

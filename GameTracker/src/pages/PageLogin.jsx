@@ -27,6 +27,7 @@ export const PageLogin = ()=> {
       }
   
       alert(data.mensagem);
+      sessionStorage.setItem("userId", data.id);
       navigate("/home", { state: { userId: data.user.id } }); 
     } catch (err) {
       console.error("Erro no login:", err);

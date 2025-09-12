@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export const PagePrincipal = () => {
   const location = useLocation();
-  const userId = location.state?.userId;
+  const userId = location.state?.userId || sessionStorage.getItem("userId");
   const navigate = useNavigate();
   const [games, setGames] = useState([]);
   const [nome, setNome] = useState("");

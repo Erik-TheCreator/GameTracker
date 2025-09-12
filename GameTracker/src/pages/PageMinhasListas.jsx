@@ -8,7 +8,7 @@ import { MdKeyboardReturn, MdEdit } from "react-icons/md";
 export const PageMinhasListas = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const userId = location.state?.userId;
+  const userId = location.state?.userId || sessionStorage.getItem("userId");
 
   const [listas, setListas] = useState([]);
   const [popupAberto, setPopupAberto] = useState(false);
