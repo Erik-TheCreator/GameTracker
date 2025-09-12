@@ -22,8 +22,7 @@ export const PageGame = () => {
       <header className="PageGame-header">
         <img src={logoPixel} alt="Logo Pixel" width="400px" />
         <nav className="PageGame-nav">
-          <a href="#">Perfil</a>
-          <input type="text" placeholder="Search..."/>
+          
         </nav>
       </header>
  
@@ -34,15 +33,14 @@ export const PageGame = () => {
           <div className="PageGame-info">
             <h1>{game.titulo}</h1>
             <p>
-  Released on{" "}
+  Data de Lançamento: {" "}
   <strong>
     {new Date(game.data_lancamento).toLocaleDateString("pt-BR", {
       day: "2-digit",
       month: "short",
       year: "numeric"
     })}
-  </strong>{" "}
-  by <strong>{game.desenvolvedora}</strong>
+  </strong>{" "} <br />Desenvolvido por : <strong>{game.desenvolvedora}</strong>
 </p>
             <p>
               {game.sinopse}
@@ -50,7 +48,7 @@ export const PageGame = () => {
           </div>
  
           <div className="PageGame-platforms">
-            <h3>Platforms</h3>
+            <h3>Plataformas</h3>
             <p>
               Linux · Windows PC · Mac · PlayStation 4 · Xbox One · Nintendo
               Switch · PlayStation 5 · Xbox Series · Nintendo Switch 2
@@ -58,7 +56,7 @@ export const PageGame = () => {
           </div>
  
           <div className="PageGame-genres">
-            <h3>Genres</h3>
+            <h3>Genero</h3>
             <p>Adventure · Indie · Platform</p>
           </div>
         </main>

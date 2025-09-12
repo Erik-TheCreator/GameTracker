@@ -15,6 +15,7 @@
     height: 100%;
     opacity: 0.3;
     background-size: cover;
+    background-position: top;
   }
    
   .PageGame-header {
