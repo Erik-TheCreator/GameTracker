@@ -108,6 +108,16 @@ export const PagePrincipal = () => {
       alert("Erro ao criar a lista.");
     }
   };
+
+  useEffect(() => {
+    if (games.length > 0) {
+      const savedPosition = sessionStorage.getItem("scrollPosition");
+      if (savedPosition) {
+        window.scrollTo(0, parseInt(savedPosition));
+        sessionStorage.removeItem("scrollPosition");
+      }
+    }
+  }, [games]);
   
 
   
@@ -195,7 +205,9 @@ export const PagePrincipal = () => {
               className="games"
               key={game.id}
               style={{ backgroundImage: `url(/imagens/${game.capa})` }}
-              onClick={() => navigate(`/gamepage/${game.id}`, { state: { userId } })}
+              onClick={() => {
+                sessionStorage.setItem("scrollPosition", window.scrollY);
+                navigate(`/gamepage/${game.id}`, { state: { userId } })}}
             >
               <div className="game-title">
                 <span>{game.titulo}</span>
