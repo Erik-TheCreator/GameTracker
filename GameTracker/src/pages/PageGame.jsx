@@ -1,8 +1,22 @@
 import "./PageGame.css";
 import logoPixel from "../assets/logo_pixel.png";
-import gameIcon from "../assets/game.jpg";
- 
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 export const PageGame = () => {
+  const { id } = useParams();
+  const [game, setGame] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/gametracker/${id}`, { credentials: "include" })
+      .then(res => res.json())
+      .then(data => setGame(data))
+      .catch(err => console.error(err));
+  }, [id]);
+
+  if (!game) return <p>Carregando...</p>;
+
+
   return (
     <div className="PageGame-container">
       <header className="PageGame-header">
@@ -15,19 +29,23 @@ export const PageGame = () => {
  
       <div className="PageGame-wrapper">
         <main className="PageGame-main">
-          <img src={gameIcon} alt="Game Cover" className="PageGame-cover" />
+        <div style={{ backgroundImage: `url(/imagens_fundo/${game.capa_fundo})` }} className="teste"></div>
+        <img src={`/imagens/${game.capa}`} alt="Game Cover" className="PageGame-cover" />
           <div className="PageGame-info">
-            <h1>Hollow Knight: Silksong</h1>
+            <h1>{game.titulo}</h1>
             <p>
-              Released on <strong>Sep 04, 2025</strong> by{" "}
-              <strong>Team Cherry</strong>
-            </p>
+  Released on{" "}
+  <strong>
+    {new Date(game.data_lancamento).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    })}
+  </strong>{" "}
+  by <strong>{game.desenvolvedora}</strong>
+</p>
             <p>
-              Hollow Knight: Silksong is the epic sequel to Hollow Knight, the
-              epic action-adventure of bugs and heroes. As the lethal hunter
-              Hornet, journey to all-new lands, discover new powers, battle
-              vast hordes of bugs and beasts and uncover ancient secrets tied
-              to your nature and your past.
+              {game.sinopse}
             </p>
           </div>
  

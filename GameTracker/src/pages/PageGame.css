@@ -9,6 +9,13 @@
     box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
     pointer-events: none;
   }
+
+  .teste{
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    background-size: cover;
+  }
    
   .PageGame-header {
     display: flex;
@@ -58,6 +65,8 @@
     width: 300px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    margin-bottom: 200px;
   }
    
   .PageGame-info h1 {

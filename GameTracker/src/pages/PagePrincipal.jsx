@@ -195,12 +195,15 @@ export const PagePrincipal = () => {
               className="games"
               key={game.id}
               style={{ backgroundImage: `url(/imagens/${game.capa})` }}
+              onClick={() => navigate(`/gamepage/${game.id}`, { state: { userId } })}
             >
               <div className="game-title">
                 <span>{game.titulo}</span>
                 <MdAddToPhotos
                   className="addicon"
-                  onClick={(e) => abrirPopup(game, e)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    abrirPopup(game, e)}}
                 />
               </div>
             </div>
