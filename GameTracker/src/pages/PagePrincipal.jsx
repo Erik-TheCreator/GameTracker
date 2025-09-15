@@ -29,10 +29,14 @@ export const PagePrincipal = () => {
       .catch((err) => console.log(err));
   }, []);
 
-
-  const gamesFiltrados = games.filter((game) =>
+  const ordemAlfabetica=(gamesList)=>{
+    return [...gamesList].sort((a,b)=>a.titulo.localeCompare(b.titulo))
+  }
+  const gamesFiltrados = ordemAlfabetica(games.filter((game) =>
     game.titulo.toLowerCase().includes(nome.toLowerCase())
-  );
+  ));
+
+
   const carregarListas = async () => {
     try {
       const res = await fetch(`http://localhost:3000/listas/${userId}`, {
