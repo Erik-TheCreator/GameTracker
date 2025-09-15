@@ -117,9 +117,10 @@
     position: relative;
     border-radius: 10px;
     width: 300px; 
-    height: 300px;
+    height: 310px;
     background-size: cover;
-    background-position: top;
+    background-position-x: center;
+    background-position-y: top;
     color: white;
     display: flex;
     align-items: flex-end;

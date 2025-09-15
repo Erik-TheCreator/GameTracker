@@ -112,3 +112,35 @@
     color: #eee;
     line-height: 1.5;
   }
+.reviews{
+  margin-bottom: 20px;
+}
+.writeReviewArea{
+}
+.writeReview{
+  resize: none;
+}
+.reviews h3{
+  margin-bottom: 20px;
+}
+.reviewUsuario{
+  display: flex;
+  gap: 20px;
+}
+
+.usernameAndReview{
+  display: flex;
+  flex-direction: column;
+}
+.usernameAndReview h1{
+  font-size: 1.1em;
+
+}
+.usernameAndReview span{
+  font-size: 0.8em;
+}
+
+.fotodeperfil{
+    width: 100px;
+    height: 100px;
+  }

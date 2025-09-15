@@ -76,6 +76,24 @@ export const PageGame = () => {
             <h3>Genero</h3>
             <p>{game.generos?.split(",").join(" · ")}</p>
           </div>
+
+          <div className="reviews">
+            <div className="writeReviewArea">
+              <textarea className="writeReview" name="" id="" resize:none ></textarea>
+            </div>
+            <h3>Analises de Usuarios</h3>
+
+            <div className="reviewUsuario">
+
+            <div className="fotodeperfil" style={{ backgroundImage: `url(/imagens/${game.capa})` }}>
+
+            </div>
+            <div className="usernameAndReview">
+            <h1>Nome do Usuario</h1>
+            <span>REVIEW EPICA TESTE GOSTEI DO JOGO HAHAHA VERY GOOD</span>
+            </div>
+            </div>
+          </div>
         </main>
       </div>
     </div>
