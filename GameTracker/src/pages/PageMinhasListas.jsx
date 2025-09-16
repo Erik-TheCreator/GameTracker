@@ -106,7 +106,8 @@ export const PageMinhasListas = () => {
                 {lista.descricao} 
                 <span>
                   <FaTrash
-                    className="trashicon"
+                  className="trashiconlist"
+                    
                     onClick={() => {
                       setPopupAberto(true);
                       setTipoPopup("deletarLista");
@@ -116,7 +117,8 @@ export const PageMinhasListas = () => {
                 </span>
                 <span>
                   <MdEdit
-                    className="editicon"
+                  className="editicon"
+                    
                     onClick={() => {
                       setPopupAberto(true);
                       setTipoPopup("editarLista");
@@ -133,12 +135,16 @@ export const PageMinhasListas = () => {
                       className="games"
                       key={game.id}
                       style={{ backgroundImage: `url(/imagens/${game.capa})` }}
+                      onClick={() => {
+                        sessionStorage.setItem("scrollPosition", window.scrollY);
+                        navigate(`/gamepage/${game.id}`, { state: { userId } })}}
                     >
                       <div className="game-title2">
                         <span>{game.titulo}</span> 
                         <FaTrash
                           className="trashicon"
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.stopPropagation()
                             setPopupAberto(true);
                             setTipoPopup("deletarJogo");
                             setPopupData({ id: game.id, listaId: lista.id });

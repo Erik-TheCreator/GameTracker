@@ -3,6 +3,9 @@ import logoPixel from "../assets/logo_pixel.png";
 import { useParams,useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState} from "react";
 import StarRating from "../assets/components/StarRating";
+import { CiBoxList } from "react-icons/ci";
+import { LuLogOut } from "react-icons/lu";
+import { MdKeyboardReturn } from "react-icons/md";
 
 export const PageGame = () => {
   const { id } = useParams();
@@ -83,9 +86,22 @@ const enviarReview = async () => {
   return (
     <div className="PageGame-container">
       <header className="PageGame-header">
-        <img src={logoPixel} alt="Logo Pixel"  onClick={(e)=> navigate("/home", { state: { userId } })} />
-        <nav className="PageGame-nav">
-          
+      <div className="BGLogo2">
+        <h1 onClick={(e)=> navigate("/home", { state: { userId } })}>GameTracker</h1>
+      </div>
+      <nav>
+          <ul>
+          <li onClick={() => navigate("/home", { state: { userId } })}>
+          <span><MdKeyboardReturn /></span> Voltar </li>
+            <li onClick={() => navigate("/mylists", { state: { userId } })}>
+              
+              <span><CiBoxList /></span> Minhas Listas
+            </li>
+            
+            <li>
+              <span><LuLogOut /></span> Logout
+            </li>
+          </ul>
         </nav>
       </header>
  
@@ -98,8 +114,8 @@ const enviarReview = async () => {
         <main className="PageGame-main">
     
           <div className="PageGame-info">
-            <h1>{game.titulo}</h1>
-            <p>
+            <h1 className="gameTitulo">{game.titulo}</h1>
+            <p className="gameData">
   Data de Lançamento: {" "}
   <strong>
     {new Date(game.data_lancamento).toLocaleDateString("pt-BR", {
@@ -113,9 +129,12 @@ const enviarReview = async () => {
               {game.sinopse}
             </p>
           </div>
+
+
+          <div className="generoPlataforma">
  
           <div className="PageGame-platforms">
-            <h3>Plataformas</h3>
+            <h3 >Plataformas</h3>
             <p>
             {game.plataformas?.split(",").join(" · ")}
             </p>
@@ -124,34 +143,36 @@ const enviarReview = async () => {
           <div className="PageGame-genres">
             <h3>Genero</h3>
             <p>{game.generos?.split(",").join(" · ")}</p>
-          </div>
-
+          </div></div>
           <div className="reviews">
             <div className="writeReviewArea">
+            <p>Escreva sua análise sobre {game.titulo}</p>
+
+              <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)}></textarea>
               <StarRating rating={rating} setRating={setRating} />
-              <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)} placeholder="Escreva sua review..."></textarea>
-              <button onClick={enviarReview}>Enviar</button>
+              <button onClick={enviarReview}>Publicar Análise</button>
             </div>
-            <h3>Análises de Jogadores</h3>
+            <h3>Reviews</h3>
+            <hr/>
 
                   <div className="review-list">
           {reviews.length > 0 ? (
             reviews.map((r) => (
               <div key={r.id} className="review-item">
-                <p><strong>{r.autor}</strong><br /> {new Date(r.data_review).toLocaleString("pt-BR", {
+                <div>
+                <p className="autorData"><strong>{r.autor}</strong></p><p className="data">{new Date(r.data_review).toLocaleString("pt-BR", {
         day: "2-digit",
         month: "short",
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-      })}</p>
-                <p>{r.comentarios}</p>
-                <p>{"⭐".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>
+      })}</p></div><p className="estrelas">{"⭐".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>
+                <p className="review">{r.comentarios}</p>
 
               </div>
             ))
           ) : (
-            <p>Seja o primeiro a escrever uma review!</p>
+            <p className="primeirareview">Seja o primeiro a escrever uma review!</p>
           )}
         </div>
 
