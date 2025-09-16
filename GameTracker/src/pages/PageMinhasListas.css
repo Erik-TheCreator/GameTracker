@@ -31,7 +31,11 @@
 .trashiconlist{
     font-size: 0.9em;
 }
+.trashiconlist:hover{
+    cursor: pointer;
+    color: rgb(211, 211, 211);
 
+}
 .editicon{
 
     font-size: 1.1em;
