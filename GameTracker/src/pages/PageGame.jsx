@@ -2,11 +2,15 @@ import "./PageGame.css";
 import logoPixel from "../assets/logo_pixel.png";
 import { useParams,useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState} from "react";
+import StarRating from "../assets/components/StarRating";
 
 export const PageGame = () => {
   const { id } = useParams();
   const [game, setGame] = useState(null);
-  const navigate=useNavigate()
+  const [reviews, setReviews] = useState([]);
+  const [novaReview, setNovaReview] = useState("");
+  const [rating, setRating] = useState(0);
+  const navigate=useNavigate();
   const location = useLocation();
   const userId = location.state?.userId || sessionStorage.getItem("userId");
 
@@ -25,6 +29,48 @@ export const PageGame = () => {
         setGame(data)})
       .catch(err => console.error(err));
   }, [id]);
+
+  useEffect(() => {
+  fetch(`http://localhost:3000/reviews/${id}`, { credentials: "include" })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Reviews recebidas:", data);
+      setReviews(data)})
+    .catch(err => console.error(err));
+}, [id]);
+
+const enviarReview = async () => {
+  if (!novaReview.trim()) return alert("Digite sua review!");
+
+  try {
+    const res = await fetch("http://localhost:3000/reviews", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        id_usuario: userId,
+        id_game: id,
+        review: novaReview,
+        rating:rating
+      }),
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text(); 
+      alert("Erro ao enviar review!");
+      return;
+    }
+
+    const atualizadas = await fetch(`http://localhost:3000/reviews/${id}`, { credentials: "include" })
+      .then(r => r.json());
+    setReviews(atualizadas);
+    setNovaReview("");
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao enviar review!");
+  }
+};
+
 
   if (!userId) {
     return <p>Redirecionando...</p>; 
@@ -79,20 +125,35 @@ export const PageGame = () => {
 
           <div className="reviews">
             <div className="writeReviewArea">
-              <textarea className="writeReview" name="" id="" resize:none ></textarea>
+              <StarRating rating={rating} setRating={setRating} />
+              <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)} placeholder="Escreva sua review..."></textarea>
+              <button onClick={enviarReview}>Enviar</button>
             </div>
             <h3>Analises de Usuarios</h3>
 
-            <div className="reviewUsuario">
+                  <div className="review-list">
+          {reviews.length > 0 ? (
+            reviews.map((r) => (
+              <div key={r.id} className="review-item">
+                <p><strong>{r.autor}</strong><br /> {new Date(r.data_review).toLocaleString("pt-BR", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })}</p>
+                <p>{r.comentarios}</p>
+                <p>Nota: {"★".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : "Não Definida"}</p>
 
-            <div className="fotodeperfil" style={{ backgroundImage: `url(/imagens/${game.capa})` }}>
+              </div>
+            ))
+          ) : (
+            <p>Seja o primeiro a escrever uma review!</p>
+          )}
+        </div>
 
-            </div>
-            <div className="usernameAndReview">
-            <h1>Nome do Usuario</h1>
-            <span>REVIEW EPICA TESTE GOSTEI DO JOGO HAHAHA VERY GOOD</span>
-            </div>
-            </div>
+
+        
           </div>
         </main>
       </div>
