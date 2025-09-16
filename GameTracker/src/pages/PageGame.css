@@ -7,40 +7,71 @@
     flex-direction: column;
     background-image: url('../assets/bggametracker.webp');
     box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
+  
   }
 
-  .PageGame-header img{
-    width: 400px;
-  }
-  
-  .PageGame-header img:hover{
-    cursor: pointer;
-  }
+  .BGLogo2{
+    justify-items: center;
+    padding: 20px;
+}
+
+.BGLogo2 h1{
+    font-size: 50px;
+    color: #ffffff;
+    text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
+    0px 0px 20px #4273fa;
+    }
+
+.BGLogo2 h1:hover{
+  cursor: pointer;
+  text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
+0px 0px 20px #c3cde9;
+
+}
    
   .PageGame-header {
+    background: #000000be;
+    width: 100%;
+    height: 70px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
   }
    
-  .PageGame-nav {
+  .PageGame-header nav {
     display: flex;
     gap: 15px;
     align-items: center;
   }
-   
-  .PageGame-nav a {
-    color: #f0f0f0;
-    text-decoration: none;
-    font-weight: 500;
+  .PageGame-header nav ul{
+    display: flex;
+    gap: 50px;
   }
-   
-  .PageGame-nav input {
-    padding: 5px 10px;
-    border-radius: 4px;
-    border: none;
+  .PageGame-header nav ul li{
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1.6em;
+    color: #fdfdfe;
+   text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
+      0px 0px 20px #4273fa;
   }
+
+  .PageGame-header nav ul li:hover{
+    cursor: pointer;
+    color: #fdfdfe;
+      text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
+      0px 0px 20px #c3cde9;
+  
+
+  }
+
+  .PageGame-header nav ul li span{
+    display: flex;
+    align-items: center;
+  }
+
    
   .PageGame-wrapper {
     flex: 1;
@@ -49,6 +80,7 @@
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
+    
   }
 
 
@@ -81,7 +113,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.7); 
+  background-color: rgba(0,0,0,0.5); 
   z-index: 0;
 }
    
@@ -91,14 +123,16 @@
     padding: 30px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
     display: flex;
     flex-direction: column;
     gap: 20px;
     height: 1100px;
   }
-   
+  .PageGame-main strong{
+    font-weight: 500;
+    color: rgb(228, 222, 222);
+  }
   .PageGame-cover {
     position: relative;
     width: 300px;
@@ -106,17 +140,35 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
-   
+   .PageGame-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   }
   .PageGame-info h1 {
     font-size: 28px;
     margin-bottom: 10px;
   }
    
   .PageGame-info p {
-    font-size: 18px;
+    font-size: 25px;
     color: #ccc;
   }
-   
+
+  .generoPlataforma{
+    width: 100%;
+  }
+   .PageGame-platforms{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   }
+   .PageGame-genres{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+   }
+
   .PageGame-platforms,
   .PageGame-genres {
     margin-top: 10px;
@@ -124,19 +176,20 @@
    
   .PageGame-platforms h3,
   .PageGame-genres h3 {
-    font-size: 16px;
+    font-size: 25px;
     color: #fff;
     margin-bottom: 5px;
   }
    
   .PageGame-platforms p,
   .PageGame-genres p {
-    font-size: 14px;
+    font-size: 18px;
     color: #eee;
     line-height: 1.5;
   }
 
 .reviews{
+  margin-top: 300px;
   margin-bottom: 20px;
 }
 
@@ -147,9 +200,13 @@
   gap: 20px;
   
 }
+
+.writeReviewArea p{
+  font-size: 1.5em;
+}
 .writeReviewArea button{
   height: 30px;
-  width: 100px;
+  width: 120px;
   padding: 0;
   text-align: center;
   margin-bottom: 30px;
@@ -157,18 +214,31 @@
 
 .writeReview{
   resize: none;
-  width: 200px;
-  height: 90px;
+  width: 450px;
+  height: 150px;
   padding-left: 10px;
   padding-top: 5px;
+  background-color: #4b4b4b;
+  color: rgb(255, 255, 255);
+  border: none;
+  font-size: 1.2em;
+
 
 }
+
+.writeReview::placeholder{
+  color: white;
+}
+
+
 .reviews h3{
-  margin-bottom: 20px;
+  font-size: 1.8em;
+  margin-bottom: 5px;
 }
 
 
 .review-list{
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -179,4 +249,36 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  background-color: rgb(44, 44, 44);
+  padding: 10px;
+  border-radius: 5px;
+  width: 500px;
+  height: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+}
+
+.autorData{
+  display: flex;
+  align-items: center;
+
+}
+
+.autorData strong{
+  font-size: 1.6em;  
+}
+
+.data{
+  font-size: 0.9em;
+}
+.estrelas{
+  font-size: 0.6em;
+}
+.review{
+  font-size: 1.4em;
+}
+.primeirareview{
+  font-size: 1.7em;
+
 }

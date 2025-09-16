@@ -15,15 +15,30 @@
     background: #464646;
     background: linear-gradient(180deg, rgb(44, 44, 44) 0%, rgba(13, 13, 13, 1) 61%, rgba(59, 59, 59, 1) 100%);
 
+
+
 }
+
+.nomedalista{
+    font-size: 1.8em;
+}
+
 .nomedalista span{
     margin-top: 4px;
-    font-size: 0.9em;
+
 }
 
+.trashiconlist{
+    font-size: 0.9em;
+}
+.trashiconlist:hover{
+    cursor: pointer;
+    color: rgb(211, 211, 211);
+
+}
 .editicon{
 
-    font-size: 1.2em;
+    font-size: 1.1em;
 
 }
 
@@ -58,6 +73,10 @@
     display: flex;
     gap: 15px;
 
+}
+
+.trashicon{
+    font-size: 1.3em;
 }
 
 .trashicon:hover{
