@@ -4,6 +4,7 @@ import {PageLogin} from './pages/PageLogin'
 import { PagePrincipal } from './pages/PagePrincipal'
 import { PageMinhasListas } from './pages/PageMinhasListas';
 import { PageGame } from './pages/PageGame';
+import { PagePerfil } from './pages/PagePerfil';
 function App() {
 
   return (
@@ -13,6 +14,9 @@ function App() {
     <Route path="/home" element={<PagePrincipal/>}/>
     <Route path="/mylists" element={<PageMinhasListas/>}/>
     <Route path="/gamepage/:id" element={<PageGame/>}/>
+      <Route path="profile" element={<PagePerfil/>}/>
+
+
 
   </Routes>
   </Router>

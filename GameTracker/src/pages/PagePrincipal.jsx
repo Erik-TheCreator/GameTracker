@@ -139,6 +139,7 @@ export const PagePrincipal = () => {
             <li onClick={() => navigate("/mylists", { state: { userId } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
+            <li onClick={() => navigate("/profile", { state: { userId } })}>Perfil</li>
             <li>
               <span><LuLogOut /></span> Logout
             </li>
