@@ -65,6 +65,7 @@ const enviarReview = async () => {
       .then(r => r.json());
     setReviews(atualizadas);
     setNovaReview("");
+    setRating(0)
   } catch (err) {
     console.error(err);
     alert("Erro ao enviar review!");
@@ -89,11 +90,13 @@ const enviarReview = async () => {
       </header>
  
       <div className="PageGame-wrapper">
-        
-        <main className="PageGame-main">
-        <div style={{ backgroundImage: `url(/imagens_fundo/${game.capa_fundo})` }} className="teste">
+        <div className="fundodogamebgImage">
+        <div style={{ backgroundImage: `url(/imagens_fundo/${game.capa_fundo})` }} className="gamebgImage">
+         <img src={`/imagens/${game.capa}`} alt="Game Cover" className="PageGame-cover" />
         </div>
-        <img src={`/imagens/${game.capa}`} alt="Game Cover" className="PageGame-cover" />
+        </div>
+        <main className="PageGame-main">
+    
           <div className="PageGame-info">
             <h1>{game.titulo}</h1>
             <p>
@@ -129,7 +132,7 @@ const enviarReview = async () => {
               <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)} placeholder="Escreva sua review..."></textarea>
               <button onClick={enviarReview}>Enviar</button>
             </div>
-            <h3>Analises de Usuarios</h3>
+            <h3>Análises de Jogadores</h3>
 
                   <div className="review-list">
           {reviews.length > 0 ? (
@@ -143,7 +146,7 @@ const enviarReview = async () => {
         minute: "2-digit",
       })}</p>
                 <p>{r.comentarios}</p>
-                <p>Nota: {"★".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : "Não Definida"}</p>
+                <p>{"⭐".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>
 
               </div>
             ))

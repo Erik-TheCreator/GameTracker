@@ -16,18 +16,6 @@
   .PageGame-header img:hover{
     cursor: pointer;
   }
-
-  .teste{
-    width: 100%;
-    height: 100%;
-    opacity: 0.3;
-    background-repeat: no-repeat;        
-    background-position: center center; 
-    background-size: cover;
-
-  }
-
-
    
   .PageGame-header {
     display: flex;
@@ -57,19 +45,54 @@
   .PageGame-wrapper {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
   }
 
 
+  .fundodogamebgImage{
+  width: 90%;
+  background-color: #1e1e1e;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  
+}
+.gamebgImage{
+    position: relative;
+    width: 90%;
+    height: 700px;
+    background-repeat: no-repeat;        
+    background-position: center center; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gamebgImage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7); 
+  z-index: 0;
+}
    
   .PageGame-main {
-    width: 600px;
+    width: 90%;
     background-color: #1e1e1e;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -77,11 +100,11 @@
   }
    
   .PageGame-cover {
+    position: relative;
     width: 300px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    margin-bottom: 200px;
+    z-index: 1;
   }
    
   .PageGame-info h1 {
@@ -112,31 +135,48 @@
     color: #eee;
     line-height: 1.5;
   }
+
 .reviews{
   margin-bottom: 20px;
 }
 
+.writeReviewArea{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  
+}
+.writeReviewArea button{
+  height: 30px;
+  width: 100px;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.writeReview{
+  resize: none;
+  width: 200px;
+  height: 90px;
+  padding-left: 10px;
+  padding-top: 5px;
+
+}
 .reviews h3{
   margin-bottom: 20px;
 }
-.reviewUsuario{
-  display: flex;
-  gap: 20px;
-}
 
-.usernameAndReview{
+
+.review-list{
   display: flex;
   flex-direction: column;
-}
-.usernameAndReview h1{
-  font-size: 1.1em;
+  gap: 30px;
 
 }
-.usernameAndReview span{
-  font-size: 0.8em;
-}
 
-.fotodeperfil{
-    width: 100px;
-    height: 100px;
-  }
+.review-item{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

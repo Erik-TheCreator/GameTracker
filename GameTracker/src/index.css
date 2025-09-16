@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+    font-family: "Jersey 15", sans-serif;
+    font-weight: 200;
+
 }
 
 body{
