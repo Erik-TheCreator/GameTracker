@@ -4,6 +4,7 @@ import "./PageMinhasListas.css";
 import { LuLogOut } from "react-icons/lu";
 import { FaTrash } from "react-icons/fa";
 import { MdKeyboardReturn, MdEdit } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 export const PageMinhasListas = () => {
   const location = useLocation();
@@ -85,7 +86,9 @@ export const PageMinhasListas = () => {
             <li onClick={() => navigate("/home", { state: { userId } })}>
               <span><MdKeyboardReturn /></span> Voltar
             </li>
-            <li>
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserCircle />
+            </span> Perfil</li>
+            <li onClick={() => navigate("/", { state: { userId } })}>
               <span><LuLogOut /></span> Logout
             </li>
           </ul>

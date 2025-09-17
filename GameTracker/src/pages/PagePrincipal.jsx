@@ -4,6 +4,7 @@ import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 export const PagePrincipal = () => {
   const location = useLocation();
@@ -139,8 +140,9 @@ export const PagePrincipal = () => {
             <li onClick={() => navigate("/mylists", { state: { userId } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}>Perfil</li>
-            <li>
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserCircle />
+            </span> Perfil</li>
+            <li onClick={() => navigate("/", { state: { userId } })}>
               <span><LuLogOut /></span> Logout
             </li>
           </ul>
