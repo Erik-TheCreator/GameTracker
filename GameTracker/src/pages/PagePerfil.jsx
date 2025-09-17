@@ -6,7 +6,7 @@ export const PagePerfil = () => {
   return (
     <div>
       <h2>PagePerfil</h2>
-      <img src={`../../imagens_perfil/${foto}`} alt="Foto de perfil" />
+      <img src={`../../imagens_perfil/${foto}`} alt="Foto de perfil" className='imagensperfil' />
       <button onClick={() => setFoto("ryan.webp")}>Ryan</button>
       <button onClick={() => setFoto("james.jpg")}>James</button>
     </div>
