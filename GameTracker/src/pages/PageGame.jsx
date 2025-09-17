@@ -1,11 +1,11 @@
 import "./PageGame.css";
-import logoPixel from "../assets/logo_pixel.png";
 import { useParams,useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState} from "react";
 import StarRating from "../assets/components/StarRating";
 import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { MdKeyboardReturn } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 export const PageGame = () => {
   const { id } = useParams();
@@ -13,6 +13,7 @@ export const PageGame = () => {
   const [reviews, setReviews] = useState([]);
   const [novaReview, setNovaReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [editReview, setEditReview] = useState(null);
   const navigate=useNavigate();
   const location = useLocation();
   const userId = location.state?.userId || sessionStorage.getItem("userId");
@@ -42,6 +43,15 @@ export const PageGame = () => {
     .catch(err => console.error(err));
 }, [id]);
 
+
+
+
+
+const abrirEdicao = (review) => {
+  setEditReview(review);
+};
+
+
 const enviarReview = async () => {
   if (!novaReview.trim()) return alert("Digite sua review!");
 
@@ -59,8 +69,10 @@ const enviarReview = async () => {
     });
 
     if (!res.ok) {
-      const errorText = await res.text(); 
-      alert("Erro ao enviar review!");
+      const errorData = await res.json();  
+      alert(errorData.error || "Erro ao enviar review!");
+      setNovaReview("");
+      setRating(0)
       return;
     }
 
@@ -74,6 +86,53 @@ const enviarReview = async () => {
     alert("Erro ao enviar review!");
   }
 };
+
+const excluirReview = async (reviewId) => {
+  if (!window.confirm("Tem certeza que deseja excluir sua review?")) return;
+
+  try {
+    const res = await fetch(`http://localhost:3000/reviews/${reviewId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      alert("Erro ao excluir review");
+      return;
+    }
+
+    const atualizadas = await fetch(`http://localhost:3000/reviews/${id}`, { credentials: "include" })
+      .then(r => r.json());
+    setReviews(atualizadas);
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao excluir review");
+  }
+};
+
+
+const salvarEdicao = async () => {
+  const res = await fetch(`http://localhost:3000/reviews/${editReview.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({
+      comentarios: editReview.comentarios,
+      rating: editReview.rating
+    }),
+  });
+
+  if (res.ok) {
+    const atualizadas = await fetch(`http://localhost:3000/reviews/${id}`, { credentials: "include" }).then(r => r.json());
+    setReviews(atualizadas);
+    setEditReview(null);
+  } else {
+    alert("Erro ao salvar review");
+  }
+};
+
+
+
 
 
   if (!userId) {
@@ -97,8 +156,10 @@ const enviarReview = async () => {
               
               <span><CiBoxList /></span> Minhas Listas
             </li>
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserCircle />
+            </span> Perfil</li>
             
-            <li>
+            <li onClick={() => navigate("/", { state: { userId } })}>
               <span><LuLogOut /></span> Logout
             </li>
           </ul>
@@ -148,8 +209,8 @@ const enviarReview = async () => {
             <div className="writeReviewArea">
             <p>Escreva sua análise sobre {game.titulo}</p>
 
-              <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)}></textarea>
-              <StarRating rating={rating} setRating={setRating} />
+              <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)} ></textarea>
+              <StarRating rating={rating} setRating={setRating}/>
               <button onClick={enviarReview}>Publicar Análise</button>
             </div>
             <h3>Reviews</h3>
@@ -169,12 +230,36 @@ const enviarReview = async () => {
       })}</p></div><p className="estrelas">{"⭐".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>
                 <p className="review">{r.comentarios}</p>
 
+                {r.id_usuario == userId && (
+        <div className="botoesReview">
+          <button onClick={() => abrirEdicao(r)}>Editar</button>
+          <button onClick={() => excluirReview(r.id)}>Excluir</button>
+        </div>)}
+
               </div>
             ))
           ) : (
             <p className="primeirareview">Seja o primeiro a escrever uma review!</p>
           )}
         </div>
+
+
+        {editReview && (
+  <div className="popupFloating2">
+    <textarea
+      value={editReview.comentarios}
+      onChange={(e) => setEditReview({...editReview, comentarios: e.target.value})}
+    />
+    <StarRating
+      rating={editReview.rating}
+      setRating={(r) => setEditReview({...editReview, rating: r})}
+    />
+    <button onClick={salvarEdicao}>Salvar</button>
+    <button onClick={() => setEditReview(null)}>Cancelar</button>
+  </div>
+)}
+
+
 
 
         
