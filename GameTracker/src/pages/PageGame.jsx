@@ -29,7 +29,6 @@ export const PageGame = () => {
     fetch(`http://localhost:3000/gametracker/${id}`, { credentials: "include" })
       .then(res => res.json())
       .then(data => {
-        console.log("Dados do jogo:", data);
         setGame(data)})
       .catch(err => console.error(err));
   }, [id]);
@@ -42,9 +41,6 @@ export const PageGame = () => {
       setReviews(data)})
     .catch(err => console.error(err));
 }, [id]);
-
-
-
 
 
 const abrirEdicao = (review) => {
@@ -206,13 +202,15 @@ const salvarEdicao = async () => {
             <p>{game.generos?.split(",").join(" · ")}</p>
           </div></div>
           <div className="reviews">
+          {!editReview && (
             <div className="writeReviewArea">
             <p>Escreva sua análise sobre {game.titulo}</p>
 
               <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)} ></textarea>
               <StarRating rating={rating} setRating={setRating}/>
               <button onClick={enviarReview}>Publicar Análise</button>
-            </div>
+            </div> 
+            )}
             <h3>Reviews</h3>
             <hr/>
 
@@ -220,6 +218,12 @@ const salvarEdicao = async () => {
           {reviews.length > 0 ? (
             reviews.map((r) => (
               <div key={r.id} className="review-item">
+
+
+            <div className="containerPerfil">
+              <div>
+                <img src={`/imagens_perfil/${r.foto}`} alt="Foto de perfil" className='imagensperfil' />
+                </div>
                 <div>
                 <p className="autorData"><strong>{r.autor}</strong></p><p className="data">{new Date(r.data_review).toLocaleString("pt-BR", {
         day: "2-digit",
@@ -227,7 +231,8 @@ const salvarEdicao = async () => {
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-      })}</p></div><p className="estrelas">{"⭐".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>
+      })}</p></div></div>
+      <p className="estrelas">{"⭐".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>
                 <p className="review">{r.comentarios}</p>
 
                 {r.id_usuario == userId && (
