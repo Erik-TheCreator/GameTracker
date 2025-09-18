@@ -259,6 +259,11 @@
 
 }
 
+.containerPerfil{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
 .autorData{
   display: flex;
   align-items: center;
