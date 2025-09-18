@@ -5,6 +5,7 @@ import { PagePrincipal } from './pages/PagePrincipal'
 import { PageMinhasListas } from './pages/PageMinhasListas';
 import { PageGame } from './pages/PageGame';
 import { PagePerfil } from './pages/PagePerfil';
+import { PageEditPerfil } from './pages/PageEditPerfil';
 function App() {
 
   return (
@@ -14,7 +15,8 @@ function App() {
     <Route path="/home" element={<PagePrincipal/>}/>
     <Route path="/mylists" element={<PageMinhasListas/>}/>
     <Route path="/gamepage/:id" element={<PageGame/>}/>
-      <Route path="profile" element={<PagePerfil/>}/>
+    <Route path="profile" element={<PagePerfil/>}/>
+    <Route path="editprofile" element={<PageEditPerfil/>}/>
 
 
 

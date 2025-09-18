@@ -1,6 +1,144 @@
+.container-perfil {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("../assets/bggametracker.webp");
+    background-repeat: repeat;
+    background-position: center;
+    box-shadow: inset 150px 300px 1000px rgb(0, 0, 0);
+    padding: 2rem;
+}
+ 
+.botao_voltar{
+    width: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+}
+ 
+.botao_voltar:hover{
+    color: #4273fa;
+    cursor: pointer;
+}
+ 
+.LogoP {
+    display: flex;
+    align-items: center;
+    height: 180px;
+    justify-items: center;
+}
+ 
+.LogoP h1 {
+    font-size: 70px;
+    color: #ffffff;
+    text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
+        0px 0px 20px #4273fa;
+}
+ 
+.LogoP h1:hover {
+    cursor: pointer;
+    text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
+        0px 0px 20px #c3cde9;
+}
+ 
+.perfil-box {
+    display: flex;
+    gap: 2rem;
+    background: #1e1e1e;
+    border-radius: 15px;
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 1000px;
+    min-height: 600px;
+}
+ 
+.perfil-barra-esquerda {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #333;
+    padding-right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+}
+ 
+.perfil-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #555;
+    margin-bottom: 1rem;
+}
+ 
+.perfil-nome {
+    font-size: 1.5rem;
+    margin: 0;
+}
+ 
+.perfil-nivel {
+    font-size: 1.2rem;
+    color: #aaa;
+}
+ 
+.perfil-pontos {
+    font-size: 1.5rem;
+    color: #f0db4f;
+}
+ 
+.perfil-barra-direita {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+ 
+.perfil-section {
+    background: #2a2a2a;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+}
+ 
+.perfil-section h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    color: #f0db4f;
+}
+ 
+.perfil-section p,
+.perfil-section li {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin: 0.3rem 0;
+}
+ 
+.game_fav_text{
+    font-size: 2rem;
+}
+ 
 .imagensperfil{
     display: flex;
     width: 50px;
     height: 50px;
     border-radius: 100px;
+}
+
+.game_fav{
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.game_fav:hover{
+    background-color: #3d3d3d;
+    cursor: pointer;
 }
