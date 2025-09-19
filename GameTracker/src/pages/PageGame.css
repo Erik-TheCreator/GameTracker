@@ -87,7 +87,7 @@
   .fundodogamebgImage{
   width: 90%;
   background-color: #1e1e1e;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   border-top-left-radius: 12px;
@@ -96,7 +96,7 @@
 }
 .gamebgImage{
     position: relative;
-    width: 90%;
+    width: 100%;
     height: 700px;
     background-repeat: no-repeat;        
     background-position: center center; 
@@ -113,7 +113,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5); 
+  background-color: rgba(0,0,0,0.6); 
   z-index: 0;
 }
    
@@ -222,6 +222,8 @@
   color: rgb(255, 255, 255);
   border: none;
   font-size: 1.2em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 
 
 }
@@ -257,13 +259,16 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 
+
 }
 
 .containerPerfil{
   display: flex;
   flex-direction: row;
   gap: 20px;
+  padding: 5px;
 }
+
 .autorData{
   display: flex;
   align-items: center;
@@ -271,21 +276,38 @@
 }
 
 .autorData strong{
-  font-size: 1.6em;  
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.4em;  
 }
 
 .data{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 0.9em;
 }
 .estrelas{
-  font-size: 0.6em;
+  color: rgb(255, 217, 0);
+  font-size: 1.4em;
 }
 .review{
-  font-size: 1.4em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.3em;
 }
 .primeirareview{
   font-size: 1.7em;
 
+}
+
+.botoesReview{
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+.botoesReview button{
+  width: 65px;
+  height: 22px;
+  padding: 5px;
+  font-size: 0.8em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .popupFloating2{

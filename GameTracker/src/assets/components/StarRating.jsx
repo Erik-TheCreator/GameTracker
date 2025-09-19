@@ -3,7 +3,6 @@ import { useState } from "react";
 const StarRating = ({ rating, setRating }) => {
   const [hover, setHover] = useState(0);
 
-  const handleClick = (starValue) => setRating(starValue);
   const handleMouseEnter = (starValue) => setHover(starValue);
   const handleMouseLeave = () => setHover(0);
 
@@ -22,7 +21,8 @@ const StarRating = ({ rating, setRating }) => {
             key={star}
             onMouseEnter={() => handleMouseEnter(star)}
             onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick(star)}
+            onClick={() => setRating(rating === star ? 0 : star)}
+
             style={{
               position: "relative",
               fontSize: "24px",

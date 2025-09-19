@@ -6,6 +6,7 @@ import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { MdKeyboardReturn } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+import { IoStar } from "react-icons/io5";
 
 export const PageGame = () => {
   const { id } = useParams();
@@ -208,6 +209,7 @@ const salvarEdicao = async () => {
 
               <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)} ></textarea>
               <StarRating rating={rating} setRating={setRating}/>
+
               <button onClick={enviarReview}>Publicar Análise</button>
             </div> 
             )}
@@ -231,8 +233,8 @@ const salvarEdicao = async () => {
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-      })}</p></div></div>
-      <p className="estrelas">{"⭐".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>
+      })}</p></div><p className="estrelas">{"★".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p></div>
+   
                 <p className="review">{r.comentarios}</p>
 
                 {r.id_usuario == userId && (

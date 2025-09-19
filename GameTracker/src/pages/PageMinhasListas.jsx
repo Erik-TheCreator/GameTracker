@@ -5,6 +5,8 @@ import { LuLogOut } from "react-icons/lu";
 import { FaTrash } from "react-icons/fa";
 import { MdKeyboardReturn, MdEdit } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoTrashBin } from "react-icons/io5";
 
 export const PageMinhasListas = () => {
   const location = useLocation();
@@ -16,6 +18,11 @@ export const PageMinhasListas = () => {
   const [tipoPopup, setTipoPopup] = useState(""); 
   const [popupData, setPopupData] = useState({});
   const [novoNome, setNovoNome] = useState("");
+  const [listaAberta, setListaAberta] = useState(null);
+
+const toggleLista = (id) => {
+  setListaAberta(listaAberta === id ? null : id);
+};
 
   const carregarListas = () => {
     fetch(`http://localhost:3000/listas/com-jogos/${userId}`, { credentials: "include" })
@@ -103,14 +110,25 @@ export const PageMinhasListas = () => {
         {listas.length === 0 ? (
           <p className="listavazia">Você ainda não tem listas.</p>
         ) : (
+
+        
+
           listas.map((lista) => (
             <div key={lista.id} className="gamesContainer">
-              <h2 className="nomedalista">
+              <div>
+                <IoIosArrowDown className={`seta ${listaAberta === lista.id ? "aberta" : ""}`}
+                onClick={() =>{
+                toggleLista(lista.id)}}/>
+
+              <h2 className="nomedalista" onClick={() =>{
+                toggleLista(lista.id)}}>
                 {lista.descricao} 
-                <span>
-                  <FaTrash
+              </h2>
+              
+              
+               <span>
+                  <IoTrashBin 
                   className="trashiconlist"
-                    
                     onClick={() => {
                       setPopupAberto(true);
                       setTipoPopup("deletarLista");
@@ -129,8 +147,9 @@ export const PageMinhasListas = () => {
                     }}
                   />
                 </span>
-              </h2>
-
+                </div>
+              
+ {listaAberta === lista.id && (
               <div className="gamesRow2">
                 {lista.games && lista.games.length > 0 ? (
                   lista.games.map((game) => (
@@ -160,6 +179,7 @@ export const PageMinhasListas = () => {
                   <p>Nenhum jogo nesta lista</p>
                 )}
               </div>
+              )}
             </div>
           ))
         )}

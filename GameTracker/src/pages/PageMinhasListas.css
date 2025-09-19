@@ -1,10 +1,7 @@
 .nomedalista{
     color: white;
-    font-size: 1.4em;
-    margin-bottom: 50px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
 .containerGames2{
@@ -19,32 +16,32 @@
 
 }
 
-.nomedalista{
-    font-size: 1.8em;
-}
 
-.nomedalista span{
-    margin-top: 4px;
+.nomedalista:hover{
+    cursor: pointer;
+    color: rgb(211, 211, 211);
+
 
 }
 
 .trashiconlist{
+    color: rgba(253, 104, 104, 0.788);
     font-size: 0.9em;
 }
 .trashiconlist:hover{
     cursor: pointer;
-    color: rgb(211, 211, 211);
+    color: rgba(241, 150, 150, 0.788);
 
 }
 .editicon{
-
-    font-size: 1.1em;
+    color: rgba(139, 190, 248, 0.87);
+    font-size: 1.0em;
 
 }
 
 .editicon:hover{
     cursor: pointer;
-    color: rgb(211, 211, 211);
+    color: rgba(178, 209, 245, 0.87);
 }
 
 .listavazia{
@@ -55,6 +52,35 @@
     margin-left: 20px;
 
 }
+
+.gamesContainer div{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+}
+.gamesContainer div span{
+    font-size: 27px;
+    color: white;
+}
+
+.seta {
+    font-size: 1.5em;
+    color: white;
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    }
+.seta:hover{
+    cursor: pointer;
+    color: rgb(211, 211, 211);
+
+    
+}
+.seta.aberta {
+  transform: rotate(180deg);
+}
+
 .gamesRow2{
     display: flex;
     flex-wrap: wrap;
@@ -109,3 +135,12 @@
     position: relative;
     z-index: 2;
   }
+
+  .seta {
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+.seta.aberta {
+  transform: rotate(180deg);
+}

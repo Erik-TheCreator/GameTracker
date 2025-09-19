@@ -96,6 +96,11 @@
 
 }
 
+.searchBar input{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(66, 66, 66);
+}
+
 .searchIcon{
     color: white;
     font-size: 1.6em;
