@@ -18,11 +18,16 @@ export const PageMinhasListas = () => {
   const [tipoPopup, setTipoPopup] = useState(""); 
   const [popupData, setPopupData] = useState({});
   const [novoNome, setNovoNome] = useState("");
-  const [listaAberta, setListaAberta] = useState(null);
+  const [listasAbertas, setListasAbertas] = useState([]);
 
 const toggleLista = (id) => {
-  setListaAberta(listaAberta === id ? null : id);
+  if (listasAbertas.includes(id)) {
+    setListasAbertas(listasAbertas.filter((i) => i !== id));
+  } else {
+    setListasAbertas([...listasAbertas, id]);
+  }
 };
+
 
   const carregarListas = () => {
     fetch(`http://localhost:3000/listas/com-jogos/${userId}`, { credentials: "include" })
@@ -116,7 +121,7 @@ const toggleLista = (id) => {
           listas.map((lista) => (
             <div key={lista.id} className="gamesContainer">
               <div>
-                <IoIosArrowDown className={`seta ${listaAberta === lista.id ? "aberta" : ""}`}
+                <IoIosArrowDown className={`seta ${listasAbertas.includes(lista.id) ? "aberta" : ""}`}
                 onClick={() =>{
                 toggleLista(lista.id)}}/>
 
@@ -149,7 +154,7 @@ const toggleLista = (id) => {
                 </span>
                 </div>
               
- {listaAberta === lista.id && (
+ {listasAbertas.includes(lista.id) && (
               <div className="gamesRow2">
                 {lista.games && lista.games.length > 0 ? (
                   lista.games.map((game) => (

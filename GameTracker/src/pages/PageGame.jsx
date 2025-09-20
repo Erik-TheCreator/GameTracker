@@ -6,7 +6,8 @@ import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { MdKeyboardReturn } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
-import { IoStar } from "react-icons/io5";
+import { TiDelete } from "react-icons/ti";
+import { CiEdit } from "react-icons/ci";
 
 export const PageGame = () => {
   const { id } = useParams();
@@ -34,14 +35,18 @@ export const PageGame = () => {
       .catch(err => console.error(err));
   }, [id]);
 
-  useEffect(() => {
+ useEffect(() => {
   fetch(`http://localhost:3000/reviews/${id}`, { credentials: "include" })
     .then(res => res.json())
     .then(data => {
-      console.log("Reviews recebidas:", data);
-      setReviews(data)})
+      const ordenadas = data.sort(
+        (a, b) => new Date(b.data_review) - new Date(a.data_review)
+      );
+      setReviews(ordenadas);
+    })
     .catch(err => console.error(err));
 }, [id]);
+
 
 
 const abrirEdicao = (review) => {
@@ -128,6 +133,12 @@ const salvarEdicao = async () => {
   }
 };
 
+const calcularMedia = (reviews) => {
+  if (!reviews.length) return 0;
+  const soma = reviews.reduce((acc, r) => acc + Number(r.rating || 0), 0);
+  return (soma / reviews.length).toFixed(1);
+};
+
 
 
 
@@ -170,6 +181,16 @@ const salvarEdicao = async () => {
         </div>
         </div>
         <main className="PageGame-main">
+        <div className="media-nota">
+  {reviews.length === 0 ? (
+    <p className="semAvaliacoes"></p>
+  ) : (
+    <p className="mediaRating">
+      <span>★</span> {calcularMedia(reviews)}/5
+    </p>
+  )}
+</div>
+
     
           <div className="PageGame-info">
             <h1 className="gameTitulo">{game.titulo}</h1>
@@ -199,13 +220,14 @@ const salvarEdicao = async () => {
           </div>
  
           <div className="PageGame-genres">
-            <h3>Genero</h3>
+            <h3>Gêneros</h3>
             <p>{game.generos?.split(",").join(" · ")}</p>
           </div></div>
           <div className="reviews">
           {!editReview && (
             <div className="writeReviewArea">
-            <p>Escreva sua análise sobre {game.titulo}</p>
+      <p>Escreva sua análise sobre {game.titulo}</p>            
+
 
               <textarea className="writeReview" name="" id="" resize:none value={novaReview} onChange={(e) => setNovaReview(e.target.value)} ></textarea>
               <StarRating rating={rating} setRating={setRating}/>
@@ -214,11 +236,13 @@ const salvarEdicao = async () => {
             </div> 
             )}
             <h3>Reviews</h3>
+
             <hr/>
 
                   <div className="review-list">
           {reviews.length > 0 ? (
             reviews.map((r) => (
+              
               <div key={r.id} className="review-item">
 
 
@@ -233,15 +257,17 @@ const salvarEdicao = async () => {
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-      })}</p></div><p className="estrelas">{"★".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p></div>
+      })}</p></div><p className="estrelas">{"★".repeat(Math.floor(r.rating))}{r.rating % 1 ? "½" : ""}</p>   {r.id_usuario == userId && (
+        <div className="botoesReview">
+
+          <span><CiEdit onClick={() => abrirEdicao(r)} className="editReviewIcon"/></span>
+          <span><TiDelete onClick={() => excluirReview(r.id)}className="deleteReviewIcon"/></span>
+          
+        </div>)}</div>
    
                 <p className="review">{r.comentarios}</p>
 
-                {r.id_usuario == userId && (
-        <div className="botoesReview">
-          <button onClick={() => abrirEdicao(r)}>Editar</button>
-          <button onClick={() => excluirReview(r.id)}>Excluir</button>
-        </div>)}
+             
 
               </div>
             ))

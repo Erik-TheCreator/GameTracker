@@ -188,6 +188,24 @@
     line-height: 1.5;
   }
 
+.semAvaliacoes{
+    font-size: 2.5em;
+
+
+
+}
+.mediaRating{
+  font-weight: 400;
+  font-size: 2.5em;
+
+}
+
+.mediaRating span{
+  font-size: 0.8em;
+  color: #FFC107;
+
+}
+
 .reviews{
   margin-top: 300px;
   margin-bottom: 20px;
@@ -275,6 +293,12 @@
 
 }
 
+.imagensperfil{
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+}
+
 .autorData strong{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1.4em;  
@@ -285,12 +309,12 @@
   font-size: 0.9em;
 }
 .estrelas{
-  color: rgb(255, 217, 0);
+  color: #FFC107;
   font-size: 1.4em;
 }
 .review{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 .primeirareview{
   font-size: 1.7em;
@@ -298,18 +322,26 @@
 }
 
 .botoesReview{
-  margin-top: 20px;
+  flex: 1;
+  font-size: 1.6em;
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
-}
-.botoesReview button{
-  width: 65px;
-  height: 22px;
-  padding: 5px;
-  font-size: 0.8em;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
+.editReviewIcon:hover{
+  cursor: pointer;
+  color: rgb(187, 185, 185);
+  
+
+}
+
+.deleteReviewIcon:hover{
+  cursor: pointer;
+   color: rgb(187, 185, 185);
+
+}
 .popupFloating2{
   display: flex;
   flex-direction: column;

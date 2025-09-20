@@ -1,47 +1,56 @@
 import { useState } from "react";
+import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
 
 const StarRating = ({ rating, setRating }) => {
   const [hover, setHover] = useState(0);
 
-  const handleMouseEnter = (starValue) => setHover(starValue);
+  const handleClick = (value) => {
+    
+    if (rating === value) {
+      setRating(0);
+    } else {
+      setRating(value);
+    }
+  };
+
+  const handleMouseMove = (e, index) => {
+    const { left, width } = e.currentTarget.getBoundingClientRect();
+    const mouseX = e.clientX - left;
+    const isHalf = mouseX < width / 2; 
+    const value = isHalf ? index + 0.5 : index + 1;
+    setHover(value);
+  };
+
   const handleMouseLeave = () => setHover(0);
 
   return (
-    
-    <div style={{ display: "flex", gap: "5px", cursor: "pointer" }}>
-      {[1, 2, 3, 4, 5].map((star) => {
-        let fill;
-        const value = hover || rating;
-        if (value >= star) fill = "100%"; 
-        else if (value >= star - 0.5) fill = "50%"; 
-        else fill = "0%"; 
+    <div style={{ display: "flex", cursor: "pointer" }}>
+      {[...Array(5)].map((_, index) => {
+        const currentValue = index + 1;
+        const effectiveValue = hover || rating;
+
+        let icon;
+        if (effectiveValue >= currentValue) {
+          icon = <IoStar size={25} color="#ffc107" />; 
+        } else if (effectiveValue >= currentValue - 0.5) {
+          icon = <IoStarHalf size={25} color="#ffc107" />; 
+        } else {
+          icon = <IoStarOutline size={25} color="#ffc107" />; 
+        }
 
         return (
-          <div
-            key={star}
-            onMouseEnter={() => handleMouseEnter(star)}
+          <span
+            key={index}
+            onClick={(e) => handleClick(
+              e.nativeEvent.offsetX < e.currentTarget.offsetWidth / 2
+                ? index + 0.5
+                : index + 1
+            )}
+            onMouseMove={(e) => handleMouseMove(e, index)}
             onMouseLeave={handleMouseLeave}
-            onClick={() => setRating(rating === star ? 0 : star)}
-
-            style={{
-              position: "relative",
-              fontSize: "24px",
-              width: "24px",
-              height: "24px",
-            }}
           >
-            <span
-              style={{
-                position: "absolute",
-                overflow: "hidden",
-                width: fill,
-                color: "gold",
-              }}
-            >
-              ★
-            </span>
-            <span style={{ color: "lightgray" }}>★</span>
-          </div>
+            {icon}
+          </span>
         );
       })}
     </div>
