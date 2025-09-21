@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import backGround from "../assets/bggametracker.webp";
 import logoPixel from '../assets/logo_pixel.png';
 import "./PageLogin.css"
+import { FaEye,FaEyeSlash} from "react-icons/fa";
 
 export const PageLogin = ()=> {
   const [email,setEmail]=useState("")
   const [senha,setSenha]=useState("")
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+
   const navigate=useNavigate()
 
   const handleLogin = async () => {
@@ -43,11 +45,10 @@ export const PageLogin = ()=> {
       </header>
 
       <main>
-        <div className="backGround">
 
-        </div>
 
         <form className="painelCentral">
+          <div className="text_cadastro">Login</div>
 
           <input
             type="email"
@@ -57,37 +58,40 @@ export const PageLogin = ()=> {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input
-            type="password"
-            name="senha"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
+           <div className="senha-container">
+                     <input
+                       type={mostrarSenha ? "text" : "password"}
+                       name="senha"
+                       placeholder="Criar Senha"
+                       value={senha}
+                       onChange={(e) => setSenha(e.target.value)}
+                     />
+                     <button
+                       type="button"
+                       className="botaoMostrarSenha"
+                       onClick={() => setMostrarSenha(!mostrarSenha)}
+                     >
+                       {mostrarSenha ? <FaEye /> : <FaEyeSlash />}
+                     </button>
+                   </div>
 
-          <button type="button" onClick={handleLogin}>
+          <button type="button" onClick={handleLogin} className="cadastrarbtn">
             Entrar
           </button>
 
-          <button type="button">
-            Cadastrar
-          </button>
+          <p className="cadastrarText" onClick={()=>{
+            navigate("/signin");
+
+          }}>Não possui conta? Cadastre-se</p>
+
+   
 
         </form>
       </main>
 
       <div className="barra_embaixo">
           <footer>
-            <div className="texto_embaixo">
-              <h3> Contatos </h3>
-              <h3> Suporte </h3>
-              <h3> Termos </h3>
-              <h3> Privacidade </h3>
-            </div>
-            
-            <div className="texto_abaixo">
-            <h4>Texto abaixo apsosskjgaksga</h4>
-            </div>
+ 
             
           </footer>
       </div>

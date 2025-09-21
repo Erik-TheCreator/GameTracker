@@ -188,6 +188,7 @@ export const PagePrincipal = () => {
 
             <h3>Criar nova lista:</h3>
             <input
+            className="inputList"
               type="text"
               value={novaLista}
               onChange={(e) => setNovaLista(e.target.value)}

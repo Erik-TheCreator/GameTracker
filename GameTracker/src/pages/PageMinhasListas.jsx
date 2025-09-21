@@ -205,6 +205,7 @@ const toggleLista = (id) => {
               <>
                 <h3>Editar nome da lista</h3>
                 <input
+                  className="inputList"
                   type="text"
                   value={novoNome}
                   onChange={(e) => setNovoNome(e.target.value)}

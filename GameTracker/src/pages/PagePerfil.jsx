@@ -5,17 +5,19 @@ import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { FaUserCircle } from "react-icons/fa";
 import { MdKeyboardReturn } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 export const PagePerfil = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [editprofile,setEditProfile]=useState(true)
-    const [foto,setFoto]=useState("default.webp")
+    const [novoSobre, setNovoSobre] = useState("");
     
 
     const [user, setUser] = useState({
       nome: "",
       foto: "default.webp",
+      sobre:"",
     });
     const userId = location.state?.userId || sessionStorage.getItem("userId");
 
@@ -43,21 +45,53 @@ export const PagePerfil = () => {
       
 
     useEffect(() => {
-      const carregarUser = async () => {
-        const res = await fetch("http://localhost:3000/usuarios/me", {
-          credentials: "include",
-        });
-        if (res.ok) {
-          const data = await res.json();
-          setUser({
-            nome: data.nome,
-            foto: data.foto || "default.webp",
-          });
-        }
-      };
-    
-      carregarUser();
-    }, []);
+  const carregarUser = async () => {
+    const res = await fetch("http://localhost:3000/usuarios/me", {
+      credentials: "include",
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setUser({
+        nome: data.nome,
+        foto: data.foto || "default.webp",
+        sobre: data.sobre || "",   
+      });
+      setNovoNome(data.nome);
+      setNovoSobre(data.sobre || "");
+    }
+  };
+
+  carregarUser();
+}, []);
+
+const salvarPerfil = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/usuarios", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ nome: novoNome || user.nome, sobre: novoSobre }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.mensagem || "Erro ao atualizar perfil."); 
+      return;
+    }
+
+    alert("Perfil atualizado com sucesso!"); 
+    setUser((prev) => ({ ...prev, nome: novoNome || prev.nome, sobre: novoSobre }));
+    setEditProfile(true); 
+  } catch (err) {
+    console.error(err);
+    alert("Erro no servidor."); 
+  }
+};
+
+
+
+
     
 
  
@@ -89,6 +123,7 @@ export const PagePerfil = () => {
             height: editprofile ? "1000px" : "2100px" 
             }} >
 
+
                 {editprofile ? (
 
                 <div className="perfil-barra-esquerda">
@@ -96,19 +131,26 @@ export const PagePerfil = () => {
                     <h2 className="perfil-nome">{user.nome}</h2>
                     <div className="perfil-section">
                         <h3>Sobre mim</h3>
-                        <p>O mestre dos games, hunter eyes, six pack, gorilla hands, positive canthal tilt, canguru legs</p>
+                        <p>{user.sobre}</p>
                     </div>
-                    <button  onClick={(e)=> setEditProfile(false) }>Editar</button>
+                    <button  onClick={(e)=> setEditProfile(false) }><FaEdit className="editprofileicon"/>
+Editar</button>
                 </div>
 
 ) : (
 
-    <div className="editProfileContainer"> 
+    <div className="editProfileContainer">
+
         <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='fotoperfil' />
-        <input type="text" placeholder={user.nome}/>
+
+        <input type="text" placeholder={user.nome} value={novoNome}  onChange={(e) => setNovoNome(e.target.value)}/>
         <div className="perfil-section">
                         <h3>Sobre mim</h3>
-                        <textarea name="" id=""></textarea>
+                        <textarea 
+      value={novoSobre} 
+      onChange={(e) => setNovoSobre(e.target.value)} 
+      placeholder="Escreva sobre você..."
+    />
                     </div>
 
         <div className="imagesRow">
@@ -131,7 +173,10 @@ export const PagePerfil = () => {
 
 
       
-    <button  onClick={(e)=> setEditProfile(true) }>Salvar Mudanças</button>
+   <button onClick={salvarPerfil}>Salvar Mudanças</button>
+   <p onClick={(e)=>{
+    setEditProfile(true)
+   }}>Voltar</p>
 
     </div>
 )}

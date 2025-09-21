@@ -1,6 +1,6 @@
 .container-perfil {
     width: 100%;
-    height: 110vh;
+    height: 120vh;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@
  
 
 .perfil-box {
-    gap: 10px;
+    gap: 20px;
     display: flex;
     justify-content: center;
     background: #1e1e1e;
@@ -22,8 +22,12 @@
     color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     margin-bottom: 100px;
+    padding: 20px;
 }
- 
+.perfil-box p{
+    font-size: 2em;
+
+ }
 .perfil-barra-esquerda {
     width: 100%;
     display: flex;
@@ -34,6 +38,21 @@
     padding-left: 70px;
     padding-right: 70px;
     
+}
+
+.perfil-barra-esquerda button{
+    width: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    font-size: 1.2em;
+    gap: 5px;
+    display: flex;
+}
+
+.editprofileicon{
+    font-size: 0.9em;
 }
 .perfil-section{
     width: 90%;
@@ -72,6 +91,24 @@
 }
 
 
+.editProfileContainer input{
+    height: 25px;
+    border-radius: 7px;
+    border: none;
+    padding: 5px;
+
+
+}
+
+.editProfileContainer p{
+    font-size: 1.5em;
+
+}
+.editProfileContainer p:hover{
+    cursor: pointer;
+    color: rgb(187, 186, 186);
+
+}
 .fotos{
     width: 100px;
     border-radius: 10px;
@@ -98,5 +135,6 @@
 .perfil-section textarea{
     resize: none;
     height: 100px;
+    padding: 5px;
 
 }
