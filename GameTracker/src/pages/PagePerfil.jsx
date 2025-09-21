@@ -131,7 +131,7 @@ const salvarPerfil = async () => {
                     <h2 className="perfil-nome">{user.nome}</h2>
                     <div className="perfil-section">
                         <h3>Sobre mim</h3>
-                        <p>{user.sobre}</p>
+                        <p>{user.sobre || "Ainda não escreveu nada sobre você."}</p>
                     </div>
                     <button  onClick={(e)=> setEditProfile(false) }><FaEdit className="editprofileicon"/>
 Editar</button>

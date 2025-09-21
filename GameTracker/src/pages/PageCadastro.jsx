@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logoPixel from "../assets/logo_pixel.png";
 import "./PageCadastro.css";
 import { FaEye,FaEyeSlash} from "react-icons/fa";
 
@@ -45,7 +44,10 @@ export const PageCadastro = () => {
   return (
     <div className="container2">
       <header className="logo">
-        <img src={logoPixel} alt="Logo Pixel" />
+         <div className="BGLogo">
+        <h1>GameTracker</h1>
+      </div>
+        
       </header>
 
       <main>
@@ -113,11 +115,7 @@ export const PageCadastro = () => {
           
         </form>
       </main>
-       <div className="barra_embaixo">
-          <footer>
-   
-          </footer>
-      </div>
+        <footer className="footerLogin"></footer>
     </div>
   );
 };

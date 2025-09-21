@@ -1,42 +1,36 @@
 
-
 .container2 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-size: cover;
+  background-image: url("bglogin.jpg");
 }
 
-.logo {
+.logo{
   width: 100%;
-  height: 150px;
-  background-color: #333;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: bold;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  transition: box-shadow 0.3s;
+  height: 120px;
+  background-color: rgb(37, 37, 37);
 }
 
+
+.logo div h1{
+  color: #fdfdfe;
+    text-shadow: 0px 0px 5px #c2c2c4, 0px 0px 10px #b5b4b8, 0px 0px 10px #b2b2b4,
+    0px 0px 20px #bababb;
+}
 main {
-  flex: 1;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 60px;
-  position: relative;
+flex:1;
+display: flex;
+align-items: center;
+
+
+
 }
 
 
 .painelCentral {
-  background-color: rgba(95, 95, 95, 0.7);
+  background-color: rgb(37, 37, 37);
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -77,21 +71,12 @@ button:hover {
 }
 
 .cadastrarText{
-  color: rgb(219, 218, 218);
   font-size: 1.2em;
+  color: #fdfdfe;
+ 
 }
 .cadastrarText:hover{
     color: rgb(255, 255, 255);
     cursor: pointer;
-}
-
-.barra_embaixo {
-  width: 100%;
-  height: 200px;
-  background-color: #333;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
