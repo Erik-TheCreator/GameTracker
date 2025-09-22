@@ -92,6 +92,25 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: rgb(66, 66, 66);
 }
+
+
+.filtros{
+  display: flex;
+  gap: 10px;
+  background-color: #4273fa;
+
+}
+
+.filtros input{
+  width: 20px;
+
+}
+
+.filtros datalist{
+  width: 20px;
+  background-color: white;
+}
+
 .inputList{
     border-radius: 4px;
     border: none;

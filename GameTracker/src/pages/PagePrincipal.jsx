@@ -17,35 +17,69 @@ export const PagePrincipal = () => {
   const [listas, setListas] = useState([]);
   const [novaLista, setNovaLista] = useState("");
   const [generos, setGeneros] = useState([]);
-const [plataformas, setPlataformas] = useState([]);
-const [anos, setAnos] = useState([]);
-
+  const [plataformas, setPlataformas] = useState([]);
+  const [anos, setAnos] = useState([]);
   const [filtroGenero, setFiltroGenero] = useState("");
   const [filtroPlataforma, setFiltroPlataforma] = useState("");
   const [filtroAno, setFiltroAno] = useState("");
-  const [ordenarPor, setOrdenarPor] = useState(""); 
+  const [ordenarPor, setOrdenarPor] = useState("");
+  const [isFiltroAtivo, setIsFiltroAtivo] = useState(false);
+
 
   if (!userId) {
     navigate("/home");
     return null;
   }
 
-  useEffect(() => {
-    fetch("http://localhost:3000/gametracker", { credentials: "include" })
-      .then((res) => res.json())
-      .then((data) => setGames(data))
-      .catch((err) => console.log(err));
-  }, []);
+useEffect(() => {
+  setIsFiltroAtivo(false);
+  fetch("http://localhost:3000/gametracker/all", { credentials: "include" })
+    .then((res) => res.json())
+    .then((data) => {
+      setGames(data);
 
-  const ordemAlfabetica = (gamesList = []) => {
-    return [...gamesList].sort((a,b) => a.titulo.localeCompare(b.titulo));
-  };
-  
-  const gamesFiltrados = ordemAlfabetica(
-    (games || []).filter((game) =>
-      game.titulo.toLowerCase().includes(nome.toLowerCase())
-    )
-  );
+      const generosUnicos = [
+        ...new Set(
+          data.flatMap((g) => (g.generos ? g.generos.split(",") : []))
+        ),
+      ];
+      setGeneros(generosUnicos);
+
+      const plataformasUnicas = [
+        ...new Set(
+          data.flatMap((g) => (g.plataformas ? g.plataformas.split(",") : []))
+        ),
+      ];
+      setPlataformas(plataformasUnicas);
+
+      const anosUnicos = [
+        ...new Set(
+          data.map((g) => new Date(g.data_lancamento).getFullYear())
+        ),
+      ].sort((a, b) => b - a);
+      setAnos(anosUnicos);
+    })
+    .catch((err) => console.log(err));
+}, []);
+
+
+
+
+
+const ordemAlfabetica = (gamesList = []) =>
+  [...gamesList].sort((a, b) => a.titulo.localeCompare(b.titulo));
+
+const gamesSeguros = Array.isArray(games) ? games : [];
+
+let gamesFiltrados = gamesSeguros.filter((game) =>
+  game.titulo.toLowerCase().includes(nome.toLowerCase())
+);
+
+if (!isFiltroAtivo && games.length > 0) {
+  gamesFiltrados = ordemAlfabetica(gamesFiltrados);
+}
+
+
 
 
 
@@ -125,35 +159,33 @@ const [anos, setAnos] = useState([]);
     }
   };
 
-  useEffect(() => {
-    if (games.length > 0) {
-      const generosUnicos = [
-        ...new Set(
-          games.flatMap((g) => (g.generos ? g.generos.split(",") : []))
-        ),
-      ];
-      setGeneros(generosUnicos);
-  
-      const plataformasUnicas = [
-        ...new Set(
-          games.flatMap((g) => (g.plataformas ? g.plataformas.split(",") : []))
-        ),
-      ];
-      setPlataformas(plataformasUnicas);
-  
-      const anosUnicos = [
-        ...new Set(
-          games.map((g) => new Date(g.data_lancamento).getFullYear())
-        ),
-      ].sort((a, b) => b - a);
-      setAnos(anosUnicos);
-    }
-  }, [games]);
-  
+const atualizarFiltros = (data) => {
+  const generosUnicos = [
+    ...new Set(
+      data.flatMap((g) => (g.generos ? g.generos.split(",") : []))
+    ),
+  ];
+  setGeneros(generosUnicos);
+
+  const plataformasUnicas = [
+    ...new Set(
+      data.flatMap((g) => (g.plataformas ? g.plataformas.split(",") : []))
+    ),
+  ];
+  setPlataformas(plataformasUnicas);
+
+  const anosUnicos = [
+    ...new Set(
+      data.map((g) => new Date(g.data_lancamento).getFullYear())
+    ),
+  ].sort((a, b) => b - a);
+  setAnos(anosUnicos);
+};
 
 
   const filtrarJogos = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
+    setIsFiltroAtivo(true); 
     try {
       const query = new URLSearchParams();
   
@@ -168,7 +200,8 @@ const [anos, setAnos] = useState([]);
         { credentials: "include" }
       );
       const data = await res.json();
-      setGames(data); 
+      setGames(data);
+      atualizarFiltros(data);
     } catch (err) {
       console.error("Erro ao filtrar jogos:", err);
     }
@@ -262,7 +295,6 @@ const [anos, setAnos] = useState([]);
     <option value="">Ordenar por</option>
     <option value="rating">Mais bem avaliados</option>
     <option value="ano">Ano</option>
-    <option value="titulo">Título</option>
   </select>
 
   <button type="submit">Filtrar</button>
