@@ -11,15 +11,19 @@ export const PagePrincipal = () => {
   const userId = location.state?.userId || sessionStorage.getItem("userId");
   const navigate = useNavigate();
   const [games, setGames] = useState([]);
-  const [generos, setGeneros] = useState([]);
-  const [plataformas, setPlataformas] = useState([]);
-  const [anos, setAnos] = useState([]);
   const [nome, setNome] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
   const [listas, setListas] = useState([]);
   const [novaLista, setNovaLista] = useState("");
-  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+  const [generos, setGeneros] = useState([]);
+const [plataformas, setPlataformas] = useState([]);
+const [anos, setAnos] = useState([]);
+
+  const [filtroGenero, setFiltroGenero] = useState("");
+  const [filtroPlataforma, setFiltroPlataforma] = useState("");
+  const [filtroAno, setFiltroAno] = useState("");
+  const [ordenarPor, setOrdenarPor] = useState(""); 
 
   if (!userId) {
     navigate("/home");
@@ -33,12 +37,16 @@ export const PagePrincipal = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const ordemAlfabetica=(gamesList)=>{
-    return [...gamesList].sort((a,b)=>a.titulo.localeCompare(b.titulo))
-  }
-  const gamesFiltrados = ordemAlfabetica(games.filter((game) =>
-    game.titulo.toLowerCase().includes(nome.toLowerCase())
-  ));
+  const ordemAlfabetica = (gamesList = []) => {
+    return [...gamesList].sort((a,b) => a.titulo.localeCompare(b.titulo));
+  };
+  
+  const gamesFiltrados = ordemAlfabetica(
+    (games || []).filter((game) =>
+      game.titulo.toLowerCase().includes(nome.toLowerCase())
+    )
+  );
+
 
 
   const carregarListas = async () => {
@@ -119,13 +127,53 @@ export const PagePrincipal = () => {
 
   useEffect(() => {
     if (games.length > 0) {
-      const savedPosition = sessionStorage.getItem("scrollPosition");
-      if (savedPosition) {
-        window.scrollTo(0, parseInt(savedPosition));
-        sessionStorage.removeItem("scrollPosition");
-      }
+      const generosUnicos = [
+        ...new Set(
+          games.flatMap((g) => (g.generos ? g.generos.split(",") : []))
+        ),
+      ];
+      setGeneros(generosUnicos);
+  
+      const plataformasUnicas = [
+        ...new Set(
+          games.flatMap((g) => (g.plataformas ? g.plataformas.split(",") : []))
+        ),
+      ];
+      setPlataformas(plataformasUnicas);
+  
+      const anosUnicos = [
+        ...new Set(
+          games.map((g) => new Date(g.data_lancamento).getFullYear())
+        ),
+      ].sort((a, b) => b - a);
+      setAnos(anosUnicos);
     }
   }, [games]);
+  
+
+
+  const filtrarJogos = async (e) => {
+    e.preventDefault(); 
+    try {
+      const query = new URLSearchParams();
+  
+      if (nome) query.append("nome", nome); 
+      if (filtroGenero) query.append("genero", filtroGenero);
+      if (filtroPlataforma) query.append("plataforma", filtroPlataforma);
+      if (filtroAno) query.append("ano", filtroAno);
+      if (ordenarPor) query.append("ordenar", ordenarPor);
+  
+      const res = await fetch(
+        `http://localhost:3000/gametracker/filter?${query.toString()}`,
+        { credentials: "include" }
+      );
+      const data = await res.json();
+      setGames(data); 
+    } catch (err) {
+      console.error("Erro ao filtrar jogos:", err);
+    }
+  };
+  
   
 
   
@@ -157,7 +205,7 @@ export const PagePrincipal = () => {
       </div>
 
       <div className="containerGames">
-        <form>
+        <form onSubmit={filtrarJogos}>
           <div className="searchBar">
             
             <input
@@ -170,16 +218,58 @@ export const PagePrincipal = () => {
             
 
           </div>
+          <div className="filtros">
+  <input
+    list="generos"
+    value={filtroGenero}
+    onChange={(e) => setFiltroGenero(e.target.value)}
+    placeholder="Gênero"
+  />
+  <datalist id="generos">
+    {generos.map((g) => (
+      <option key={g} value={g} />
+    ))}
+  </datalist>
 
-          <input list="anolancamento"/>
-            <datalist id="anolancamento">
-              <option value="2025">2025</option>
-              <option value="2024">2024</option>
-              <option value="2023">2023</option>
+  <input
+    list="plataformas"
+    value={filtroPlataforma}
+    onChange={(e) => setFiltroPlataforma(e.target.value)}
+    placeholder="Plataforma"
+  />
+  <datalist id="plataformas">
+    {plataformas.map((p) => (
+      <option key={p} value={p} />
+    ))}
+  </datalist>
+
+  <input
+    list="anos"
+    value={filtroAno}
+    onChange={(e) => setFiltroAno(e.target.value)}
+    placeholder="Ano"
+  />
+  <datalist id="anos">
+    {anos.map((a) => (
+      <option key={a} value={a} />
+    ))}
+  </datalist>
+
+  <select
+    value={ordenarPor}
+    onChange={(e) => setOrdenarPor(e.target.value)}
+  >
+    <option value="">Ordenar por</option>
+    <option value="rating">Mais bem avaliados</option>
+    <option value="ano">Ano</option>
+    <option value="titulo">Título</option>
+  </select>
+
+  <button type="submit">Filtrar</button>
+</div>
 
 
 
-            </datalist>
           
           
         </form>

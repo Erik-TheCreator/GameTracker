@@ -20,7 +20,6 @@ export const PageLogin = ()=> {
       });
   
       const data = await res.json();
-      console.log("Resposta do backend:", data);
   
       if (!res.ok) {
         alert(data.mensagem || "Usuário ou senha inválidos!");
