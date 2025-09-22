@@ -11,6 +11,9 @@ export const PagePrincipal = () => {
   const userId = location.state?.userId || sessionStorage.getItem("userId");
   const navigate = useNavigate();
   const [games, setGames] = useState([]);
+  const [generos, setGeneros] = useState([]);
+  const [plataformas, setPlataformas] = useState([]);
+  const [anos, setAnos] = useState([]);
   const [nome, setNome] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
@@ -156,6 +159,7 @@ export const PagePrincipal = () => {
       <div className="containerGames">
         <form>
           <div className="searchBar">
+            
             <input
               type="text"
               value={nome}
@@ -163,8 +167,24 @@ export const PagePrincipal = () => {
               placeholder="Buscar jogos..."
             />
             <MdOutlineSearch className="searchIcon" />
+            
+
           </div>
+
+          <input list="anolancamento"/>
+            <datalist id="anolancamento">
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+
+
+
+            </datalist>
+          
+          
         </form>
+
+
 
         {isPopupOpen && selectedGame && (
           <div

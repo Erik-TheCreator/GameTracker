@@ -186,7 +186,7 @@ const calcularMedia = (reviews) => {
     <p className="semAvaliacoes"></p>
   ) : (
     <p className="mediaRating">
-      <span>★</span> {calcularMedia(reviews)}/5
+      <span>★</span> {calcularMedia(reviews)}
     </p>
   )}
 </div>
