@@ -7,6 +7,7 @@ import { MdKeyboardReturn, MdEdit } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoTrashBin } from "react-icons/io5";
+import { FaUserAlt } from "react-icons/fa";
 
 export const PageMinhasListas = () => {
   const location = useLocation();
@@ -98,7 +99,7 @@ const toggleLista = (id) => {
             <li onClick={() => navigate("/home", { state: { userId } })}>
               <span><MdKeyboardReturn /></span> Voltar
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserCircle />
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
             </span> Perfil</li>
             <li onClick={() => navigate("/", { state: { userId } })}>
               <span><LuLogOut /></span> Logout
@@ -159,7 +160,7 @@ const toggleLista = (id) => {
                 {lista.games && lista.games.length > 0 ? (
                   lista.games.map((game) => (
                     <div
-                      className="games"
+                      className="games2"
                       key={game.id}
                       style={{ backgroundImage: `url(/imagens/${game.capa})` }}
                       onClick={() => {
@@ -167,8 +168,9 @@ const toggleLista = (id) => {
                         navigate(`/gamepage/${game.id}`, { state: { userId } })}}
                     >
                       <div className="game-title2">
-                        <span>{game.titulo}</span> 
-                        <FaTrash
+                        <p>{game.titulo}</p>
+                        <div>
+                        <span><FaTrash
                           className="trashicon"
                           onClick={(e) => {
                             e.stopPropagation()
@@ -176,7 +178,7 @@ const toggleLista = (id) => {
                             setTipoPopup("deletarJogo");
                             setPopupData({ id: game.id, listaId: lista.id });
                           }}
-                        />
+                        /></span></div>
                       </div>
                     </div>
                   ))

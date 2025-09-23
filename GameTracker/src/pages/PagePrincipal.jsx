@@ -4,7 +4,7 @@ import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaUserCircle,FaFilter } from "react-icons/fa";
+import { FaFilter,FaUserAlt } from "react-icons/fa";
 
 export const PagePrincipal = () => {
   const location = useLocation();
@@ -191,7 +191,8 @@ if (!isFiltroAtivo && games.length > 0) {
             <li onClick={() => navigate("/mylists", { state: { userId } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserCircle />
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
+
             </span> Perfil</li>
             <li onClick={() => navigate("/", { state: { userId } })}>
               <span><LuLogOut /></span> Logout
@@ -268,7 +269,7 @@ if (!isFiltroAtivo && games.length > 0) {
     <option value="ano">Ano</option>
   </select>
 
-  <button type="submit"> <FaFilter />
+  <button type="submit"> <span><FaFilter /></span>
 Filtrar</button>
 </div>
 

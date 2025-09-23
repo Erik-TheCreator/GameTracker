@@ -8,6 +8,7 @@ import { MdKeyboardReturn } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
+import { FaUserAlt } from "react-icons/fa";
 
 export const PageGame = () => {
   const { id } = useParams();
@@ -164,7 +165,7 @@ const calcularMedia = (reviews) => {
               
               <span><CiBoxList /></span> Minhas Listas
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserCircle />
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
             </span> Perfil</li>
             
             <li onClick={() => navigate("/", { state: { userId } })}>

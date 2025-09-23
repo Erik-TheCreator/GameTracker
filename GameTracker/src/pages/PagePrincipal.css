@@ -27,6 +27,7 @@
   align-items: center;
 }
 
+
 .cabecalho ul li:hover{
   cursor: pointer;
   color: #fdfdfe;
@@ -74,8 +75,8 @@
 
 .containerGames form{
     display: flex;
-    justify-content: center;
     gap: 20px;
+    padding-left: 50px;
 
 }
 
@@ -90,30 +91,42 @@
 
 .searchBar input{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: rgb(66, 66, 66);
-}
+  background-color: #363636;
+  color: rgb(211, 209, 209);
+  border-radius: 4px;
+  border: none;
+  height: 25px;
+  width: 200px;
+  padding-left: 10px;
 
+
+  
+
+}
+.searchBar input::placeholder{
+  color: rgb(185, 184, 184);
+
+
+
+}
 .filtros{
-  width: 25%;
   display: flex;
-  gap: 10px;
+  gap: 15px;
 
 }
 
-.filtros input{
-  width: 20px;
-
-}
-
-.filtros datalist{
-  width: 20px;
-  background-color: white;
-}
 
 .filtros select{
-  width: 130px;
+  border: none;
+  background-color: #363636;
+  border-radius: 4px;
+  width: 170px;
   height: 25px;
-  color: #272727;
+  color: rgb(185, 184, 184);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-left: 10px;
+
+
 }
 .filtros button{
   width: 250px;
@@ -125,10 +138,16 @@
   background-color: transparent;
 }
 
+.filtros button span{
+  font-size: 13px;
+
+}
+
 .filtros button:hover{
   color: #f0ecec;
   background-color: transparent;
 }
+
 .inputList{
     border-radius: 4px;
     border: none;
@@ -141,14 +160,7 @@
     font-size: 1.6em;
 }
 
-.containerGames form input{
-    border-radius: 4px;
-    border: none;
-    height: 25px;
-    width: 200px;
-    padding-left: 10px;
 
-}
 
 .gamesRow{
     display: flex;

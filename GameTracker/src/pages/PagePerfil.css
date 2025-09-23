@@ -8,7 +8,6 @@
     background-position: center;
     box-shadow: inset 150px 300px 1000px rgb(0, 0, 0);
     background-color: #444141;
-    padding: 20px;
     background-image: url("img.webp");
 }
  
@@ -94,10 +93,20 @@
 .editProfileContainer input{
     height: 25px;
     border-radius: 7px;
+    font-size: 1.5em;
     border: none;
     padding: 5px;
+    background-color: #363636;
+    color: white;
+    padding-left: 10px;
 
 
+
+}
+
+
+.editProfileContainer input::placeholder{
+    color: white;
 }
 
 .editProfileContainer p{
@@ -136,5 +145,17 @@
     resize: none;
     height: 100px;
     padding: 5px;
+    background-color: #363636;
+    border: none;
+    color: rgb(185, 184, 184);
+    font-size: 1.5em;
+    padding-left: 10px;
 
+
+
+
+}
+
+.perfil-section textarea::placeholder{
+    color: white;
 }

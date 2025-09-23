@@ -105,8 +105,7 @@ const salvarPerfil = async () => {
             <li onClick={() => navigate("/mylists", { state: { userId } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserCircle />
-            </span> Perfil</li>
+       
             <li onClick={() => navigate("/", { state: { userId } })}>
               <span><LuLogOut /></span> Logout
             </li>
