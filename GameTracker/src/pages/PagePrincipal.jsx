@@ -4,7 +4,7 @@ import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle,FaFilter } from "react-icons/fa";
 
 export const PagePrincipal = () => {
   const location = useLocation();
@@ -24,6 +24,8 @@ export const PagePrincipal = () => {
   const [filtroAno, setFiltroAno] = useState("");
   const [ordenarPor, setOrdenarPor] = useState("");
   const [isFiltroAtivo, setIsFiltroAtivo] = useState(false);
+  const [ordenarSelecionado, setOrdenarSelecionado] = useState("");
+
 
 
   if (!userId) {
@@ -31,36 +33,24 @@ export const PagePrincipal = () => {
     return null;
   }
 
-useEffect(() => {
-  setIsFiltroAtivo(false);
-  fetch("http://localhost:3000/gametracker/all", { credentials: "include" })
-    .then((res) => res.json())
-    .then((data) => {
-      setGames(data);
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/gametracker/all", { credentials: "include" });
+        const data = await res.json();
+        setIsFiltroAtivo(false)
+        setGames(data);
 
-      const generosUnicos = [
-        ...new Set(
-          data.flatMap((g) => (g.generos ? g.generos.split(",") : []))
-        ),
-      ];
-      setGeneros(generosUnicos);
+        setGeneros([...new Set(data.flatMap(g => g.generos ? g.generos.split(",") : []))]);
+        setPlataformas([...new Set(data.flatMap(g => g.plataformas ? g.plataformas.split(",") : []))]);
+        setAnos([...new Set(data.map(g => new Date(g.data_lancamento).getFullYear()))].sort((a,b) => b-a));
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-      const plataformasUnicas = [
-        ...new Set(
-          data.flatMap((g) => (g.plataformas ? g.plataformas.split(",") : []))
-        ),
-      ];
-      setPlataformas(plataformasUnicas);
-
-      const anosUnicos = [
-        ...new Set(
-          data.map((g) => new Date(g.data_lancamento).getFullYear())
-        ),
-      ].sort((a, b) => b - a);
-      setAnos(anosUnicos);
-    })
-    .catch((err) => console.log(err));
-}, []);
+    fetchGames();
+  }, []);
 
 
 
@@ -159,33 +149,11 @@ if (!isFiltroAtivo && games.length > 0) {
     }
   };
 
-const atualizarFiltros = (data) => {
-  const generosUnicos = [
-    ...new Set(
-      data.flatMap((g) => (g.generos ? g.generos.split(",") : []))
-    ),
-  ];
-  setGeneros(generosUnicos);
-
-  const plataformasUnicas = [
-    ...new Set(
-      data.flatMap((g) => (g.plataformas ? g.plataformas.split(",") : []))
-    ),
-  ];
-  setPlataformas(plataformasUnicas);
-
-  const anosUnicos = [
-    ...new Set(
-      data.map((g) => new Date(g.data_lancamento).getFullYear())
-    ),
-  ].sort((a, b) => b - a);
-  setAnos(anosUnicos);
-};
-
 
   const filtrarJogos = async (e) => {
     e.preventDefault();
-    setIsFiltroAtivo(true); 
+    setIsFiltroAtivo(true);
+    setOrdenarSelecionado(ordenarPor);
     try {
       const query = new URLSearchParams();
   
@@ -201,7 +169,6 @@ const atualizarFiltros = (data) => {
       );
       const data = await res.json();
       setGames(data);
-      atualizarFiltros(data);
     } catch (err) {
       console.error("Erro ao filtrar jogos:", err);
     }
@@ -252,52 +219,57 @@ const atualizarFiltros = (data) => {
 
           </div>
           <div className="filtros">
-  <input
-    list="generos"
-    value={filtroGenero}
-    onChange={(e) => setFiltroGenero(e.target.value)}
-    placeholder="Gênero"
-  />
-  <datalist id="generos">
-    {generos.map((g) => (
-      <option key={g} value={g} />
-    ))}
-  </datalist>
+    <select
+  value={filtroGenero}
+  onChange={(e) => setFiltroGenero(e.target.value)}
+>
+  <option value="">Todos os gêneros</option>
+  {generos.map((g) => (
+    <option key={g} value={g}>
+      {g}
+    </option>
+  ))}
+</select>
 
-  <input
-    list="plataformas"
-    value={filtroPlataforma}
-    onChange={(e) => setFiltroPlataforma(e.target.value)}
-    placeholder="Plataforma"
-  />
-  <datalist id="plataformas">
-    {plataformas.map((p) => (
-      <option key={p} value={p} />
-    ))}
-  </datalist>
 
-  <input
-    list="anos"
-    value={filtroAno}
-    onChange={(e) => setFiltroAno(e.target.value)}
-    placeholder="Ano"
-  />
-  <datalist id="anos">
-    {anos.map((a) => (
-      <option key={a} value={a} />
-    ))}
-  </datalist>
+
+<select
+  value={filtroPlataforma}
+  onChange={(e) => setFiltroPlataforma(e.target.value)}
+>
+  <option value="">Todas as plataformas</option>
+  {plataformas.map((p) => (
+    <option key={p} value={p}>
+      {p}
+    </option>
+  ))}
+</select>
+
+
+ <select
+  value={filtroAno}
+  onChange={(e) => setFiltroAno(e.target.value)}
+>
+  <option value="">Todos os anos</option>
+  {anos.map((a) => (
+    <option key={a} value={a}>
+      {a}
+    </option>
+  ))}
+</select>
 
   <select
     value={ordenarPor}
     onChange={(e) => setOrdenarPor(e.target.value)}
   >
-    <option value="">Ordenar por</option>
+
+    <option value="">A-Z</option>
     <option value="rating">Mais bem avaliados</option>
     <option value="ano">Ano</option>
   </select>
 
-  <button type="submit">Filtrar</button>
+  <button type="submit"> <FaFilter />
+Filtrar</button>
 </div>
 
 
@@ -350,26 +322,43 @@ const atualizarFiltros = (data) => {
         )}
 
         <div className="gamesRow">
-          {gamesFiltrados.map((game) => (
-            <div
-              className="games"
-              key={game.id}
-              style={{ backgroundImage: `url(/imagens/${game.capa})` }}
-              onClick={() => {
-                sessionStorage.setItem("scrollPosition", window.scrollY);
-                navigate(`/gamepage/${game.id}`, { state: { userId } })}}
-            >
-              <div className="game-title">
-                <span>{game.titulo}</span>
-                <MdAddToPhotos
-                  className="addicon"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    abrirPopup(game, e)}}
-                />
-              </div>
-            </div>
-          ))}
+          {gamesFiltrados.map((game) => {
+  const rating = Number(game.media_rating) || 0;
+  const ano = new Date(game.data_lancamento).getFullYear();
+
+  return (
+    <div
+      className="games"
+      key={game.id}
+      style={{ backgroundImage: `url(/imagens/${game.capa})` }}
+      onClick={() => {
+        sessionStorage.setItem("scrollPosition", window.scrollY);
+        navigate(`/gamepage/${game.id}`, { state: { userId } });
+      }}
+    >
+      <div className="game-title">
+        <span className="nomegame">{game.titulo}</span>
+
+       {isFiltroAtivo && ordenarSelecionado === "rating" && (
+  <span className="game-info"><p>★</p> {rating.toFixed(1)}</span>
+)}
+
+{isFiltroAtivo && ordenarSelecionado === "ano" && (
+  <span className="game-info">{ano}</span>
+)}
+
+        <MdAddToPhotos
+          className="addicon"
+          onClick={(e) => {
+            e.stopPropagation();
+            abrirPopup(game);
+          }}
+        />
+      </div>
+    </div>
+  );
+})}
+
         </div>
       </div>
     </div>
