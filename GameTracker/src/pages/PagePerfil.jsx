@@ -14,10 +14,6 @@ export const PagePerfil = () => {
     const [modoEdicao, setModoEdicao] = useState("foto"); 
     const [novoFoto, setNovoFoto] = useState("");
 
-
-
-    
-
     const [user, setUser] = useState({
       nome: "",
       foto: "default.webp",
@@ -155,10 +151,11 @@ Editar</button>
       onChange={(e) => setNovoSobre(e.target.value)} 
       placeholder="Escreva sobre você..."
     />
-    <div className="botoespersonalizar">
-     <button onClick={() => setModoEdicao("foto")}>Foto de Perfil</button>
-  <button onClick={() => setModoEdicao("borda")}>Bordas</button>
-  <button onClick={() => setModoEdicao("bg")}>Plano de fundo</button>
+    <div className="botoespersonalizarcontainer">
+     <button onClick={() => setModoEdicao("foto")}className="botoespersonalizar">Foto de Perfil</button>
+  <button onClick={() => setModoEdicao("borda")} className="botoespersonalizar">Bordas</button>
+  <button onClick={() => setModoEdicao("bg")}
+    className="botoespersonalizar">Plano de fundo</button>
 
     </div>
     
@@ -188,6 +185,23 @@ Editar</button>
   </>
 ) : modoEdicao === "borda" ? (
   <>
+
+  <div className="imagesRow">
+
+<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid blue" }}/>
+<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid red" }}/>
+<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid white" }}/>
+<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid pink" }}/>
+<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid black" }}/>
+</div>
+<div className="imagesRow2">
+  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid red" }}/>
+  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid red" }}/>
+  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid red" }}/>
+  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid yellow" }}/>
+  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid white" }}/>
+</div>
+
   </>
 ) : modoEdicao === "bg" ? (
   <p>Aqui vai a escolha de plano de fundo</p>

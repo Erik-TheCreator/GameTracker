@@ -20,7 +20,7 @@
   color: #fdfdfe;
  text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
     0px 0px 20px #4273fa;
-
+  transition: text-shadow 0.3s;
 }
 .cabecalho ul li span{
   display: flex;
@@ -31,8 +31,8 @@
 .cabecalho ul li:hover{
   cursor: pointer;
   color: #fdfdfe;
-    text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
-    0px 0px 20px #c3cde9;
+  text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
+  0px 0px 20px #c3cde9;
 
 }
 .container{
@@ -57,6 +57,8 @@
     color: #ffffff;
     text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
     0px 0px 20px #4273fa;
+    transition: text-shadow 0.3s;
+
     }
 .BGLogo h1:hover{
   cursor: pointer;
@@ -125,6 +127,7 @@
   color: rgb(185, 184, 184);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   padding-left: 10px;
+  cursor: pointer;
 
 
 }
@@ -267,4 +270,5 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 300px;
   }
