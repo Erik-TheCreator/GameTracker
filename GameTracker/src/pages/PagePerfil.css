@@ -61,7 +61,7 @@
     text-align: center;
 }
 .perfil-section h3{
-    color: yellow;
+    color: rgb(255, 238, 0);
     font-size: 2em;
 }
 .perfil-section p{
@@ -94,7 +94,15 @@
   
 
 }
+.inputborda{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
 
+.buttonborda{
+    background-color: transparent;
+}
 .minifoto{
      display: flex;
     width: 100px;
@@ -125,7 +133,11 @@
     padding-left: 10px;
 
 }
+.editProfileContainer h3{
+    color: rgb(255, 238, 0);
+    font-size: 2em;
 
+}
 
 .editProfileContainer input::placeholder{
     color: white;

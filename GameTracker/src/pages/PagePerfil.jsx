@@ -13,6 +13,10 @@ export const PagePerfil = () => {
     const [novoSobre, setNovoSobre] = useState("");
     const [modoEdicao, setModoEdicao] = useState("foto"); 
     const [novoFoto, setNovoFoto] = useState("");
+    const [borderColor, setBorderColor] = useState("#000000");
+    const [bordaPerfil, setBordaPerfil] = useState("#000000"); 
+
+
 
     const [user, setUser] = useState({
       nome: "",
@@ -122,10 +126,14 @@ const salvarPerfil = async () => {
                 {editprofile ? (
 
                 <div className="perfil-barra-esquerda">
+                  
                 <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='fotoperfil' />
+                
                     <h2 className="perfil-nome">{user.nome}</h2>
                     <div className="perfil-section">
+                      
                         <h3>Sobre mim</h3>
+                        
                         <p>{user.sobre || "Ainda não escreveu nada sobre você."}</p>
                     </div>
                     <button  onClick={(e)=> setEditProfile(false) }><FaEdit className="editprofileicon"/>
@@ -139,12 +147,22 @@ Editar</button>
        <img 
   src={`/imagens_perfil/${novoFoto || user.foto}`} 
   alt="Foto de perfil" 
-  className='fotoperfil' 
+  className='fotoperfil'
+  style={{ border: bordaPerfil ? `3px solid ${bordaPerfil}` : "none" }}
 />
+ <h3>Cor da borda</h3>
+ <input 
+    type="color" 
+    value={bordaPerfil || "#000000"} 
+    onChange={(e) => setBordaPerfil(e.target.value)} className="inputborda"
+  />
+  <button onClick={() => setBordaPerfil("")} className="buttonborda">Sem borda</button>
 
 
         <input type="text" placeholder={user.nome} value={novoNome}  onChange={(e) => setNovoNome(e.target.value)}/>
         <div className="perfil-section">
+          
+          
                         <h3>Sobre mim</h3>
                         <textarea 
       value={novoSobre} 
@@ -153,7 +171,7 @@ Editar</button>
     />
     <div className="botoespersonalizarcontainer">
      <button onClick={() => setModoEdicao("foto")}className="botoespersonalizar">Foto de Perfil</button>
-  <button onClick={() => setModoEdicao("borda")} className="botoespersonalizar">Bordas</button>
+
   <button onClick={() => setModoEdicao("bg")}
     className="botoespersonalizar">Plano de fundo</button>
 
@@ -182,26 +200,6 @@ Editar</button>
       <img src="imagens_perfil/jill.png" alt="" className="fotos" onClick={() => trocarFoto("jill.png")}/>
       <img src="imagens_perfil/laracroft.jpg" alt="" className="fotos" onClick={() => trocarFoto("laracroft.jpg")}/>
     </div>
-  </>
-) : modoEdicao === "borda" ? (
-  <>
-
-  <div className="imagesRow">
-
-<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid blue" }}/>
-<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid red" }}/>
-<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid white" }}/>
-<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid pink" }}/>
-<img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid black" }}/>
-</div>
-<div className="imagesRow2">
-  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid red" }}/>
-  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid red" }}/>
-  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "2px solid red" }}/>
-  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid yellow" }}/>
-  <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='minifoto'    style={{ border: "1px solid white" }}/>
-</div>
-
   </>
 ) : modoEdicao === "bg" ? (
   <p>Aqui vai a escolha de plano de fundo</p>
