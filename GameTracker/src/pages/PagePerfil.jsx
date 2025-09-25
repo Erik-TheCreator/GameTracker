@@ -3,7 +3,6 @@ import { useState,useEffect } from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
-import { FaUserCircle } from "react-icons/fa";
 import { MdKeyboardReturn } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
@@ -12,6 +11,11 @@ export const PagePerfil = () => {
     const location = useLocation();
     const [editprofile,setEditProfile]=useState(true)
     const [novoSobre, setNovoSobre] = useState("");
+    const [modoEdicao, setModoEdicao] = useState("foto"); 
+    const [novoFoto, setNovoFoto] = useState("");
+
+
+
     
 
     const [user, setUser] = useState({
@@ -24,23 +28,9 @@ export const PagePerfil = () => {
     const [novoNome,setNovoNome]=useState("")
 
     const trocarFoto = async (novaFoto) => {
-        try {
-          const res = await fetch("http://localhost:3000/usuarios/foto", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ foto: novaFoto }),
-            credentials: "include",
-          });
-      
-          if (!res.ok) throw new Error("Erro ao atualizar foto");
-      
-          const data = await res.json();
-          console.log(data.mensagem);
-      
-          setUser((prev) => ({ ...prev, foto: novaFoto }));
-        } catch (err) {
-          console.error("Erro:", err);
-        }
+  
+  setNovoFoto(novaFoto);
+
       };
       
 
@@ -70,7 +60,11 @@ const salvarPerfil = async () => {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ nome: novoNome || user.nome, sobre: novoSobre }),
+      body: JSON.stringify({ 
+        nome: novoNome || user.nome, 
+        sobre: novoSobre, 
+        foto: novoFoto || user.foto 
+      }),
     });
 
     const data = await res.json();
@@ -81,13 +75,19 @@ const salvarPerfil = async () => {
     }
 
     alert("Perfil atualizado com sucesso!"); 
-    setUser((prev) => ({ ...prev, nome: novoNome || prev.nome, sobre: novoSobre }));
+    setUser((prev) => ({ 
+      ...prev, 
+      nome: novoNome || prev.nome, 
+      sobre: novoSobre,
+      foto: novoFoto || prev.foto
+    }));
     setEditProfile(true); 
   } catch (err) {
     console.error(err);
     alert("Erro no servidor."); 
   }
 };
+
 
 
 
@@ -140,7 +140,12 @@ Editar</button>
 
     <div className="editProfileContainer">
 
-        <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='fotoperfil' />
+       <img 
+  src={`/imagens_perfil/${novoFoto || user.foto}`} 
+  alt="Foto de perfil" 
+  className='fotoperfil' 
+/>
+
 
         <input type="text" placeholder={user.nome} value={novoNome}  onChange={(e) => setNovoNome(e.target.value)}/>
         <div className="perfil-section">
@@ -150,26 +155,46 @@ Editar</button>
       onChange={(e) => setNovoSobre(e.target.value)} 
       placeholder="Escreva sobre você..."
     />
+    <div className="botoespersonalizar">
+     <button onClick={() => setModoEdicao("foto")}>Foto de Perfil</button>
+  <button onClick={() => setModoEdicao("borda")}>Bordas</button>
+  <button onClick={() => setModoEdicao("bg")}>Plano de fundo</button>
+
+    </div>
+    
+
+
+
+      
                     </div>
 
-        <div className="imagesRow">
-        <img src="imagens_perfil/arthur.jpg" alt="" className="fotos" onClick={() => trocarFoto("arthur.jpg")}/>
-        <img src="imagens_perfil/james.jpg" alt="" className="fotos" onClick={() => trocarFoto("james.jpg")}/>
-        <img src="imagens_perfil/kratos.jpg" alt="" className="fotos" onClick={() => trocarFoto("kratos.jpg")}/>
-        <img src="imagens_perfil/leon.jpg" alt="" className="fotos" onClick={() => trocarFoto("leon.jpg")}/>
-        <img src="imagens_perfil/spiderman.png" alt="" className="fotos" onClick={() => trocarFoto("spiderman.png")}/>
-        </div>
-        <div className="imagesRow2">
-        <img src="imagens_perfil/sadie.avif" alt="" className="fotos" onClick={() => trocarFoto("sadie.avif")}/>
-        <img src="imagens_perfil/chunli.jpg" alt="" className="fotos" onClick={() => trocarFoto("chunli.jpg")}/>
-        <img src="imagens_perfil/ellie.jpg" alt="" className="fotos" onClick={() => trocarFoto("ellie.jpg")}/>
-        <img src="imagens_perfil/jill.png" alt="" className="fotos" onClick={() => trocarFoto("jill.png")}/>
-        <img src="imagens_perfil/laracroft.jpg" alt="" className="fotos" onClick={() => trocarFoto("laracroft.jpg")}/>
-            
+     {modoEdicao === "foto" ? (
+  <>
+    <div className="imagesRow">
+      <img src="imagens_perfil/arthur.jpg" alt="" className="fotos" onClick={() => trocarFoto("arthur.jpg")}/>
+      <img src="imagens_perfil/james.jpg" alt="" className="fotos" onClick={() => trocarFoto("james.jpg")}/>
+      <img src="imagens_perfil/kratos.jpg" alt="" className="fotos" onClick={() => trocarFoto("kratos.jpg")}/>
+      <img src="imagens_perfil/leon.jpg" alt="" className="fotos" onClick={() => trocarFoto("leon.jpg")}/>
+      <img src="imagens_perfil/spiderman.png" alt="" className="fotos" onClick={() => trocarFoto("spiderman.png")}/>
+    </div>
 
-        </div>
+    <div className="imagesRow2">
+      <img src="imagens_perfil/sadie.avif" alt="" className="fotos" onClick={() => trocarFoto("sadie.avif")}/>
+      <img src="imagens_perfil/chunli.jpg" alt="" className="fotos" onClick={() => trocarFoto("chunli.jpg")}/>
+      <img src="imagens_perfil/ellie.jpg" alt="" className="fotos" onClick={() => trocarFoto("ellie.jpg")}/>
+      <img src="imagens_perfil/jill.png" alt="" className="fotos" onClick={() => trocarFoto("jill.png")}/>
+      <img src="imagens_perfil/laracroft.jpg" alt="" className="fotos" onClick={() => trocarFoto("laracroft.jpg")}/>
+    </div>
+  </>
+) : modoEdicao === "borda" ? (
+  <>
+  </>
+) : modoEdicao === "bg" ? (
+  <p>Aqui vai a escolha de plano de fundo</p>
+) : null}
 
 
+                    
 
       
    <button onClick={salvarPerfil}>Salvar Mudanças</button>

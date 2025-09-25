@@ -10,13 +10,13 @@
     background-color: #444141;
     background-image: url("img.webp");
 }
- 
+
 
 .perfil-box {
     gap: 20px;
     display: flex;
     justify-content: center;
-    background: #1e1e1e;
+    background: #19191a;
     border-radius: 15px;
     color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
@@ -72,12 +72,20 @@
     font-size: 1.5rem;
 }
  
- 
+ .botoespersonalizar{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+ }
+
 .fotoperfil{
     display: flex;
     width: 200px;
     height: 200px;
     border-radius: 100px;
+  
+
 }
 
 .editProfileContainer{
