@@ -102,6 +102,18 @@ font-size: 30px;
 
 }
 
+
+.footerLogin a {
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
 .footerInsta img{
   width: 75px;
   height: 40px;
