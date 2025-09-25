@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import "./PageLogin.css"
 import { FaEye,FaEyeSlash} from "react-icons/fa";
+import { RiInstagramFill } from "react-icons/ri";
+import instagramlogo from "../assets/instagram.png"
 
 export const PageLogin = ()=> {
   const [email,setEmail]=useState("")
@@ -83,12 +85,22 @@ export const PageLogin = ()=> {
 
           }}>Não possui conta? Cadastre-se</p>
 
+      
    
 
         </form>
       </main>
 
-           <footer className="footerLogin"></footer>
+           <footer className="footerLogin">
+            <div className="coluna">
+              <h1>Instagram dos criadores do site!</h1>
+              <div className="footerInsta">
+              <img src={instagramlogo} alt=""/>Eduardo
+              <img src={instagramlogo} alt=""/>Erik
+              <img src={instagramlogo} alt=""/>Miguel Oliveira
+              </div>
+            </div>
+           </footer>
 
 
     </div>

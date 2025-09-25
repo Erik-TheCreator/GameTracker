@@ -80,3 +80,30 @@ button:hover {
     cursor: pointer;
 }
 
+.footerLogin{
+width: 100%;
+height: 200px;
+background-color:rgb(37, 37, 37);
+color: white;
+display: flex;
+justify-content: center;
+padding: 30px;
+font-size: 30px;
+}
+
+.footerInsta{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 5px;
+padding: 30px;
+font-size: 30px;
+
+
+}
+
+.footerInsta img{
+  width: 75px;
+  height: 40px;
+
+}
