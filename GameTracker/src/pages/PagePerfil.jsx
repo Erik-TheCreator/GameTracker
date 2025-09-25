@@ -170,21 +170,34 @@ Editar</button>
 
      {modoEdicao === "foto" ? (
   <>
-    <div className="imagesRow">
-      <img src="imagens_perfil/arthur.jpg" alt="" className="fotos" onClick={() => trocarFoto("arthur.jpg")}/>
-      <img src="imagens_perfil/james.jpg" alt="" className="fotos" onClick={() => trocarFoto("james.jpg")}/>
-      <img src="imagens_perfil/kratos.jpg" alt="" className="fotos" onClick={() => trocarFoto("kratos.jpg")}/>
-      <img src="imagens_perfil/leon.jpg" alt="" className="fotos" onClick={() => trocarFoto("leon.jpg")}/>
-      <img src="imagens_perfil/spiderman.png" alt="" className="fotos" onClick={() => trocarFoto("spiderman.png")}/>
-    </div>
-
-    <div className="imagesRow2">
-      <img src="imagens_perfil/sadie.avif" alt="" className="fotos" onClick={() => trocarFoto("sadie.avif")}/>
-      <img src="imagens_perfil/chunli.jpg" alt="" className="fotos" onClick={() => trocarFoto("chunli.jpg")}/>
-      <img src="imagens_perfil/ellie.jpg" alt="" className="fotos" onClick={() => trocarFoto("ellie.jpg")}/>
-      <img src="imagens_perfil/jill.png" alt="" className="fotos" onClick={() => trocarFoto("jill.png")}/>
-      <img src="imagens_perfil/laracroft.jpg" alt="" className="fotos" onClick={() => trocarFoto("laracroft.jpg")}/>
-    </div>
+     <div className="imagesRow">
+        <img src="imagens_perfil/arthur.jpg" alt="" className="fotos" onClick={() => trocarFoto("arthur.jpg")}/>
+        <img src="imagens_perfil/ryu.jpg" alt="" className="fotos" onClick={() => trocarFoto("ryu.jpg")}/>
+        <img src="imagens_perfil/joel.jpg" alt="" className="fotos" onClick={() => trocarFoto("joel.jpg")}/>
+        <img src="imagens_perfil/leon.jpg" alt="" className="fotos" onClick={() => trocarFoto("leon.jpg")}/>
+        <img src="imagens_perfil/spiderman.png" alt="" className="fotos" onClick={() => trocarFoto("spiderman.png")}/>
+        </div>
+        <div className="imagesRow2">
+        <img src="imagens_perfil/sadie.avif" alt="" className="fotos" onClick={() => trocarFoto("sadie.avif")}/>
+        <img src="imagens_perfil/chunli.jpg" alt="" className="fotos" onClick={() => trocarFoto("chunli.jpg")}/>
+        <img src="imagens_perfil/ellie.jpg" alt="" className="fotos" onClick={() => trocarFoto("ellie.jpg")}/>
+        <img src="imagens_perfil/jill.png" alt="" className="fotos" onClick={() => trocarFoto("jill.png")}/>
+        <img src="imagens_perfil/mj.jpg" alt="" className="fotos" onClick={() => trocarFoto("mj.jpg")}/>            
+        </div>
+        <div className="imagesRow3">
+        <img src="imagens_perfil/dante.jpg" alt="" className="fotos" onClick={() => trocarFoto("dante.jpg")}/>
+        <img src="imagens_perfil/batman.webp" alt="" className="fotos" onClick={() => trocarFoto("batman.webp")}/>
+        <img src="imagens_perfil/corvo.jpg" alt="" className="fotos" onClick={() => trocarFoto("corvo.jpg")}/>
+        <img src="imagens_perfil/cloud.png" alt="" className="fotos" onClick={() => trocarFoto("cloud.png")}/>
+        <img src="imagens_perfil/price.jpg" alt="" className="fotos" onClick={() => trocarFoto("price.jpg")}/>
+        </div>
+        <div className="imagesRow4">
+        <img src="imagens_perfil/lady.jpg" alt="" className="fotos" onClick={() => trocarFoto("lady.jpg")}/>
+        <img src="imagens_perfil/cat.avif" alt="" className="fotos" onClick={() => trocarFoto("cat.avif")}/>
+        <img src="imagens_perfil/emily.jpg" alt="" className="fotos" onClick={() => trocarFoto("emily.jpg")}/>
+        <img src="imagens_perfil/tifa.jpg" alt="" className="fotos" onClick={() => trocarFoto("tifa.jpg")}/>
+        <img src="imagens_perfil/valeria.jpg" alt="" className="fotos" onClick={() => trocarFoto("valeria.jpg")}/>
+        </div>
   </>
 ) : modoEdicao === "borda" ? (
   <>
