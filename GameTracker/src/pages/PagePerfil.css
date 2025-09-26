@@ -7,8 +7,8 @@
     background-repeat: repeat;
     background-position: center;
     box-shadow: inset 150px 300px 1000px rgb(0, 0, 0);
-    background-color: #444141;
-    background-image: url("img.webp");
+    background-color: #444141f5;
+    background-size: cover;
 }
 
 
@@ -16,7 +16,7 @@
     gap: 20px;
     display: flex;
     justify-content: center;
-    background: #19191a;
+    background: #19191ad2;
     border-radius: 15px;
     color: white;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
@@ -66,6 +66,8 @@
 }
 .perfil-section p{
     font-size: 1.5em;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
 }
  
 .perfil-nome {
@@ -162,8 +164,20 @@
 .fotos:hover{
     cursor: pointer;
 }
+.imagescontainer{
+    max-height: 130px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  
+
+}
+
 
 .imagesRow{
+
     margin-top: 20px;
     display: flex;
     gap: 10px;
@@ -172,19 +186,9 @@
 
 
 .imagesRow2{
-    display: flex;
-    gap: 10px;
-    
-}
-.imagesRow3{
-    display: flex;
-    gap: 10px;   
-}
 
-.imagesRow4{
     display: flex;
     gap: 10px;
-    
 }
 
 .perfil-section textarea{

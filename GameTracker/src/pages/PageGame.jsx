@@ -5,7 +5,6 @@ import StarRating from "../assets/components/StarRating";
 import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 import { MdKeyboardReturn } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 import { FaUserAlt } from "react-icons/fa";
@@ -249,7 +248,7 @@ const calcularMedia = (reviews) => {
 
             <div className="containerPerfil">
               <div>
-                <img src={`/imagens_perfil/${r.foto}`} alt="Foto de perfil" className='imagensperfil' />
+                <img src={`/imagens_perfil/${r.foto}`} alt="Foto de perfil" className='imagensperfil' style={{ border: r.bordaPerfil ? `3px solid ${r.bordaPerfil}` : "none" }}/>
                 </div>
                 <div>
                 <p className="autorData"><strong>{r.autor}</strong></p><p className="data">{new Date(r.data_review).toLocaleString("pt-BR", {

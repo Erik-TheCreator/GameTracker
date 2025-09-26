@@ -13,8 +13,9 @@ export const PagePerfil = () => {
     const [novoSobre, setNovoSobre] = useState("");
     const [modoEdicao, setModoEdicao] = useState("foto"); 
     const [novoFoto, setNovoFoto] = useState("");
-    const [borderColor, setBorderColor] = useState("#000000");
-    const [bordaPerfil, setBordaPerfil] = useState("#000000"); 
+    const [bordaPerfil, setBordaPerfil] = useState("");
+    const [fotoFundo, setfotoFundo] = useState("img.webp");
+
 
 
 
@@ -22,6 +23,8 @@ export const PagePerfil = () => {
       nome: "",
       foto: "default.webp",
       sobre:"",
+      bordaPerfil: "",   
+      fotoFundo: "img.web"
     });
     const userId = location.state?.userId || sessionStorage.getItem("userId");
 
@@ -44,10 +47,14 @@ export const PagePerfil = () => {
       setUser({
         nome: data.nome,
         foto: data.foto || "default.webp",
-        sobre: data.sobre || "",   
+        sobre: data.sobre || "",
+        bordaPerfil: data.bordaPerfil || "",
+        fotoFundo: data.fotoFundo || "img.webp"   
       });
       setNovoNome(data.nome);
       setNovoSobre(data.sobre || "");
+      setBordaPerfil(data.bordaPerfil || "");
+      setfotoFundo(data.fotoFundo || "img.webp");
     }
   };
 
@@ -63,7 +70,9 @@ const salvarPerfil = async () => {
       body: JSON.stringify({ 
         nome: novoNome || user.nome, 
         sobre: novoSobre, 
-        foto: novoFoto || user.foto 
+        foto: novoFoto || user.foto,
+        bordaPerfil: bordaPerfil,
+        fotoFundo: fotoFundo || user.fotoFundo
       }),
     });
 
@@ -79,7 +88,9 @@ const salvarPerfil = async () => {
       ...prev, 
       nome: novoNome || prev.nome, 
       sobre: novoSobre,
-      foto: novoFoto || prev.foto
+      foto: novoFoto || prev.foto,
+      bordaPerfil: bordaPerfil || prev.bordaPerfil,
+      fotoFundo: fotoFundo || prev.fotoFundo
     }));
     setEditProfile(true); 
   } catch (err) {
@@ -96,7 +107,13 @@ const salvarPerfil = async () => {
 
  
     return (
-        <div className="container-perfil" >
+      <div 
+      className="container-perfil"
+      style={{
+        backgroundImage: `url(/imagens_perfil_fundo/${modoEdicao === "bg" ? fotoFundo : user.fotoFundo})`
+      }}
+    >
+    
             <header className="cabecalho">
         <nav>
           <ul>
@@ -127,7 +144,7 @@ const salvarPerfil = async () => {
 
                 <div className="perfil-barra-esquerda">
                   
-                <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='fotoperfil' />
+                <img src={`/imagens_perfil/${user.foto}`} alt="Foto de perfil" className='fotoperfil' style={{ border: bordaPerfil ? `3px solid ${user.bordaPerfil}` : "none" }}/>
                 
                     <h2 className="perfil-nome">{user.nome}</h2>
                     <div className="perfil-section">
@@ -153,7 +170,7 @@ Editar</button>
  <h3>Cor da borda</h3>
  <input 
     type="color" 
-    value={bordaPerfil || "#000000"} 
+    value={bordaPerfil || ""} 
     onChange={(e) => setBordaPerfil(e.target.value)} className="inputborda"
   />
   <button onClick={() => setBordaPerfil("")} className="buttonborda">Sem borda</button>
@@ -185,6 +202,7 @@ Editar</button>
 
      {modoEdicao === "foto" ? (
   <>
+  <div className="imagescontainer">
      <div className="imagesRow">
         <img src="imagens_perfil/arthur.jpg" alt="" className="fotos" onClick={() => trocarFoto("arthur.jpg")}/>
         <img src="imagens_perfil/ryu.jpg" alt="" className="fotos" onClick={() => trocarFoto("ryu.jpg")}/>
@@ -199,23 +217,43 @@ Editar</button>
         <img src="imagens_perfil/jill.png" alt="" className="fotos" onClick={() => trocarFoto("jill.png")}/>
         <img src="imagens_perfil/mj.jpg" alt="" className="fotos" onClick={() => trocarFoto("mj.jpg")}/>            
         </div>
-        <div className="imagesRow3">
+        <div className="imagesRow2">
         <img src="imagens_perfil/dante.jpg" alt="" className="fotos" onClick={() => trocarFoto("dante.jpg")}/>
         <img src="imagens_perfil/batman.webp" alt="" className="fotos" onClick={() => trocarFoto("batman.webp")}/>
         <img src="imagens_perfil/corvo.jpg" alt="" className="fotos" onClick={() => trocarFoto("corvo.jpg")}/>
         <img src="imagens_perfil/cloud.png" alt="" className="fotos" onClick={() => trocarFoto("cloud.png")}/>
         <img src="imagens_perfil/price.jpg" alt="" className="fotos" onClick={() => trocarFoto("price.jpg")}/>
         </div>
-        <div className="imagesRow4">
+        <div className="imagesRow2">
         <img src="imagens_perfil/lady.jpg" alt="" className="fotos" onClick={() => trocarFoto("lady.jpg")}/>
         <img src="imagens_perfil/cat.avif" alt="" className="fotos" onClick={() => trocarFoto("cat.avif")}/>
         <img src="imagens_perfil/emily.jpg" alt="" className="fotos" onClick={() => trocarFoto("emily.jpg")}/>
         <img src="imagens_perfil/tifa.jpg" alt="" className="fotos" onClick={() => trocarFoto("tifa.jpg")}/>
         <img src="imagens_perfil/valeria.jpg" alt="" className="fotos" onClick={() => trocarFoto("valeria.jpg")}/>
         </div>
+        </div>
   </>
 ) : modoEdicao === "bg" ? (
-  <p>Aqui vai a escolha de plano de fundo</p>
+ <>
+ <div className="imagescontainer">
+  <div className="imagesRow">
+        <img src="imagens_perfil_fundo/batman.jpg" alt="" className="fotos" onClick={() => setfotoFundo("batman.jpg")}/>
+        <img src="imagens_perfil_fundo/cod.jpg" alt="" className="fotos" onClick={() => setfotoFundo("cod.jpg")}/>
+        <img src="imagens_perfil_fundo/dishonored.jfif" alt="" className="fotos" onClick={() => setfotoFundo("dishonored.jfif")}/>
+        <img src="imagens_perfil_fundo/dmc3.jpg" alt="" className="fotos" onClick={() => setfotoFundo("dmc3.jpg")}/>
+        <img src="imagens_perfil_fundo/finalfantasy.jfif" alt="" className="fotos" onClick={() => setfotoFundo("finalfantasy.jfif")}/>
+      
+        </div>
+        <div className="imagesRow2">
+        <img src="imagens_perfil_fundo/reddead2.png" alt="" className="fotos" onClick={() => setfotoFundo("reddead2.png")}/>
+        <img src="imagens_perfil_fundo/resident.jpg" alt="" className="fotos" onClick={() => setfotoFundo("resident.jpg")}/>
+        <img src="imagens_perfil_fundo/spiderman.jpg" alt="" className="fotos" onClick={() => setfotoFundo("spiderman.jpg")}/>
+        <img src="imagens_perfil_fundo/streetfighter6.jpg" alt="" className="fotos" onClick={() => setfotoFundo("streetfighter6.jpg")}/>
+        <img src="imagens_perfil_fundo/thelast.jpg" alt="" className="fotos" onClick={() => setfotoFundo("thelast.jpg")}/>
+      
+        </div>
+        </div>
+ </>
 ) : null}
 
 
@@ -224,6 +262,10 @@ Editar</button>
       
    <button onClick={salvarPerfil}>Salvar Mudanças</button>
    <p onClick={(e)=>{
+
+    setBordaPerfil(user.bordaPerfil)
+    setNovoFoto(user.foto)
+    setfotoFundo(user.fotoFundo)
     setEditProfile(true)
    }}>Voltar</p>
 
