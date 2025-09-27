@@ -11,10 +11,11 @@
     height: 1000vh;
     background: #464646;
     background: linear-gradient(180deg, rgb(44, 44, 44) 0%, rgba(13, 13, 13, 1) 61%, rgba(59, 59, 59, 1) 100%);
-
-
-
 }
+
+
+
+
 
 
 .nomedalista:hover{
@@ -129,6 +130,8 @@
     padding: 10px;
     overflow: hidden;
     transition: transform 0.3s;
+    animation: slideUp 1s ;
+
 }
 .games2:hover .game-title2 {
     opacity: 1;
@@ -163,3 +166,13 @@
 .seta.aberta {
   transform: rotate(180deg);
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

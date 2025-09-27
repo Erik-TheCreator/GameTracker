@@ -5,6 +5,7 @@
   flex-direction: column;
   background-size: cover;
   background-image: url("bglogin.jpg");
+  animation: bgMove 20s infinite alternate ease-in-out;
 }
 
 .logo{
@@ -118,4 +119,13 @@ font-size: 30px;
   width: 75px;
   height: 40px;
 
+}
+
+@keyframes bgMove {
+  from {
+    background-position: center top;
+  }
+  to {
+    background-position: center bottom;
+  }
 }

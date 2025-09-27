@@ -135,8 +135,8 @@ const salvarPerfil = async () => {
                 <h1>Meu Perfil</h1>
             </div>
  
-            <div className="perfil-box" style={{ width: editprofile ? "35%" : "60%" ,
-            height: editprofile ? "1000px" : "2100px" 
+            <div className="perfil-box" style={{ width: editprofile ? "" : "" ,
+            height: editprofile ? "" : "" 
             }} >
 
 

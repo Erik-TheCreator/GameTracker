@@ -5,92 +5,106 @@
   justify-items: end;
   align-content: end;
   padding: 20px;
-
+  animation: slideDown 1s ease-out;
 }
+ 
 .cabecalho ul{
   display: flex;
   gap: 50px;
-
 }
+ 
 .cabecalho ul li{
   gap: 10px;
   display: flex;
   align-items: center;
   font-size: 1.6em;
   color: #fdfdfe;
- text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
+  text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
     0px 0px 20px #4273fa;
-  transition: text-shadow 0.3s;
+  position: relative;
 }
+ 
 .cabecalho ul li span{
   display: flex;
   align-items: center;
 }
-
-
+ 
 .cabecalho ul li:hover{
   cursor: pointer;
   color: #fdfdfe;
   text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
-  0px 0px 20px #c3cde9;
-
+    0px 0px 20px #c3cde9;
 }
+ 
+.cabecalho ul li::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #4274ff;
+  transition: width 0.3s ease-in-out;
+}
+ 
+.cabecalho ul li:hover::after {
+  width: 100%;
+}
+ 
 .container{
-    width: 100%;
-    height: 200vh;
-    background-color: rgb(54, 54, 54);
-    justify-content: center;
-    justify-items: center;
-    background-image: url("../assets/bggametracker.webp");
-    box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
-
+  width: 100%;
+  height: 200vh;
+  background-color: rgb(54, 54, 54);
+  justify-content: center;
+  justify-items: center;
+  background-image: url("../assets/bggametracker.webp");
+  box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
 }
-
+ 
 .BGLogo{
-    height: 280px;
-    justify-items: center;
-    padding: 20px;
+  height: 280px;
+  justify-items: center;
+  padding: 20px;
 }
-
+ 
 .BGLogo h1{
-    font-size: 80px;
-    color: #ffffff;
-    text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
-    0px 0px 20px #4273fa;
-    transition: text-shadow 0.3s;
-
-    }
+  font-size: 80px;
+  color: #ffffff;
+  text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
+  0px 0px 20px #4273fa;
+  animation: glowPulse 3s infinite alternate;
+}
+ 
 .BGLogo h1:hover{
   cursor: pointer;
   text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
-0px 0px 20px #c3cde9;
-
+  0px 0px 20px #c3cde9;
 }
+ 
 .containerGames{
-    padding: 20px;
-    width: 100%;
-    height: 1000%;
-    background: #272727;
-    background: linear-gradient(180deg, rgb(27, 27, 27) 0%, rgba(13, 13, 13, 1) 61%, rgba(59, 59, 59, 1) 100%);
+  padding: 20px;
+  width: 100%;
+  height: 1000%;
+  background: #272727;
+  background: linear-gradient(180deg, rgb(27, 27, 27) 0%, rgba(13, 13, 13, 1) 61%, rgba(59, 59, 59, 1) 100%);
 
-    }
 
+  
+}
+ 
 .containerGames form{
-    display: flex;
-    gap: 20px;
-    padding-left: 50px;
-
+  display: flex;
+  gap: 20px;
+  padding-left: 50px;
 }
-
-
+ 
 .searchBar{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    margin-bottom: 40px;
-
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 40px;
 }
-
+ 
 .searchBar input{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background-color: #363636;
@@ -100,24 +114,17 @@
   height: 25px;
   width: 200px;
   padding-left: 10px;
-
-
-  
-
 }
+ 
 .searchBar input::placeholder{
   color: rgb(185, 184, 184);
-
-
-
 }
+ 
 .filtros{
   display: flex;
   gap: 15px;
-
 }
-
-
+ 
 .filtros select{
   border: none;
   background-color: #363636;
@@ -127,10 +134,8 @@
   color: rgb(185, 184, 184);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   padding-left: 10px;
-  cursor: pointer;
-
-
 }
+ 
 .filtros button{
   width: 250px;
   height: 25px;
@@ -140,135 +145,172 @@
   color: #cfcdcd;
   background-color: transparent;
 }
-
+ 
 .filtros button span{
   font-size: 13px;
-
 }
-
+ 
 .filtros button:hover{
   color: #f0ecec;
   background-color: transparent;
 }
-
+ 
 .inputList{
-    border-radius: 4px;
-    border: none;
-    height: 25px;
-    padding-left: 10px;
+  border-radius: 4px;
+  border: none;
+  height: 25px;
+  padding-left: 10px;
 }
-
+ 
 .searchIcon{
-    color: white;
-    font-size: 1.6em;
+  color: white;
+  font-size: 1.6em;
 }
-
-
-
+ 
 .gamesRow{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+ 
+.games {
+  position: relative;
+  border-radius: 10px;
+  width: 300px;
+  height: 310px;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: top;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: slideUp 1s ;
 
 }
-
-.games {
-    position: relative;
-    border-radius: 10px;
-    width: 300px; 
-    height: 310px;
-    background-size: cover;
-    background-position-x: center;
-    background-position-y: top;
-    color: white;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 10px;
-    overflow: hidden;
-    transition: transform 0.3s;
-    
-  }
-  .game-title {
+ 
+.games:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+ 
+.game-title {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+ 
+.games:hover .game-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 
+.nomegame{
+  font-size: 20px;
+}
+ 
+.game-info{
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+ 
+.game-info p{
+  font-size: 16px;
+  color: #FFC107
+}
+ 
+.addicon{
+  font-size: 1.5em;
+}
+ 
+.addicon:hover{
+  cursor: pointer;
+  color: rgb(211, 211, 211);
+}
+ 
+.games::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  transition: background 0.3s;
+  z-index: 1;
+}
+ 
+.games:hover::after {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+  cursor: pointer;
+}
+ 
+.games > * {
+  position: relative;
+  z-index: 2;
+}
+ 
+.popupFloating {
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(51, 51, 51);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.3);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: popupScale 0.4s ease;
+}
+ 
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
     opacity: 0;
-    transition: opacity 0.3s;
-    color: white;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    gap: 20px;
   }
-
-
-   .nomegame{
-    font-size: 20px;
-
-
-  }
-
-  .game-info{
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .game-info p{
-    font-size: 16px;
-    color: #FFC107
-  }
-
-  .addicon{
-    font-size: 1.5em;
-
-  }
-
-  .addicon:hover{
-    cursor: pointer;
-    color: rgb(211, 211, 211);
-
-  }
-
-  
-  .games:hover .game-title {
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
+}
+ 
+@keyframes glowPulse {
+  from {
+    text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 15px #4274ff,
+                 0px 0px 25px #4273fa;
+  }
+  to {
+    text-shadow: 0px 0px 10px #b6c5ee, 0px 0px 20px #97aadf, 0px 0px 25px #bdccf7,
+                 0px 0px 40px #c3cde9;
+  }
+}
+ 
+@keyframes popupScale {
+  from {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
 
-  .games::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    transition: background 0.3s;
-    z-index: 1;
-  }
-  
-  .games:hover::after {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
-    cursor: pointer;
-  }
-  
-  .games > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  .popupFloating {
-    color: white;
-    position: fixed; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    background: rgb(51, 51, 51);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 20px rgba(0,0,0,0.3);
-    z-index: 1000; 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 300px;
-  }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
