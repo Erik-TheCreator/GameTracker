@@ -128,62 +128,69 @@ if (!isFiltroAtivo && games.length > 0) {
     carregarListas(); 
   };
   
-  const adicionarEmLista = async (descricaoLista) => {
-    try {
-      const res = await fetch("http://localhost:3000/listas", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          id_usuario: userId,
-          id_game: selectedGame.id,
-          descricao: descricaoLista,
-        }),
-      });
-  
-      if (!res.ok) {
-        const data = await res.json();
-        alert(data.mensagem || "Erro ao adicionar o jogo.");
-        return;
-      }
-  
-      await carregarListas(); 
-      alert(`Jogo adicionado à lista "${descricaoLista}" com sucesso!`);
-      setIsPopupOpen(false);
-    } catch (err) {
-      console.error(err);
+const adicionarEmLista = async (descricaoLista) => {
+  try {
+    const res = await fetch("http://localhost:3000/listas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        id_usuario: userId,
+        id_game: selectedGame.id,
+        descricao: descricaoLista,
+        novaLista: false // estamos apenas adicionando a uma lista existente
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.mensagem); // mensagem do backend
+      return;
     }
-  };
-  
-  const criarNovaLista = async () => {
-    if (!novaLista.trim()) return alert("O nome da lista não pode ser vazio!");
-    try {
-      const res = await fetch("http://localhost:3000/listas", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          id_usuario: userId,
-          id_game: selectedGame.id,
-          descricao: novaLista.trim(),
-        }),
-      });
-  
-      if (!res.ok) {
-        const data = await res.json();
-        alert(data.mensagem || "Erro ao criar a lista.");
-        return;
-      }
-  
-      await carregarListas();
-      setNovaLista("");
-      setIsPopupOpen(false);
-      alert("Lista criada e jogo adicionado com sucesso!");
-    } catch (err) {
-      console.error(err);
-      alert("Erro ao criar a lista.");
+
+    await carregarListas();
+    alert(`Jogo adicionado à lista "${descricaoLista}" com sucesso!`);
+    setIsPopupOpen(false);
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao adicionar o jogo à lista.");
+  }
+};
+
+const criarNovaLista = async () => {
+  if (!novaLista.trim()) return alert("O nome da lista não pode ser vazio!");
+  try {
+    const res = await fetch("http://localhost:3000/listas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({
+        id_usuario: userId,
+        id_game: selectedGame.id,
+        descricao: novaLista.trim(),
+        novaLista: true // estamos criando uma lista nova
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.mensagem); // mostra mensagem de lista duplicada ou outro erro
+      return;
     }
-  };
+
+    await carregarListas();
+    setNovaLista("");
+    setIsPopupOpen(false);
+    alert("Lista criada e jogo adicionado com sucesso!");
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao criar a lista.");
+  }
+};
+
+
 
 
   const filtrarJogos = async (e) => {

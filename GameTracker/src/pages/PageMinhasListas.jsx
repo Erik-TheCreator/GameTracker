@@ -82,22 +82,30 @@ const toggleLista = (id) => {
     }
   };
 
-  const atualizarLista = async (id) => {
-    try {
-      await fetch(`http://localhost:3000/listas/${id}`, {  
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ descricao: novoNome })
-      });
-      carregarListas();
-      setPopupAberto(false);
-      setNovoNome("");
-    } catch (err) {
-      console.error(err);
-      alert("Erro ao atualizar lista");
-    }
-  };
+ const atualizarLista = async (id) => {
+  const nomeTrim = novoNome.trim();
+
+  if (!nomeTrim) {
+    alert("O nome da lista não pode ficar vazio!");
+    return;
+  }
+
+  try {
+    await fetch(`http://localhost:3000/listas/${id}`, {  
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ descricao: nomeTrim })
+    });
+    carregarListas();
+    setPopupAberto(false);
+    setNovoNome("");
+  } catch (err) {
+    console.error(err);
+    alert("Erro ao atualizar lista");
+  }
+};
+
   
   
 

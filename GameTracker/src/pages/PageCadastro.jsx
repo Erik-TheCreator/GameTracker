@@ -33,11 +33,7 @@ export const PageCadastro = () => {
     return;
   }
 
-  const senhaForteRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
-  if (!senhaForteRegex.test(senha)) {
-    alert("A senha deve conter letras maiúsculas, minúsculas, números e símbolos.");
-    return;
-  }
+
 
   if (senha !== confirmarsenha) {
     alert("As senhas não conferem!");
@@ -45,24 +41,25 @@ export const PageCadastro = () => {
   }
 
   try {
-    const resposta = await fetch("http://localhost:3000/usuarios", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome, email, senha }),
-    });
+  const resposta = await fetch("http://localhost:3000/usuarios", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome, email, senha }),
+  });
 
-    const dados = await resposta.json();
+  const dados = await resposta.json();
 
-    if (resposta.ok) {
-      alert("Usuário cadastrado com sucesso!");
-      setTimeout(() => navigate("/"), 1500);
-    } else {
-      alert(dados.erro || "Erro ao cadastrar usuário.");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Erro no servidor.");
+  if (resposta.ok) {
+    alert("Usuário cadastrado com sucesso!");
+    setTimeout(() => navigate("/"), 1500);
+  } else {
+    alert(dados.mensagem || "Erro ao cadastrar usuário."); // <-- aqui
   }
+} catch (err) {
+  console.error(err);
+  alert("Erro no servidor.");
+}
+
 };
 
 
