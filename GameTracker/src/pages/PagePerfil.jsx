@@ -246,10 +246,26 @@ Editar</button>
         </div>
         <div className="imagesRow2">
         <img src="imagens_perfil_fundo/reddead2.png" alt="" className="fotos" onClick={() => setfotoFundo("reddead2.png")}/>
-        <img src="imagens_perfil_fundo/resident.jpg" alt="" className="fotos" onClick={() => setfotoFundo("resident.jpg")}/>
+        <img src="imagens_perfil_fundo/chris.png" alt="" className="fotos" onClick={() => setfotoFundo("chris.png")}/>
         <img src="imagens_perfil_fundo/spiderman.jpg" alt="" className="fotos" onClick={() => setfotoFundo("spiderman.jpg")}/>
         <img src="imagens_perfil_fundo/streetfighter6.jpg" alt="" className="fotos" onClick={() => setfotoFundo("streetfighter6.jpg")}/>
         <img src="imagens_perfil_fundo/thelast.jpg" alt="" className="fotos" onClick={() => setfotoFundo("thelast.jpg")}/>
+      
+        </div>
+        <div className="imagesRow3">
+        <img src="imagens_perfil_fundo/blackops2.jpg" alt="" className="fotos" onClick={() => setfotoFundo("blackops2.jpg")}/>
+        <img src="imagens_perfil_fundo/minecraft.png" alt="" className="fotos" onClick={() => setfotoFundo("minecraft.png")}/>
+        <img src="imagens_perfil_fundo/hollow.jpg" alt="" className="fotos" onClick={() => setfotoFundo("hollow.jpg")}/>
+        <img src="imagens_perfil_fundo/ac.jpg" alt="" className="fotos" onClick={() => setfotoFundo("ac.jpg")}/>
+        <img src="imagens_perfil_fundo/thelast.jpg" alt="" className="fotos" onClick={() => setfotoFundo("thelast.jpg")}/>
+      
+        </div>
+        <div className="imagesRow4">
+        <img src="imagens_perfil_fundo/kratos.jpg" alt="" className="fotos" onClick={() => setfotoFundo("kratos.jpg")}/>
+        <img src="imagens_perfil_fundo/gtasa.png" alt="" className="fotos" onClick={() => setfotoFundo("gtasa.png")}/>
+        <img src="imagens_perfil_fundo/halo.jpg" alt="" className="fotos" onClick={() => setfotoFundo("halo.jpg")}/>
+        <img src="imagens_perfil_fundo/sonic.jpg" alt="" className="fotos" onClick={() => setfotoFundo("sonic.jpg")}/>
+        <img src="imagens_perfil_fundo/kof96.jpg" alt="" className="fotos" onClick={() => setfotoFundo("kof96.jpg")}/>
       
         </div>
         </div>

@@ -191,6 +191,16 @@
     gap: 10px;
 }
 
+.imagesRow3{
+    display: flex;
+    gap: 10px;
+}
+
+.imagesRow4{
+    display: flex;
+    gap: 10px;
+}
+
 .perfil-section textarea{
     resize: none;
     height: 100px;
