@@ -25,6 +25,8 @@ export const PagePrincipal = () => {
   const [ordenarPor, setOrdenarPor] = useState("");
   const [isFiltroAtivo, setIsFiltroAtivo] = useState(false);
   const [ordenarSelecionado, setOrdenarSelecionado] = useState("");
+  const [fundoUsuario, setFundoUsuario] = useState("img.webp");
+
   const capitalizeWords = (str) => {
   return str
     .split(" ")
@@ -58,6 +60,23 @@ export const PagePrincipal = () => {
 
     fetchGames();
   }, []);
+
+  useEffect(() => {
+  const carregarFundo = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/usuarios/me", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setFundoUsuario(data.fotoFundo || "img.webp");
+    } catch (err) {
+      console.error("Erro ao carregar fundo do usuário:", err);
+    }
+  };
+
+  carregarFundo();
+}, []);
+
 
 
 
@@ -180,6 +199,21 @@ if (!isFiltroAtivo && games.length > 0) {
       console.error("Erro ao filtrar jogos:", err);
     }
   };
+
+
+  const handleLogout = async () => {
+  try {
+    await fetch("http://localhost:3000/usuarios/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    sessionStorage.removeItem("userId");
+    navigate("/"); 
+  } catch (err) {
+    console.error("Erro ao deslogar:", err);
+  }
+};
+
   
   
 
@@ -191,8 +225,12 @@ if (!isFiltroAtivo && games.length > 0) {
   
 
   return (
-    <div className="container">
-      <header className="cabecalho">
+    <div className="container" style={{
+    backgroundImage: `url(/imagens_perfil_fundo/${fundoUsuario})`}}>
+      <header className="cabecalho" >
+        <div className="BGLogo2">
+        <h1 className="logoMain">GameTracker</h1>
+        </div>
         <nav>
           <ul>
             <li onClick={() => navigate("/mylists", { state: { userId } })}>
@@ -201,15 +239,16 @@ if (!isFiltroAtivo && games.length > 0) {
             <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
 
             </span> Perfil</li>
-            <li onClick={() => navigate("/", { state: { userId } })}>
-              <span><LuLogOut /></span> Logout
-            </li>
+           <li onClick={handleLogout}>
+  <span><LuLogOut /></span> Sair
+</li>
+
           </ul>
         </nav>
       </header>
 
       <div className="BGLogo">
-        <h1 className="logoMain">GameTracker</h1>
+        
       </div>
 
       <div className="containerGames">

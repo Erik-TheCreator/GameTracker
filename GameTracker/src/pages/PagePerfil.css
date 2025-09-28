@@ -11,8 +11,24 @@
     background-size: cover;
 }
 
+.BGLogo3{
+    height: 200px;
+    display: flex;
+    align-items: center;
 
+}
+
+.BGLogo3 h1{
+font-size: 40px;
+  color: #ffffff;
+  animation: glowPulse 2s infinite alternate;
+animation: slideDown 1s ease-out;  
+
+    
+
+}
 .perfil-box {
+    animation: slideDown 1s ease-out;  
     gap: 20px;
     display: flex;
     justify-content: center;
@@ -23,6 +39,7 @@
     margin-bottom: 100px;
     padding: 20px;
 }
+
 .perfil-box p{
     font-size: 2em;
 
@@ -162,6 +179,7 @@
 }
 .fotosbg{
     width: 100px;
+    cursor: pointer;
 
 }
 .fotos:hover{
@@ -193,6 +211,7 @@
     display: flex;
     gap: 10px;
 }
+
 
 .perfil-section textarea{
     resize: none;

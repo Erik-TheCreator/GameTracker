@@ -17,6 +17,8 @@ export const PageMinhasListas = () => {
   const [popupData, setPopupData] = useState({});
   const [novoNome, setNovoNome] = useState("");
   const [listasAbertas, setListasAbertas] = useState([]);
+  const [fundoUsuario, setFundoUsuario] = useState("img.webp");
+
 
 const toggleLista = (id) => {
   if (listasAbertas.includes(id)) {
@@ -37,6 +39,22 @@ const toggleLista = (id) => {
   useEffect(() => {
     if (userId) carregarListas();
   }, [userId]);
+
+  useEffect(() => {
+  const carregarFundo = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/usuarios/me", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setFundoUsuario(data.fotoFundo || "img.webp");
+    } catch (err) {
+      console.error("Erro ao carregar fundo do usuário:", err);
+    }
+  };
+
+  carregarFundo();
+}, []);
 
   const deletarLista = async (id) => {
     try {
@@ -83,14 +101,32 @@ const toggleLista = (id) => {
     }
   };
 
+   const handleLogout = async () => {
+  try {
+    await fetch("http://localhost:3000/usuarios/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    sessionStorage.removeItem("userId");
+    navigate("/"); 
+  } catch (err) {
+    console.error("Erro ao deslogar:", err);
+  }
+};
+
   if (!userId) {
     navigate("/home");
     return null;
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{
+    backgroundImage: `url(/imagens_perfil_fundo/${fundoUsuario})`}}>
+      
       <header className="cabecalho">
+        <div className="BGLogo2">
+        <h1 className="logoMain">GameTracker</h1>
+        </div>
         <nav>
           <ul>
             <li onClick={() => navigate("/home", { state: { userId } })}>
@@ -98,16 +134,17 @@ const toggleLista = (id) => {
             </li>
             <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
             </span> Perfil</li>
-            <li onClick={() => navigate("/", { state: { userId } })}>
-              <span><LuLogOut /></span> Logout
-            </li>
+          <li onClick={handleLogout}>
+  <span><LuLogOut /></span> Sair
+</li>
           </ul>
         </nav>
       </header>
-
-      <div className="BGLogo">
-        <h1>Minhas Listas</h1>
+          <div className="BGLogo">
+        
       </div>
+
+
 
       <div className="containerGames2">
         {listas.length === 0 ? (

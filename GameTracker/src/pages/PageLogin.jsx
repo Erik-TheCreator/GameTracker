@@ -40,7 +40,7 @@ export const PageLogin = ()=> {
   return (
     <div className="container2">
       <header className="logo">
-         <div className="BGLogo2">
+         <div>
         <h1>GameTracker</h1>
       </div>
        

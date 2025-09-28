@@ -11,11 +11,17 @@
 .logo{
   width: 100%;
   height: 120px;
-  background-color: rgb(37, 37, 37);
+  background-color: rgba(37, 37, 37, 0.904);
 }
 
+.logo div{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 
 .logo div h1{
+  margin-top: 20px;
   font-size: 4.3em;
   color: #fdfdfe;
   animation: glowPulse2 3s infinite alternate;
@@ -35,7 +41,7 @@ align-items: center;
 
 
 .painelCentral {
-  background-color: rgb(37, 37, 37);
+  background-color: rgba(37, 37, 37, 0.445);
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -87,7 +93,7 @@ button:hover {
 
 .footerLogin{
 width: 100%;
-background-color:rgb(37, 37, 37);
+  background-color: rgba(37, 37, 37, 0.904);
 color: rgb(219, 217, 217);
 display: flex;
 justify-content: center;

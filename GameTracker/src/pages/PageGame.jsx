@@ -49,6 +49,8 @@ export const PageGame = () => {
 
 
 
+
+
 const abrirEdicao = (review) => {
   setEditReview(review);
 };
@@ -139,6 +141,19 @@ const calcularMedia = (reviews) => {
   return (soma / reviews.length).toFixed(1);
 };
 
+ const handleLogout = async () => {
+  try {
+    await fetch("http://localhost:3000/usuarios/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    sessionStorage.removeItem("userId");
+    navigate("/"); 
+  } catch (err) {
+    console.error("Erro ao deslogar:", err);
+  }
+};
+
 
 
 
@@ -152,10 +167,10 @@ const calcularMedia = (reviews) => {
 
   return (
     <div className="PageGame-container">
-      <header className="PageGame-header">
-      <div className="BGLogo2">
-        <h1 onClick={(e)=> navigate("/home", { state: { userId } })}>GameTracker</h1>
-      </div>
+      <header className="cabecalho">
+       <div className="BGLogo2">
+        <h1 className="logoMain">GameTracker</h1>
+        </div>
       <nav>
           <ul>
           <li onClick={() => navigate("/home", { state: { userId } })}>
@@ -167,9 +182,9 @@ const calcularMedia = (reviews) => {
             <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
             </span> Perfil</li>
             
-            <li onClick={() => navigate("/", { state: { userId } })}>
-              <span><LuLogOut /></span> Logout
-            </li>
+            <li onClick={handleLogout}>
+  <span><LuLogOut /></span> Sair
+</li>
           </ul>
         </nav>
       </header>
@@ -191,7 +206,7 @@ const calcularMedia = (reviews) => {
             <p>{game.tempo_main_sides}</p>
              </div>
              <div className="tempoprincipal">
-               <span>Complecionista(100%)</span>
+               <span>Complecionista (100%)</span>
             <p>{game.tempo_completionist}</p>
             </div>
           </div>

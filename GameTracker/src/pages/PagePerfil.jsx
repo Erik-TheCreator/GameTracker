@@ -15,6 +15,7 @@ export const PagePerfil = () => {
     const [novoFoto, setNovoFoto] = useState("");
     const [bordaPerfil, setBordaPerfil] = useState("");
     const [fotoFundo, setfotoFundo] = useState("img.webp");
+    
 
 
 
@@ -99,6 +100,24 @@ const salvarPerfil = async () => {
   }
 };
 
+ const handleLogout = async () => {
+  try {
+    await fetch("http://localhost:3000/usuarios/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    sessionStorage.removeItem("userId");
+    navigate("/"); 
+  } catch (err) {
+    console.error("Erro ao deslogar:", err);
+  }
+};
+
+  if (!userId) {
+    navigate("/home");
+    return null;
+  }
+
 
 
 
@@ -115,6 +134,9 @@ const salvarPerfil = async () => {
     >
     
             <header className="cabecalho">
+              <div className="BGLogo2">
+        <h1 className="logoMain">GameTracker</h1>
+        </div>
         <nav>
           <ul>
           <li onClick={() => navigate("/home", { state: { userId } })}>
@@ -123,15 +145,15 @@ const salvarPerfil = async () => {
               <span><CiBoxList /></span> Minhas Listas
             </li>
        
-            <li onClick={() => navigate("/", { state: { userId } })}>
-              <span><LuLogOut /></span> Logout
-            </li>
+           <li onClick={handleLogout}>
+  <span><LuLogOut /></span> Sair
+</li>
           </ul>
         </nav>
       </header>
  
  
-            <div className="BGLogo">
+            <div className="BGLogo3">
                 <h1>Meu Perfil</h1>
             </div>
  
@@ -252,6 +274,23 @@ Editar</button>
         <img src="imagens_perfil_fundo/thelast.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("thelast.jpg")}/>
       
         </div>
+        <div className="imagesRow2">
+  <img src="imagens_perfil_fundo/ac.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("ac.jpg")} />
+  <img src="imagens_perfil_fundo/ac1.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("ac1.jpg")} />
+  <img src="imagens_perfil_fundo/blackops2.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("blackops2.jpg")} />
+  <img src="imagens_perfil_fundo/chris.png" alt="" className="fotosbg" onClick={() => setfotoFundo("chris.png")} />
+  <img src="imagens_perfil_fundo/gtasa.png" alt="" className="fotosbg" onClick={() => setfotoFundo("gtasa.png")} />
+  
+</div>
+<div className="imagesRow2">
+  
+  <img src="imagens_perfil_fundo/hollow.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("hollow.jpg")} />
+  <img src="imagens_perfil_fundo/kof96.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("kof96.jpg")} />
+  <img src="imagens_perfil_fundo/kratos.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("kratos.jpg")} />
+  <img src="imagens_perfil_fundo/minecraft.png" alt="" className="fotosbg" onClick={() => setfotoFundo("minecraft.png")} />
+  <img src="imagens_perfil_fundo/sonic.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("sonic.jpg")} />
+</div>
+
         </div>
  </>
 ) : null}

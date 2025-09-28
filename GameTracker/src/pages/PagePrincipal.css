@@ -1,13 +1,22 @@
 .cabecalho{
+  display: flex;
   background: #000000be;
   width: 100%;
-  height: 70px;
-  justify-items: end;
-  align-content: end;
+  height: 100px;
+  justify-content:space-between;
   padding: 20px;
-  animation: slideDown 1s ease-out;
+  align-items: center;
+  animation: slideDown 1s ease-out;  
+
 }
- 
+
+.cabecalho div h1{
+   font-size: 60px;
+  color: #ffffff;
+  animation: glowPulse 2s infinite alternate
+
+}
+
 .cabecalho ul{
   display: flex;
   gap: 50px;
@@ -19,10 +28,7 @@
   align-items: center;
   font-size: 1.6em;
   color: #fdfdfe;
-  text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
-    0px 0px 20px #4273fa;
   position: relative;
-    animation: glowPulse 3s infinite alternate;
 
 }
  
@@ -59,29 +65,21 @@
   background-color: rgb(54, 54, 54);
   justify-content: center;
   justify-items: center;
-  background-image: url("../assets/bggametracker.webp");
   box-shadow: inset 50px 300px 1000px rgb(0, 0, 0);
+  background-position: top;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
  
 .BGLogo{
-  height: 280px;
+  height: 600px;
+  display: flex;
   justify-items: center;
   padding: 20px;
+  align-items: center;
+  
 }
  
-.BGLogo h1{
-  font-size: 80px;
-  color: #ffffff;
-  text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
-  0px 0px 20px #4273fa;
-  animation: glowPulse 3s infinite alternate;
-}
- 
-.BGLogo h1:hover{
-  cursor: pointer;
-  text-shadow: 0px 0px 5px #b6c5ee, 0px 0px 10px #97aadf, 0px 0px 10px #bdccf7,
-  0px 0px 20px #c3cde9;
-}
  
 .containerGames{
   padding: 20px;
@@ -142,7 +140,9 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   padding-left: 10px;
   cursor: pointer;
+
 }
+
 .filtros select:hover{
   background-color: #2b2a2a;
   color: rgb(204, 203, 203);
@@ -308,13 +308,14 @@
  
 @keyframes glowPulse {
   from {
-    text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 15px #4274ff,
-                 0px 0px 25px #4273fa;
+    text-shadow: 0px 0px 5px rgb(140, 141, 145), 0px 0px 10px #7f8081, 0px 0px 15px #7c7d80,
+                 0px 0px 25px #87888a;
   }
   to {
-    text-shadow: 0px 0px 10px #b6c5ee, 0px 0px 20px #97aadf, 0px 0px 25px #bdccf7,
-                 0px 0px 40px #c3cde9;
+    text-shadow: 0px 0px 5px #b8b6b8, 0px 0px 10px #abacad, 0px 0px 15px #cacaca,
+                 0px 0px 25px #b7b7b9;
   }
+  
 }
  
 @keyframes popupScale {

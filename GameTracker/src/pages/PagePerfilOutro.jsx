@@ -28,7 +28,25 @@ export const PagePerfilOutro = () => {
       .catch(err => console.error(err));
   }, [id]);
 
+   const handleLogout = async () => {
+  try {
+    await fetch("http://localhost:3000/usuarios/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    sessionStorage.removeItem("userId");
+    navigate("/"); 
+  } catch (err) {
+    console.error("Erro ao deslogar:", err);
+  }
+};
+
   if (!usuario) return <p>Carregando...</p>;
+
+    if (!userIdLogado) {
+    navigate("/home");
+    return null;
+  }
 
   return (
     <div
@@ -38,6 +56,9 @@ export const PagePerfilOutro = () => {
       }}
     >
       <header className="cabecalho">
+        <div className="BGLogo2">
+        <h1 className="logoMain">GameTracker</h1>
+        </div>
         <nav>
           <ul>
             <li onClick={() => navigate("/home", { state: { userId: userIdLogado } })}>
@@ -46,14 +67,14 @@ export const PagePerfilOutro = () => {
             <li onClick={() => navigate("/mylists", { state: { userId: userIdLogado } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
-            <li onClick={() => navigate("/", { state: { userId: userIdLogado } })}>
-              <span><LuLogOut /></span> Logout
-            </li>
+           <li onClick={handleLogout}>
+  <span><LuLogOut /></span> Sair
+</li>
           </ul>
         </nav>
       </header>
 
-      <div className="BGLogo">
+      <div className="BGLogo3">
         <h1>{usuario.nome}</h1>
       </div>
 
