@@ -18,6 +18,9 @@ export const PageMinhasListas = () => {
   const [novoNome, setNovoNome] = useState("");
   const [listasAbertas, setListasAbertas] = useState([]);
   const [fundoUsuario, setFundoUsuario] = useState("img.webp");
+  const [fotoUsuario, setFotoUsuario] = useState("");
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [bordaUsuario,setBordaPerfil]=useState("")
   const capitalizeWords = (str) => {
   return str
     .split(" ")
@@ -53,7 +56,11 @@ const toggleLista = (id) => {
         credentials: "include",
       });
       const data = await res.json();
+      console.log(data)
       setFundoUsuario(data.fotoFundo || "img.webp");
+      setFotoUsuario(data.foto)
+      setNomeUsuario(data.nome)
+      setBordaPerfil(data.bordaPerfil)
     } catch (err) {
       console.error("Erro ao carregar fundo do usuário:", err);
     }
@@ -138,8 +145,16 @@ const toggleLista = (id) => {
             <li onClick={() => navigate("/home", { state: { userId } })}>
               <span><MdKeyboardReturn /></span> Voltar
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
-            </span> Perfil</li>
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span>  <img 
+  src={`/imagens_perfil/${fotoUsuario}`} 
+  alt="Foto de perfil" 
+  className='fotoperfilpagemain'
+   style={{
+    border: bordaUsuario ? `2px solid ${bordaUsuario}` : "none"
+  }}
+/>
+
+            </span>{nomeUsuario}</li>
           <li onClick={handleLogout}>
   <span><LuLogOut /></span> Sair
 </li>

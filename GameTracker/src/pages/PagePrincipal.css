@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   font-size: 1.6em;
-  color: #fdfdfe;
+  color: #dddddf;
   position: relative;
 
 }
@@ -39,7 +39,10 @@
   display: flex;
   align-items: center;
 }
- 
+.fotoperfilpagemain{
+  height: 50px;
+  border-radius: 100px;
+}
 .cabecalho ul li:hover{
   cursor: pointer;
   color: #fdfdfe;

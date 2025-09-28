@@ -12,6 +12,10 @@ export const PagePerfilOutro = () => {
   const [usuario, setUsuario] = useState(null);
   const [listas, setListas] = useState([]);
   const [popupLista, setPopupLista] = useState(null);
+   const [fundoUsuario, setFundoUsuario] = useState("img.webp");
+  const [fotoUsuario, setFotoUsuario] = useState("");
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [bordaUsuario,setBordaPerfil]=useState("")
 
 
   useEffect(() => {
@@ -41,6 +45,27 @@ export const PagePerfilOutro = () => {
   }
 };
 
+
+ useEffect(() => {
+  const carregarFundo = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/usuarios/me", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data)
+      setFundoUsuario(data.fotoFundo || "img.webp");
+      setFotoUsuario(data.foto)
+      setNomeUsuario(data.nome)
+      setBordaPerfil(data.bordaPerfil)
+    } catch (err) {
+      console.error("Erro ao carregar fundo do usuário:", err);
+    }
+  };
+
+  carregarFundo();
+}, []);
+
   if (!usuario) return <p>Carregando...</p>;
 
     if (!userIdLogado) {
@@ -67,6 +92,16 @@ export const PagePerfilOutro = () => {
             <li onClick={() => navigate("/mylists", { state: { userId: userIdLogado } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
+              <li onClick={() => navigate("/profile", { state: { userId:userIdLogado } })}> <span>  <img 
+  src={`/imagens_perfil/${fotoUsuario}`} 
+  alt="Foto de perfil" 
+  className='fotoperfilpagemain'
+   style={{
+    border: bordaUsuario ? `2px solid ${bordaUsuario}` : "none"
+  }}
+/>
+
+            </span>{nomeUsuario}</li>
            <li onClick={handleLogout}>
   <span><LuLogOut /></span> Sair
 </li>

@@ -10,37 +10,61 @@ export const PageCadastro = () => {
   const [senha, setSenha] = useState("");
   const [confirmarsenha, setConfirmarSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
-  const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+  const [mostrarConfirmarSenha, setMostrarConfirmarSenha]=useState(false);
 
 
   const navigate = useNavigate();
 
-  const handlecadastro = async () => {
-    if (senha !== confirmarsenha) {
-      alert("As senhas não conferem!");
-      return;
+ const handlecadastro = async () => {
+
+  if (!nome || !email || !senha || !confirmarsenha) {
+    alert("Preencha todos os campos.");
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert("Digite um e-mail válido.");
+    return;
+  }
+
+  if (senha.length < 8) {
+    alert("A senha deve ter no mínimo 8 caracteres.");
+    return;
+  }
+
+  const senhaForteRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
+  if (!senhaForteRegex.test(senha)) {
+    alert("A senha deve conter letras maiúsculas, minúsculas, números e símbolos.");
+    return;
+  }
+
+  if (senha !== confirmarsenha) {
+    alert("As senhas não conferem!");
+    return;
+  }
+
+  try {
+    const resposta = await fetch("http://localhost:3000/usuarios", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nome, email, senha }),
+    });
+
+    const dados = await resposta.json();
+
+    if (resposta.ok) {
+      alert("Usuário cadastrado com sucesso!");
+      setTimeout(() => navigate("/"), 1500);
+    } else {
+      alert(dados.erro || "Erro ao cadastrar usuário.");
     }
+  } catch (err) {
+    console.error(err);
+    alert("Erro no servidor.");
+  }
+};
 
-    try {
-      const resposta = await fetch("http://localhost:3000/usuarios", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha }),
-      });
-
-      const dados = await resposta.json();
-
-      if (resposta.ok) {
-        alert("Usuário cadastrado com sucesso!");
-        setTimeout(() => navigate("/"), 1500);
-      } else {
-        alert(dados.erro || "Erro ao cadastrar usuário.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Erro no servidor.");
-    }
-  };
 
   return (
     <div className="container2">
@@ -116,22 +140,7 @@ export const PageCadastro = () => {
           
         </form>
       </main>
-         <footer className="footerLogin">
-            <div className="coluna">
-              <h1>Instagram dos criadores do site!</h1>
-              <div className="footerInsta">
-              <a href="https://www.instagram.com/eduarduuh__/" target="blank">
-              <img src={instagramlogo} alt=""/>Eduardo
-              </a>
-              <a href="https://www.instagram.com/erik_thecreator/" target="blank">
-              <img src={instagramlogo} alt=""/>Erik
-              </a>
-              <a href="" target="blank">
-              <img src={instagramlogo} alt=""/>Miguel Oliveira
-              </a>
-              </div>
-            </div>
-           </footer>
+       
     </div>
   );
 };

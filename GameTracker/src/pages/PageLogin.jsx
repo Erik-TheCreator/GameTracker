@@ -90,26 +90,7 @@ export const PageLogin = ()=> {
         </form>
       </main>
 
-           <footer className="footerLogin">
-            <div className="coluna">
-              <h1>Instagram dos criadores do site!</h1>
-              <div className="footerInsta">
-                <a href="https://www.instagram.com/eduarduuh__/" target="blank">
-              <img src={instagramlogo} alt="" />
-Eduardo
-              </a>
-              <a href="https://www.instagram.com/erik_thecreator/" target="blank">
-              <img src={instagramlogo} alt=""/>
-Erik
-              </a>
-              <a href="" target="blank">
-              <img src={instagramlogo} alt="" />
-Miguel Oliveira
-              </a>
-              </div>
-            </div>
-           </footer>
-
+      
 
     </div>
 

@@ -19,6 +19,10 @@ export const PageGame = () => {
   const navigate=useNavigate();
   const location = useLocation();
   const userId = location.state?.userId || sessionStorage.getItem("userId");
+   const [fundoUsuario, setFundoUsuario] = useState("img.webp");
+  const [fotoUsuario, setFotoUsuario] = useState("");
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [bordaUsuario,setBordaPerfil]=useState("")
 
 
   useEffect(() => {
@@ -47,7 +51,25 @@ export const PageGame = () => {
     .catch(err => console.error(err));
 }, [id]);
 
+ useEffect(() => {
+  const carregarFundo = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/usuarios/me", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      console.log(data)
+      setFundoUsuario(data.fotoFundo || "img.webp");
+      setFotoUsuario(data.foto)
+      setNomeUsuario(data.nome)
+      setBordaPerfil(data.bordaPerfil)
+    } catch (err) {
+      console.error("Erro ao carregar fundo do usuário:", err);
+    }
+  };
 
+  carregarFundo();
+}, []);
 
 
 
@@ -141,6 +163,8 @@ const calcularMedia = (reviews) => {
   return (soma / reviews.length).toFixed(1);
 };
 
+
+
  const handleLogout = async () => {
   try {
     await fetch("http://localhost:3000/usuarios/logout", {
@@ -179,8 +203,16 @@ const calcularMedia = (reviews) => {
               
               <span><CiBoxList /></span> Minhas Listas
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
-            </span> Perfil</li>
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span>  <img 
+  src={`/imagens_perfil/${fotoUsuario}`} 
+  alt="Foto de perfil" 
+  className='fotoperfilpagemain'
+   style={{
+    border: bordaUsuario ? `2px solid ${bordaUsuario}` : "none"
+  }}
+/>
+
+            </span>{nomeUsuario}</li>
             
             <li onClick={handleLogout}>
   <span><LuLogOut /></span> Sair

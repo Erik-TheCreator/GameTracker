@@ -291,6 +291,20 @@ Editar</button>
   <img src="imagens_perfil_fundo/sonic.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("sonic.jpg")} />
 </div>
 
+<div className="imagesRow2">
+  <img src="imagens_perfil_fundo/dark.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("dark.jpg")} />
+  <img src="imagens_perfil_fundo/death.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("death.jpg")} />
+  <img src="imagens_perfil_fundo/outer.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("outer.jpg")} />
+  <img src="imagens_perfil_fundo/re4.png" alt="" className="fotosbg" onClick={() => setfotoFundo("re4.png")} />
+  <img src="imagens_perfil_fundo/red1.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("red1.jpg")} />
+</div>
+
+<div className="imagesRow2">
+  <img src="imagens_perfil_fundo/halo.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("halo.jpg")} />
+  <img src="imagens_perfil_fundo/skyrim.jfif" alt="" className="fotosbg" onClick={() => setfotoFundo("skyrim.jfif")} />
+</div>
+
+
         </div>
  </>
 ) : null}

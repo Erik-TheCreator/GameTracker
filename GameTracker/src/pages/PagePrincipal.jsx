@@ -2,7 +2,7 @@ import "./PagePrincipal.css";
 import { MdOutlineSearch, MdAddToPhotos } from "react-icons/md";
 import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaFilter,FaUserAlt } from "react-icons/fa";
 
@@ -26,6 +26,12 @@ export const PagePrincipal = () => {
   const [isFiltroAtivo, setIsFiltroAtivo] = useState(false);
   const [ordenarSelecionado, setOrdenarSelecionado] = useState("");
   const [fundoUsuario, setFundoUsuario] = useState("img.webp");
+  const [fotoUsuario, setFotoUsuario] = useState("");
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [bordaUsuario,setBordaPerfil]=useState("")
+
+
+
 
   const capitalizeWords = (str) => {
   return str
@@ -68,7 +74,11 @@ export const PagePrincipal = () => {
         credentials: "include",
       });
       const data = await res.json();
+      console.log(data)
       setFundoUsuario(data.fotoFundo || "img.webp");
+      setFotoUsuario(data.foto)
+      setNomeUsuario(data.nome)
+      setBordaPerfil(data.bordaPerfil)
     } catch (err) {
       console.error("Erro ao carregar fundo do usuário:", err);
     }
@@ -237,9 +247,16 @@ if (!isFiltroAtivo && games.length > 0) {
             <li onClick={() => navigate("/mylists", { state: { userId } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
-            <li onClick={() => navigate("/profile", { state: { userId } })}> <span><FaUserAlt />
+            <li onClick={() => navigate("/profile", { state: { userId } })}> <span>  <img 
+  src={`/imagens_perfil/${fotoUsuario}`} 
+  alt="Foto de perfil" 
+  className='fotoperfilpagemain'
+   style={{
+    border: bordaUsuario ? `2px solid ${bordaUsuario}` : "none"
+  }}
+/>
 
-            </span> Perfil</li>
+            </span>{nomeUsuario}</li>
            <li onClick={handleLogout}>
   <span><LuLogOut /></span> Sair
 </li>
