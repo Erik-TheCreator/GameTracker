@@ -16,10 +16,14 @@
 
 
 .logo div h1{
+  font-size: 4.3em;
   color: #fdfdfe;
-    text-shadow: 0px 0px 5px #c2c2c4, 0px 0px 10px #b5b4b8, 0px 0px 10px #b2b2b4,
-    0px 0px 20px #bababb;
+  animation: glowPulse2 3s infinite alternate;
+
 }
+
+
+
 main {
 flex:1;
 display: flex;
@@ -73,7 +77,7 @@ button:hover {
 
 .cadastrarText{
   font-size: 1.2em;
-  color: #fdfdfe;
+  color: rgb(219, 217, 217);
  
 }
 .cadastrarText:hover{
@@ -83,26 +87,34 @@ button:hover {
 
 .footerLogin{
 width: 100%;
-height: 200px;
 background-color:rgb(37, 37, 37);
-color: white;
+color: rgb(219, 217, 217);
 display: flex;
 justify-content: center;
 padding: 30px;
 font-size: 30px;
 }
+
+.coluna h1{
+  font-size: 1.3em;
+
+  
+}
+
 
 .footerInsta{
 display: flex;
 align-items: center;
 justify-content: center;
-gap: 5px;
+gap: 15px;
 padding: 30px;
 font-size: 30px;
 
 
 }
-
+.footerInsta img{
+  height: 30px;
+}
 
 .footerLogin a {
   text-decoration: none;
@@ -110,16 +122,12 @@ font-size: 30px;
   align-items: center;
   display: flex;
   justify-content: center;
+  gap: 5px;
+
+
 }
 
 
-
-
-.footerInsta img{
-  width: 75px;
-  height: 40px;
-
-}
 
 @keyframes bgMove {
   from {
@@ -127,5 +135,16 @@ font-size: 30px;
   }
   to {
     background-position: center bottom;
+  }
+}
+
+@keyframes glowPulse2 {
+  from {
+    text-shadow: 0px 0px 5px #727272, 0px 0px 10px #727272, 0px 0px 15px #727272,
+                 0px 0px 25px #727272;
+  }
+  to {
+    text-shadow: 0px 0px 10px #b6c5ee, 0px 0px 20px #b6c5ee, 0px 0px 25px #b6c5ee,
+                 0px 0px 40px #b6c5ee;
   }
 }

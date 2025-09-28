@@ -1,6 +1,6 @@
 .container-perfil {
     width: 100%;
-    height: 120vh;
+    height: 125vh;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -125,8 +125,8 @@
 
 
 .editProfileContainer input{
-    height: 25px;
-    border-radius: 7px;
+    height: 35px;
+    border-radius: 5px;
     font-size: 1.5em;
     border: none;
     padding: 5px;
@@ -160,7 +160,10 @@
     height: 100px;
     border-radius: 10px;
 }
+.fotosbg{
+    width: 100px;
 
+}
 .fotos:hover{
     cursor: pointer;
 }
@@ -200,6 +203,8 @@
     color: rgb(185, 184, 184);
     font-size: 1.5em;
     padding-left: 10px;
+    border-radius: 5px;
+
 
 
 

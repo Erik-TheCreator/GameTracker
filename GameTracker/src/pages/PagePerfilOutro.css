@@ -1,0 +1,45 @@
+.perfil-section ul li{
+  font-size: 1.5em;
+
+}
+.popupFloating2 {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e1e1e;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 1000;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+
+.gamesPopupContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 500px;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+
+.gamePopupItem {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gamePopupItem img {
+  width: 120px;
+  height: 140px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+

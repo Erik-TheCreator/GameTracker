@@ -237,19 +237,19 @@ Editar</button>
  <>
  <div className="imagescontainer">
   <div className="imagesRow">
-        <img src="imagens_perfil_fundo/batman.jpg" alt="" className="fotos" onClick={() => setfotoFundo("batman.jpg")}/>
-        <img src="imagens_perfil_fundo/cod.jpg" alt="" className="fotos" onClick={() => setfotoFundo("cod.jpg")}/>
-        <img src="imagens_perfil_fundo/dishonored.jfif" alt="" className="fotos" onClick={() => setfotoFundo("dishonored.jfif")}/>
-        <img src="imagens_perfil_fundo/dmc3.jpg" alt="" className="fotos" onClick={() => setfotoFundo("dmc3.jpg")}/>
-        <img src="imagens_perfil_fundo/finalfantasy.jfif" alt="" className="fotos" onClick={() => setfotoFundo("finalfantasy.jfif")}/>
+        <img src="imagens_perfil_fundo/batman.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("batman.jpg")}/>
+        <img src="imagens_perfil_fundo/cod.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("cod.jpg")}/>
+        <img src="imagens_perfil_fundo/dishonored.jfif" alt="" className="fotosbg" onClick={() => setfotoFundo("dishonored.jfif")}/>
+        <img src="imagens_perfil_fundo/dmc3.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("dmc3.jpg")}/>
+        <img src="imagens_perfil_fundo/finalfantasy.jfif" alt="" className="fotosbg" onClick={() => setfotoFundo("finalfantasy.jfif")}/>
       
         </div>
         <div className="imagesRow2">
-        <img src="imagens_perfil_fundo/reddead2.png" alt="" className="fotos" onClick={() => setfotoFundo("reddead2.png")}/>
-        <img src="imagens_perfil_fundo/resident.jpg" alt="" className="fotos" onClick={() => setfotoFundo("resident.jpg")}/>
-        <img src="imagens_perfil_fundo/spiderman.jpg" alt="" className="fotos" onClick={() => setfotoFundo("spiderman.jpg")}/>
-        <img src="imagens_perfil_fundo/streetfighter6.jpg" alt="" className="fotos" onClick={() => setfotoFundo("streetfighter6.jpg")}/>
-        <img src="imagens_perfil_fundo/thelast.jpg" alt="" className="fotos" onClick={() => setfotoFundo("thelast.jpg")}/>
+        <img src="imagens_perfil_fundo/reddead2.png" alt="" className="fotosbg" onClick={() => setfotoFundo("reddead2.png")}/>
+        <img src="imagens_perfil_fundo/resident.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("resident.jpg")}/>
+        <img src="imagens_perfil_fundo/spiderman.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("spiderman.jpg")}/>
+        <img src="imagens_perfil_fundo/streetfighter6.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("streetfighter6.jpg")}/>
+        <img src="imagens_perfil_fundo/thelast.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("thelast.jpg")}/>
       
         </div>
         </div>

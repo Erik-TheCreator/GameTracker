@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import "./PageLogin.css"
 import { FaEye,FaEyeSlash} from "react-icons/fa";
 import instagramlogo from "../assets/instagram.png"
+import { FaInstagramSquare } from "react-icons/fa";
 
 export const PageLogin = ()=> {
   const [email,setEmail]=useState("")
@@ -28,7 +29,7 @@ export const PageLogin = ()=> {
       }
   
       alert(data.mensagem);
-      sessionStorage.setItem("userId", data.id);
+      sessionStorage.setItem("userId", data.user.id);
       navigate("/home", { state: { userId: data.user.id } }); 
     } catch (err) {
       console.error("Erro no login:", err);
@@ -40,7 +41,7 @@ export const PageLogin = ()=> {
   return (
     <div className="container2">
       <header className="logo">
-         <div className="BGLogo">
+         <div className="BGLogo2">
         <h1>GameTracker</h1>
       </div>
        
@@ -95,13 +96,16 @@ export const PageLogin = ()=> {
               <h1>Instagram dos criadores do site!</h1>
               <div className="footerInsta">
                 <a href="https://www.instagram.com/eduarduuh__/" target="blank">
-              <img src={instagramlogo} alt=""/>Eduardo
+              <img src={instagramlogo} alt="" />
+Eduardo
               </a>
               <a href="https://www.instagram.com/erik_thecreator/" target="blank">
-              <img src={instagramlogo} alt=""/>Erik
+              <img src={instagramlogo} alt=""/>
+Erik
               </a>
               <a href="" target="blank">
-              <img src={instagramlogo} alt=""/>Miguel Oliveira
+              <img src={instagramlogo} alt="" />
+Miguel Oliveira
               </a>
               </div>
             </div>

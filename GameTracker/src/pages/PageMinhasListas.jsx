@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./PageMinhasListas.css"; 
 import { LuLogOut } from "react-icons/lu";
 import { FaTrash } from "react-icons/fa";
 import { MdKeyboardReturn, MdEdit } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoTrashBin } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 
 export const PageMinhasListas = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const userId = location.state?.userId || sessionStorage.getItem("userId");
-
+  const userId = sessionStorage.getItem("userId");
   const [listas, setListas] = useState([]);
   const [popupAberto, setPopupAberto] = useState(false);
   const [tipoPopup, setTipoPopup] = useState(""); 

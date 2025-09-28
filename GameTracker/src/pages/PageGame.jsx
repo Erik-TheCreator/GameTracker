@@ -181,7 +181,26 @@ const calcularMedia = (reviews) => {
         </div>
         </div>
         <main className="PageGame-main">
-        <div className="media-nota">
+          <div className="tempodejogo">
+            <div className="tempoprincipal">
+              <span>História Principal</span>
+            <p>{game.tempo_main}</p>
+            </div>
+             <div className="tempoprincipal">
+               <span>Principal + Secundárias</span>
+            <p>{game.tempo_main_sides}</p>
+             </div>
+             <div className="tempoprincipal">
+               <span>Complecionista(100%)</span>
+            <p>{game.tempo_completionist}</p>
+            </div>
+          </div>
+      
+
+    
+          <div className="PageGame-info">
+            <h1 className="gameTitulo">{game.titulo}</h1>
+              <div className="media-nota">
   {reviews.length === 0 ? (
     <p className="semAvaliacoes"></p>
   ) : (
@@ -190,11 +209,7 @@ const calcularMedia = (reviews) => {
     </p>
   )}
 </div>
-
-    
-          <div className="PageGame-info">
-            <h1 className="gameTitulo">{game.titulo}</h1>
-            <p className="gameData">
+            <p className="gamedata">
   Data de Lançamento: {" "}
   <strong>
     {new Date(game.data_lancamento).toLocaleDateString("pt-BR", {
@@ -204,7 +219,7 @@ const calcularMedia = (reviews) => {
     })}
   </strong>{" "} <br />Desenvolvido por : <strong>{game.desenvolvedora}</strong>
 </p>
-            <p>
+            <p className="gamesinopse">
               {game.sinopse}
             </p>
           </div>
@@ -251,7 +266,7 @@ const calcularMedia = (reviews) => {
                 <img src={`/imagens_perfil/${r.foto}`} alt="Foto de perfil" className='imagensperfil' style={{ border: r.bordaPerfil ? `3px solid ${r.bordaPerfil}` : "none" }}/>
                 </div>
                 <div>
-                <p className="autorData"><strong>{r.autor}</strong></p><p className="data">{new Date(r.data_review).toLocaleString("pt-BR", {
+                <p className="autorData"><strong onClick={() => navigate(`/profile/${r.id_usuario}`)}>{r.autor}</strong></p><p className="data">{new Date(r.data_review).toLocaleString("pt-BR", {
         day: "2-digit",
         month: "short",
         year: "numeric",

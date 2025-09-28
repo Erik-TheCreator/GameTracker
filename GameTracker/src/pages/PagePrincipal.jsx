@@ -25,6 +25,13 @@ export const PagePrincipal = () => {
   const [ordenarPor, setOrdenarPor] = useState("");
   const [isFiltroAtivo, setIsFiltroAtivo] = useState(false);
   const [ordenarSelecionado, setOrdenarSelecionado] = useState("");
+  const capitalizeWords = (str) => {
+  return str
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 
 
 
@@ -202,7 +209,7 @@ if (!isFiltroAtivo && games.length > 0) {
       </header>
 
       <div className="BGLogo">
-        <h1>GameTracker</h1>
+        <h1 className="logoMain">GameTracker</h1>
       </div>
 
       <div className="containerGames">
@@ -306,7 +313,8 @@ Filtrar</button>
             className="inputList"
               type="text"
               value={novaLista}
-              onChange={(e) => setNovaLista(e.target.value)}
+             onChange={(e) => setNovaLista(capitalizeWords(e.target.value))}
+
               placeholder="Nome da nova lista"
             />
             <button

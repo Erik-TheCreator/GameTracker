@@ -22,6 +22,8 @@
   text-shadow: 0px 0px 5px #4474f8, 0px 0px 10px #5883fa, 0px 0px 10px #4274ff,
     0px 0px 20px #4273fa;
   position: relative;
+    animation: glowPulse 3s infinite alternate;
+
 }
  
 .cabecalho ul li span{
@@ -115,11 +117,16 @@
   width: 200px;
   padding-left: 10px;
 }
- 
+ .searchBar input:hover{
+    background-color: #2b2a2a;
+
+ }
 .searchBar input::placeholder{
   color: rgb(185, 184, 184);
 }
- 
+ .searchBar input:hover::placeholder {
+  color: rgb(204, 203, 203);
+}
 .filtros{
   display: flex;
   gap: 15px;
@@ -134,6 +141,12 @@
   color: rgb(185, 184, 184);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   padding-left: 10px;
+  cursor: pointer;
+}
+.filtros select:hover{
+  background-color: #2b2a2a;
+  color: rgb(204, 203, 203);
+
 }
  
 .filtros button{
@@ -273,10 +286,15 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  width: 350px;
   gap: 20px;
   animation: popupScale 0.4s ease;
 }
- 
+.popupFloating input{
+  height: 50px;
+  font-size: 2em;
+  color: #272727;
+}
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
