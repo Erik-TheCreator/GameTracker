@@ -431,6 +431,7 @@
 
 .popupFloating2 textarea{
   resize: none;
+  border-radius: 5px;
   width: 450px;
   height: 150px;
   padding-left: 10px;
