@@ -18,6 +18,12 @@ export const PageMinhasListas = () => {
   const [novoNome, setNovoNome] = useState("");
   const [listasAbertas, setListasAbertas] = useState([]);
   const [fundoUsuario, setFundoUsuario] = useState("img.webp");
+  const capitalizeWords = (str) => {
+  return str
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 
 const toggleLista = (id) => {
@@ -244,7 +250,7 @@ const toggleLista = (id) => {
                   className="inputList"
                   type="text"
                   value={novoNome}
-                  onChange={(e) => setNovoNome(e.target.value)}
+                  onChange={(e) => setNovoNome(capitalizeWords(e.target.value))}
                   placeholder={popupData.nome}
                 />
                 <button onClick={() => atualizarLista(popupData.id)}>Confirmar</button>

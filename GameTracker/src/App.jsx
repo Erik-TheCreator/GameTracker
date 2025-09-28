@@ -7,6 +7,7 @@ import { PageGame } from './pages/PageGame';
 import { PagePerfil } from './pages/PagePerfil';
 import { PageCadastro } from './pages/PageCadastro';
 import { PagePerfilOutro } from './pages/PagePerfilOutro';
+
 function App() {
 
   return (
@@ -19,6 +20,8 @@ function App() {
     <Route path="/gamepage/:id" element={<PageGame/>}/>
     <Route path="profile" element={<PagePerfil/>}/>
     <Route path="/profile/:id" element={<PagePerfilOutro />} />
+
+
 
 
 

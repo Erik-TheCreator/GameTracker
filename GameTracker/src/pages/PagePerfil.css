@@ -129,6 +129,7 @@ animation: slideDown 1s ease-out;
     border-radius: 100px;
     cursor: pointer;
 
+
 }
 
 .editProfileContainer{
@@ -176,15 +177,27 @@ animation: slideDown 1s ease-out;
     width: 100px;
     height: 100px;
     border-radius: 10px;
+
 }
 .fotosbg{
     width: 100px;
+
+
+
+}
+
+.fotosbg:hover{
     cursor: pointer;
+      transform: scale(1.10);
 
 }
 .fotos:hover{
     cursor: pointer;
+            transform: scale(1.10);
+
+
 }
+
 .imagescontainer{
     max-height: 130px;
     overflow-y: auto;
@@ -192,13 +205,13 @@ animation: slideDown 1s ease-out;
     flex-direction: column;
     padding: 10px;
     gap: 10px;
-  
 
 }
 
 
-.imagesRow{
 
+.imagesRow{
+    
     margin-top: 20px;
     display: flex;
     gap: 10px;

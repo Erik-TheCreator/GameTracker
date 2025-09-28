@@ -233,6 +233,7 @@ if (!isFiltroAtivo && games.length > 0) {
         </div>
         <nav>
           <ul>
+          
             <li onClick={() => navigate("/mylists", { state: { userId } })}>
               <span><CiBoxList /></span> Minhas Listas
             </li>
@@ -354,7 +355,7 @@ Filtrar</button>
               value={novaLista}
              onChange={(e) => setNovaLista(capitalizeWords(e.target.value))}
 
-              placeholder="Nome da nova lista"
+              placeholder="Nova Lista:"
             />
             <button
               onClick={(e) => {

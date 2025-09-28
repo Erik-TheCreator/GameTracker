@@ -10,7 +10,10 @@
 
 }
 
-.cabecalho div h1{
+.BGLogo2{
+  padding-left: 40px;
+}
+.BGLogo2 h1{
    font-size: 60px;
   color: #ffffff;
   animation: glowPulse 2s infinite alternate
@@ -169,10 +172,13 @@
 }
  
 .inputList{
-  border-radius: 4px;
+  border-radius: 5px;
   border: none;
-  height: 25px;
   padding-left: 10px;
+  height: 35px;
+  font-size: 1.5em;
+  color: #272727;
+
 }
  
 .searchIcon{
@@ -250,6 +256,9 @@
 .addicon:hover{
   cursor: pointer;
   color: rgb(211, 211, 211);
+          transform: scale(1.50);
+
+
 }
  
 .games::after {
@@ -286,15 +295,19 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 350px;
   gap: 20px;
   animation: popupScale 0.4s ease;
 }
-.popupFloating input{
-  height: 50px;
-  font-size: 2em;
-  color: #272727;
+
+.popupFloating button{
+  width: 150px;
+
 }
+
+
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
