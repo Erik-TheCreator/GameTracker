@@ -198,7 +198,7 @@ Editar</button>
   <button onClick={() => setBordaPerfil("")} className="buttonborda">Sem borda</button>
 
 
-        <input type="text" placeholder={user.nome} value={novoNome}  onChange={(e) => setNovoNome(e.target.value)}/>
+        <input type="text"  className="novonomeinput" placeholder={user.nome} value={novoNome}  onChange={(e) => setNovoNome(e.target.value)}/>
         <div className="perfil-section">
           
           
@@ -302,6 +302,9 @@ Editar</button>
 <div className="imagesRow2">
   <img src="imagens_perfil_fundo/halo.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("halo.jpg")} />
   <img src="imagens_perfil_fundo/skyrim.jfif" alt="" className="fotosbg" onClick={() => setfotoFundo("skyrim.jfif")} />
+  <img src="imagens_perfil_fundo/elden.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("elden.jpg")} />
+  <img src="imagens_perfil_fundo/clair.png" alt="" className="fotosbg" onClick={() => setfotoFundo("clair.png")} />
+  <img src="imagens_perfil_fundo/ffx.png" alt="" className="fotosbg" onClick={() => setfotoFundo("ffx.png")} />
 </div>
 
 

@@ -138,7 +138,7 @@ export const PagePerfilOutro = () => {
                   <li
                     key={lista.id}
                     onClick={() => setPopupLista(lista)}
-                    style={{ cursor: "pointer", color: "rgba(237, 237, 247, 1)" }}
+                    style={{ cursor: "pointer", color: "rgba(218, 218, 218, 1)" }}
                   >
                     {lista.descricao} ({(lista.games || []).length})
                   </li>

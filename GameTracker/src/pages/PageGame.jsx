@@ -228,20 +228,48 @@ const calcularMedia = (reviews) => {
         </div>
         </div>
         <main className="PageGame-main">
-          <div className="tempodejogo">
-            <div className="tempoprincipal">
-              <span>História Principal</span>
-            <p>{game.tempo_main}</p>
-            </div>
-             <div className="tempoprincipal">
-               <span>Principal + Secundárias</span>
-            <p>{game.tempo_main_sides}</p>
-             </div>
-             <div className="tempoprincipal">
-               <span>Complecionista (100%)</span>
-            <p>{game.tempo_completionist}</p>
-            </div>
-          </div>
+       {game.id === 35 || game.id === 32 ? (
+  <div className="tempodejogo">
+    <div className="tempoprincipal">
+      <span>História Principal</span>
+      <p>{game.tempo_main}</p>
+    </div>
+    <div className="tempoprincipal">
+      <span>Principal + Secundárias</span>
+      <p>{game.tempo_main_sides}</p>
+    </div>
+  </div>
+) : game.id !== 203 ? (
+  <div className="tempodejogo">
+    <div className="tempoprincipal">
+      <span>História Principal</span>
+      <p>{game.tempo_main}</p>
+    </div>
+    <div className="tempoprincipal">
+      <span>Principal + Secundárias</span>
+      <p>{game.tempo_main_sides}</p>
+    </div>
+    <div className="tempoprincipal">
+      <span>Complecionista (100%)</span>
+      <p>{game.tempo_completionist}</p>
+    </div>
+  </div>
+) : (
+  <div className="tempodejogo">
+    <div className="tempoprincipal">
+      <span>Single-Player</span>
+      <p>61 - 413h</p>
+    </div>
+    <div className="tempoprincipal">
+      <span>Co-op</span>
+      <p>20h</p>
+    </div>
+  </div>
+)}
+
+
+
+
       
 
     

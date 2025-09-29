@@ -2,9 +2,11 @@ import "./PagePrincipal.css";
 import { MdOutlineSearch, MdAddToPhotos } from "react-icons/md";
 import { CiBoxList } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaFilter,FaUserAlt } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
+import { MdFormatListBulletedAdd } from "react-icons/md";
+
 
 export const PagePrincipal = () => {
   const location = useLocation();
@@ -138,14 +140,14 @@ const adicionarEmLista = async (descricaoLista) => {
         id_usuario: userId,
         id_game: selectedGame.id,
         descricao: descricaoLista,
-        novaLista: false // estamos apenas adicionando a uma lista existente
+        novaLista: false 
       }),
     });
 
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data.mensagem); // mensagem do backend
+      alert(data.mensagem); 
       return;
     }
 
@@ -169,14 +171,14 @@ const criarNovaLista = async () => {
         id_usuario: userId,
         id_game: selectedGame.id,
         descricao: novaLista.trim(),
-        novaLista: true // estamos criando uma lista nova
+        novaLista: true 
       }),
     });
 
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data.mensagem); // mostra mensagem de lista duplicada ou outro erro
+      alert(data.mensagem); 
       return;
     }
 
@@ -362,10 +364,12 @@ Filtrar</button>
             {listas.length > 0 ? (
               listas.map((lista) => (
                 <button
+                className="botaoaddlista"
                   key={lista.id}
                   onClick={() => adicionarEmLista(lista.descricao)}
                 >
-                  {lista.descricao}
+                  <span><MdFormatListBulletedAdd /></span>
+{lista.descricao}
                 </button>
               ))
             ) : (
