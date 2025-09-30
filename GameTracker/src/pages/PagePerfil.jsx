@@ -306,6 +306,13 @@ Editar</button>
   <img src="imagens_perfil_fundo/clair.png" alt="" className="fotosbg" onClick={() => setfotoFundo("clair.png")} />
   <img src="imagens_perfil_fundo/ffx.png" alt="" className="fotosbg" onClick={() => setfotoFundo("ffx.png")} />
 </div>
+<div className="imagesRow2">
+  <img src="imagens_perfil_fundo/ff4.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("ff4.jpg")} />
+  <img src="imagens_perfil_fundo/ff6.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("ff6.jpg")} />
+  <img src="imagens_perfil_fundo/ff7.jpg" alt="" className="fotosbg" onClick={() => setfotoFundo("ff7.jpg")} />
+  <img src="imagens_perfil_fundo/ff15.webp" alt="" className="fotosbg" onClick={() => setfotoFundo("ff15.webp")} />
+  <img src="imagens_perfil_fundo/ff16.png" alt="" className="fotosbg" onClick={() => setfotoFundo("ff16.png")} />
+</div>
 
 
         </div>

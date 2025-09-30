@@ -128,7 +128,7 @@
     flex-direction: column;
    }
   .PageGame-info h1 {
-    font-size: 30px;
+    font-size: 50px;
     margin-bottom: 10px;
     color: #d4d4d4;
 
@@ -209,7 +209,8 @@
   }
 
 .semAvaliacoes{
-    font-size: 2.5em;
+    font-size: 1.5em;
+    color: #fac759;
 }
 
 .media-nota{
@@ -226,6 +227,8 @@
 .mediaRating span{
   font-size: 0.8em;
   color: #FFC107;
+  animation: glowPulsestar 1s infinite alternate
+
 
 }
 
@@ -423,4 +426,16 @@
   color: #d6d5d5;
   border: none;
   font-size: 1.2em;
+}
+
+@keyframes glowPulsestar {
+  from {
+    text-shadow: 0px 0px 5px rgb(250, 250, 148), 0px 0px 10px #f8ee90, 0px 0px 15px #fce782,
+                 0px 0px 20px #fcf48f;
+  }
+  to {
+    text-shadow: 0px 0px 5px #e7c506, 0px 0px 10px #f3db07, 0px 0px 20px #dbeb06,
+                 0px 0px 30px #ecb00b;
+  }
+  
 }

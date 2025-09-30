@@ -277,10 +277,10 @@ const calcularMedia = (reviews) => {
             <h1 className="gameTitulo">{game.titulo}</h1>
               <div className="media-nota">
   {reviews.length === 0 ? (
-    <p className="semAvaliacoes"></p>
+    <p className="semAvaliacoes"> Este jogo ainda não possui avaliações</p>
   ) : (
     <p className="mediaRating">
-      <span>★</span> {calcularMedia(reviews)}
+      <span>★</span> {(calcularMedia(reviews))}/5.0
     </p>
   )}
 </div>
