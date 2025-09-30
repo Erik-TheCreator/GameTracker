@@ -7,7 +7,6 @@ import { LuLogOut } from "react-icons/lu";
 import { MdKeyboardReturn } from "react-icons/md";
 import { TiDelete } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
-import { FaUserAlt } from "react-icons/fa";
 
 export const PageGame = () => {
   const { id } = useParams();
@@ -138,6 +137,10 @@ const excluirReview = async (reviewId) => {
 
 
 const salvarEdicao = async () => {
+  if (!editReview.comentarios.trim()) {
+    alert("O comentário não pode ficar vazio!");
+    return;
+  }
   const res = await fetch(`http://localhost:3000/reviews/${editReview.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

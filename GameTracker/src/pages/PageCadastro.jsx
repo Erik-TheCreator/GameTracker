@@ -51,9 +51,9 @@ export const PageCadastro = () => {
 
   if (resposta.ok) {
     alert("Usuário cadastrado com sucesso!");
-    setTimeout(() => navigate("/"), 1500);
+    setTimeout(() => navigate("/"), 0);
   } else {
-    alert(dados.mensagem || "Erro ao cadastrar usuário."); // <-- aqui
+    alert(dados.mensagem || "Erro ao cadastrar usuário."); 
   }
 } catch (err) {
   console.error(err);

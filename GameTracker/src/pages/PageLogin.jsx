@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import "./PageLogin.css"
 import { FaEye,FaEyeSlash} from "react-icons/fa";
-import instagramlogo from "../assets/instagram.png"
 
 export const PageLogin = ()=> {
   const [email,setEmail]=useState("")
